@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <link rel="stylesheet" href="AboutUs.css">
+    <script src="./AboutUs.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
+            <div class="header-center">
+                <h1>About Us</h1>
+            </div>
+            <div class="header-right">
+                <img src="../Resources/logo.webp" alt="Logo" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+        <a href="../index.html">Home</a>
+        <a href="./AboutUs.html">About Us</a>
+        <a href="../Reports/Reports.html">Reports</a>
+        <a href="../Team/Team.html">Teams</a>
+        <a href="../Settings/Settings.html">Settings</a>
+    </div>
+
+
+
+
+    <section id="about" class="about-section">
+        <p>Our task management system is designed to help you stay organized and productive. Using the Eisenhower Matrix, you can prioritize tasks effectively and achieve your goals.</p>
+        <a href="../index.html" class="button">Go to Task Manager</a>
+    </section>
+
+    <section id="features" class="features-section">
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Task Management:</strong> Four-quadrant prioritization, task categorization, and tagging.</li>
+            <li><strong>Visualization:</strong> Monthly and annual graphs to visualize task distribution and progress.</li>
+            <li><strong>Collaboration:</strong> Real-time editing, commenting, and feedback features.</li>
+            <li><strong>Cloud Synchronization:</strong> Multi-device access and cross-platform compatibility.</li>
+            <li><strong>Backup:</strong> Regular automatic backups and version history.</li>
+            <li><strong>AI Integration:</strong> AI-driven task prioritization and time estimation.</li>
+            <li><strong>User Interface:</strong> Intuitive, user-friendly interface with customizable themes.</li>
+            <li><strong>Security:</strong> Secure login, data encryption, and privacy controls.</li>
+            <li><strong>Additional Features:</strong> Integration with other productivity tools and offline mode.</li>
+        </ul>
+    </section>
+
+   
+
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <p>If you have any questions or need support, feel free to contact us.</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <link rel="stylesheet" href="OldStyles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Task Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="OldTaskManager.html">Task Manager</a></li> <!-- Added link to Task Manager -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="home-section">
+        <h2>Welcome to the Task Management System</h2>
+        <p>Manage your tasks efficiently with our Eisenhower Matrix-based system. Prioritize, visualize, and collaborate seamlessly.</p>
+        <button onclick="window.location.href='OldTaskManager.html'">Go to Task Manager</button> <!-- Added button to Task Manager -->
+    </section>
+
+    <section id="features" class="features-section">
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Task Management:</strong> Four-quadrant prioritization, task categorization, and tagging.</li>
+            <li><strong>Visualization:</strong> Monthly and annual graphs to visualize task distribution and progress.</li>
+            <li><strong>Collaboration:</strong> Real-time editing, commenting, and feedback features.</li>
+            <li><strong>Cloud Synchronization:</strong> Multi-device access and cross-platform compatibility.</li>
+            <li><strong>Backup:</strong> Regular automatic backups and version history.</li>
+            <li><strong>AI Integration:</strong> AI-driven task prioritization and time estimation.</li>
+            <li><strong>User Interface:</strong> Intuitive, user-friendly interface with customizable themes.</li>
+            <li><strong>Security:</strong> Secure login, data encryption, and privacy controls.</li>
+            <li><strong>Additional Features:</strong> Integration with other productivity tools and offline mode.</li>
+        </ul>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About</h2>
+        <p>Our task management system is designed to help you stay organized and productive. Using the Eisenhower Matrix, you can prioritize tasks effectively and achieve your goals.</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <p>If you have any questions or need support, feel free to contact us.</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Task Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTaskModal()">&times;</span>
+            <h2>Add Task</h2>
+            <form id="taskForm">
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" name="taskName" required>
+                
+                <label for="taskTime">Time Required (minutes):</label>
+                <input type="number" id="taskTime" name="taskTime" required>
+                
+                <label for="taskUrgency">Urgency:</label>
+                <select id="taskUrgency" name="taskUrgency" required>
+                    <option value="urgent">Urgent</option>
+                    <option value="not-urgent">Not Urgent</option>
+                </select>
+                
+                <label for="taskImportance">Importance:</label>
+                <select id="taskImportance" name="taskImportance" required>
+                    <option value="important">Important</option>
+                    <option value="not-important">Not Important</option>
+                </select>
+
+                <label for="taskCategory">Category:</label>
+                <select id="taskCategory" name="taskCategory" required>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <button type="button" onclick="addTask()">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="OldScripts.js"></script>
+</body>
+</html>
