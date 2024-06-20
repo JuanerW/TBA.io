@@ -23,6 +23,15 @@ function closeTaskModal() {
     document.getElementById('taskModal').style.display = 'none';
 }
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('signupBtn').addEventListener('click', function() {
+        // Optionally, add form validation here before redirecting
+
+        // Redirect to index.html
+        window.location.href = 'index.html';
+    });
+});
+
 function addTask() {
     const taskName = document.getElementById('taskName').value;
     const taskTime = document.getElementById('taskTime').value;
