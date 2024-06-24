@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
 </head>
-
 <body>
     <!-- Header -->
     <header>
@@ -17,6 +16,7 @@
                 <h1>Task Manager</h1>
             </div>
             <div class="header-right">
+                <input type="text" id="taskSearch" placeholder="Search tasks..." oninput="searchTasks()">
                 <img src="./Resources/logo.webp" alt="Logo" class="logo">
             </div>
         </div>
@@ -30,71 +30,93 @@
         <a href="./Reports/Reports.html">Reports</a>
         <a href="./Team/Team.html">Teams</a>
         <a href="./Settings/Settings.html">Settings</a>
+        <a href="./login/login.html" class="login-btn">Login</a>
     </div>
 
     <!-- Main Content -->
     <div id="main">
         <h2>Welcome to the Task Management System</h2>
         <p>This is your dashboard where you can manage tasks, view reports, and collaborate with your team.</p>
+
+        <div class="filter-sort">
+            <label for="taskFilter">Filter by:</label>
+            <select id="taskFilter" onchange="filterTasks()">
+                <option value="all">All</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="taskSort">Sort by:</label>
+            <select id="taskSort" onchange="sortTasks()">
+                <option value="priority">Priority</option>
+                <option value="deadline">Deadline</option>
+            </select>
+        </div>
+
+        <div class="matrix">
+            <div class="matrix-cell" id="do-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>DO THIS</h2>
+                <ul id="do-list" class="task-list"></ul>
+            </div>
+            <div class="matrix-cell" id="decide-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>DECIDE THIS</h2>
+                <ul id="decide-list" class="task-list"></ul>
+            </div>
+            <div class="matrix-cell" id="delegate-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>DELEGATE THIS</h2>
+                <ul id="delegate-list" class="task-list"></ul>
+            </div>
+            <div class="matrix-cell" id="delete-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>DELETE THIS</h2>
+                <ul id="delete-list" class="task-list"></ul>
+            </div>
+        </div>
+
+        <div class="progress-bars">
+            <h2>Progress</h2>
+            <div class="progress-bar" id="overall-progress">
+                <div class="progress"></div>
+            </div>
+        </div>
+
+        <button class="add-task-btn" onclick="openTaskModal()">+</button>
+
+        <!-- Task Modal -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeTaskModal()">&times;</span>
+                <h2>Add Task</h2>
+                <form id="taskForm">
+                    <label for="taskName">Task Name:</label>
+                    <input type="text" id="taskName" name="taskName" required>
+                    
+                    <label for="taskTime">Time Required (minutes):</label>
+                    <input type="number" id="taskTime" name="taskTime" required>
+                    
+                    <label for="taskUrgency">Urgency:</label>
+                    <select id="taskUrgency" name="taskUrgency" required>
+                        <option value="urgent">Urgent</option>
+                        <option value="not-urgent">Not Urgent</option>
+                    </select>
+                    
+                    <label for="taskImportance">Importance:</label>
+                    <select id="taskImportance" name="taskImportance" required>
+                        <option value="important">Important</option>
+                        <option value="not-important">Not Important</option>
+                    </select>
+
+                    <label for="taskCategory">Category:</label>
+                    <select id="taskCategory" name="taskCategory" required>
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <button type="button" onclick="addTask()">Add Task</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class="matrix">
-        <div class="matrix-cell" id="do-this">
-            <h2>DO THIS</h2>
-            <ul id="do-list"></ul>
-        </div>
-        <div class="matrix-cell" id="decide-this">
-            <h2>DECIDE THIS</h2>
-            <ul id="decide-list"></ul>
-        </div>
-        <div class="matrix-cell" id="delegate-this">
-            <h2>DELEGATE THIS</h2>
-            <ul id="delegate-list"></ul>
-        </div>
-        <div class="matrix-cell" id="delete-this">
-            <h2>DELETE THIS</h2>
-            <ul id="delete-list"></ul>
-        </div>
-    </div>
-
-    <button class="add-task-btn" onclick="openTaskModal()">+</button>
-    
-    <!-- Task Modal -->
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeTaskModal()">&times;</span>
-            <h2>Add Task</h2>
-            <form id="taskForm">
-                <label for="taskName">Task Name:</label>
-                <input type="text" id="taskName" name="taskName" required>
-                
-                <label for="taskTime">Time Required (minutes):</label>
-                <input type="number" id="taskTime" name="taskTime" required>
-                
-                <label for="taskUrgency">Urgency:</label>
-                <select id="taskUrgency" name="taskUrgency" required>
-                    <option value="urgent">Urgent</option>
-                    <option value="not-urgent">Not Urgent</option>
-                </select>
-                
-                <label for="taskImportance">Importance:</label>
-                <select id="taskImportance" name="taskImportance" required>
-                    <option value="important">Important</option>
-                    <option value="not-important">Not Important</option>
-                </select>
-
-                <label for="taskCategory">Category:</label>
-                <select id="taskCategory" name="taskCategory" required>
-                    <option value="work">Work</option>
-                    <option value="personal">Personal</option>
-                    <option value="other">Other</option>
-                </select>
-
-                <button type="button" onclick="addTask()">Add Task</button>
-            </form>
-        </div>
-    </div>
-
 </body>
 </html>
-
