@@ -44,7 +44,7 @@ function addTask() {
 
     const taskName = document.getElementById('taskName').value.trim();
 
-    const taskName = document.getElementById('taskName').value;
+    
 
 
     if (!taskName || !taskTime) {
@@ -210,5 +210,5 @@ function drop(event) {
 }
 
 
-}
+
 
