@@ -1,0 +1,58 @@
+{
+  "tasks": [
+    {
+      "task_id": 1,
+      "title": "Complete project report",
+      "description": "Finalize and submit the project report for TBA",
+      "priority": "high",
+      "due_date": "2024-06-30",
+      "status": "in progress",
+      "category": "work"
+    },
+    {
+      "task_id": 2,
+      "title": "Grocery shopping",
+      "description": "Buy vegetables, fruits, and milk",
+      "priority": "medium",
+      "due_date": "2024-06-25",
+      "status": "pending",
+      "category": "personal"
+    }
+  ],
+  "users": [
+    {
+      "user_id": 1,
+      "username": "john_doe",
+      "email": "john.doe@example.com",
+      "preferences": {
+        "notifications": true,
+        "theme": "dark"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "category_id": 1,
+      "name": "work",
+      "color": "#FF0000"
+    },
+    {
+      "category_id": 2,
+      "name": "personal",
+      "color": "#00FF00"
+    }
+  ],
+  "notifications": [
+    {
+      "notification_id": 1,
+      "task_id": 1,
+      "message": "Your project report is due soon",
+      "date_time": "2024-06-29T09:00:00"
+    }
+  ],
+  "settings": {
+    "dark_mode": true,
+    "language": "en",
+    "timezone": "GMT-5"
+  }
+}
