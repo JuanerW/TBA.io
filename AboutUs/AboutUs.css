@@ -198,6 +198,44 @@ header {
     background-color: #c0392b;
 }
 
+/* Profiles Section Styles */
+.profiles-section {
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profiles-section h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.profile {
+    width: 150px;
+    text-align: center;
+}
+
+.profile img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile p {
+    margin-top: 10px;
+    font-size: 16px;
+}
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
