@@ -99,6 +99,30 @@ header {
     color: #7f8c8d;
 }
 
+/* Chart Container Styles */
+.chart-container {
+    width: 40%;  /* Shrink the width */
+    height: 40vh; /* Adjust the height to fit text */
+    margin: 0 auto;
+    text-align: center;
+}
+
+#taskPieChart {
+    width: 100%;
+    height: 100%;
+}
+
+#taskSummary {
+    margin-top: 20px;
+}
+
+#taskSummary p {
+    color: #2c3e50;
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: bold;  /* Bold text */
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .header-container {
