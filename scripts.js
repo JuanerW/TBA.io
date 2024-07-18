@@ -1,6 +1,5 @@
 // Function to toggle the sidebar
 function toggleNav() {
-
     const sidebar = document.getElementById("mySidebar");
     const main = document.getElementById("main");
 
@@ -8,7 +7,6 @@ function toggleNav() {
         sidebar.style.width = "0";
         main.style.marginLeft = "0";
     } else {
-
         sidebar.style.width = "250px";
         main.style.marginLeft = "250px";
     }
@@ -23,7 +21,7 @@ function closeTaskModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('signupBtn').addEventListener('click', function() {
+    document.getElementById('signupBtn')?.addEventListener('click', function() {
         window.location.href = 'index.html';
     });
 
@@ -36,16 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target.className === 'modal') {
             closeTaskModal();
         }
-
     });
 });
 
 function addTask() {
-
     const taskName = document.getElementById('taskName').value.trim();
-
-    
-
+    const taskTime = document.getElementById('taskTime').value.trim();
+    const taskUrgency = document.getElementById('taskUrgency').value;
+    const taskImportance = document.getElementById('taskImportance').value;
+    const taskCategory = document.getElementById('taskCategory').value;
 
     if (!taskName || !taskTime) {
         alert('Please fill in all the fields.');
@@ -62,8 +59,7 @@ function createTaskElement(taskName, taskTime, taskUrgency, taskImportance, task
     const task = document.createElement('li');
     task.id = `task-${Date.now()}`;
     task.textContent = `${taskName} - ${taskTime} min`;
-    task.className = getTaskPriorityClass(taskUrgency, taskImportance);
-    task.style.color = getCategoryColor(taskCategory);
+    task.className = `${getTaskPriorityClass(taskUrgency, taskImportance)} ${taskCategory}`;
     task.draggable = true;
     task.ondragstart = drag;
 
@@ -108,7 +104,6 @@ function getCategoryColor(taskCategory) {
 }
 
 function appendTaskToMatrix(task, taskUrgency, taskImportance) {
-
     if (taskImportance === 'important' && taskUrgency === 'urgent') {
         document.getElementById('do-list').appendChild(task);
     } else if (taskImportance === 'important' && taskUrgency === 'not-urgent') {
@@ -118,7 +113,6 @@ function appendTaskToMatrix(task, taskUrgency, taskImportance) {
     } else {
         document.getElementById('delete-list').appendChild(task);
     }
-
 }
 
 function editTask(task) {
@@ -129,15 +123,12 @@ function editTask(task) {
     document.getElementById('taskName').value = taskName;
     document.getElementById('taskTime').value = taskTime;
 
-
     openTaskModal();
-
     deleteTask(task);
 }
 
 function deleteTask(task) {
     task.parentNode.removeChild(task);
-
 }
 
 function login() {
@@ -159,7 +150,11 @@ function filterTasks() {
     const tasks = document.querySelectorAll('.matrix-cell li');
 
     tasks.forEach(task => {
-        task.style.display = filterValue === 'all' || task.classList.contains(filterValue) ? '' : 'none';
+        if (filterValue === 'all') {
+            task.style.display = '';
+        } else {
+            task.style.display = task.classList.contains(filterValue) ? '' : 'none';
+        }
     });
 }
 
@@ -201,14 +196,10 @@ function drop(event) {
     const data = event.dataTransfer.getData("text");
     const task = document.getElementById(data);
     const target = event.target;
-    
+
     if (target.tagName === 'UL') {
         target.appendChild(task);
     } else if (target.tagName === 'LI') {
         target.parentNode.insertBefore(task, target.nextSibling);
     }
 }
-
-
-
-
