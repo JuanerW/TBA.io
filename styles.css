@@ -218,21 +218,3 @@ body {
     background-color: #002244; /* Even darker blue */
 }
 
-/* 添加或修改 CSS 文件中的样式 */
-.calendar-link {
-    background-color: #4CAF50; /* 背景颜色 */
-    color: white; /* 文本颜色 */
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 4px; /* 圆角 */
-    font-size: 16px; /* 字体大小 */
-    margin-left: 10px; /* 左边距 */
-}
-
-.calendar-link:hover {
-    background-color: #45a049; /* 悬停时的背景颜色 */
-    color: white; /* 悬停时的文本颜色 */
-}
-
