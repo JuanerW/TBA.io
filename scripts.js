@@ -45,7 +45,7 @@ function addTask() {
     const taskCategory = document.getElementById('taskCategory').value;
 
     if (!taskName || !taskTime) {
-        alert('Please fill in all the fields.');
+        //alert('Please fill in all the fields.');
         return;
     }
 
@@ -191,6 +191,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
     const taskImportance = document.getElementById('taskImportance').value;
     const taskCategory = document.getElementById('taskCategory').value;
 
+    // Check if any of the fields are empty
     if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory) {
         alert("Please fill in all the fields.");
         return;
@@ -204,6 +205,9 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
     taskElement.classList.add('task');
     taskElement.setAttribute('data-id', taskId);
     taskElement.setAttribute('data-expected-time', taskTimeInSeconds);
+    taskElement.setAttribute('data-urgency', taskUrgency);
+    taskElement.setAttribute('data-importance', taskImportance);
+    taskElement.setAttribute('data-category', taskCategory);
     taskElement.setAttribute('draggable', 'true');
     taskElement.ondragstart = drag;
 
@@ -278,3 +282,5 @@ function drop(event) {
     const taskElement = document.getElementById(data);
     event.target.closest('ul').appendChild(taskElement);
 }
+
+
