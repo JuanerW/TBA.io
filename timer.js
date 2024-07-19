@@ -60,4 +60,6 @@ function finishTask(button) {
 
     taskElement.querySelector('.timer-btn').remove();
     taskElement.querySelector('.finish-btn').remove();
+    taskElement.querySelector('.edit-btn').remove();
+    taskElement.querySelector('.delete-btn').remove();
 }

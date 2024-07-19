@@ -182,49 +182,38 @@ function getPriorityValue(task) {
     return 1;
 }
 
-// Drag and drop functions
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-}
-
-function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    const task = document.getElementById(data);
-    const target = event.target;
-
-    if (target.tagName === 'UL') {
-        target.appendChild(task);
-    } else if (target.tagName === 'LI') {
-        target.parentNode.insertBefore(task, target.nextSibling);
-    }
-}
-
 document.getElementById('taskForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const taskName = document.getElementById('taskName').value;
-    const taskTime = parseInt(document.getElementById('taskTime').value) * 60; // Convert minutes to seconds
+    const taskName = document.getElementById('taskName').value.trim();
+    const taskTime = document.getElementById('taskTime').value.trim();
     const taskUrgency = document.getElementById('taskUrgency').value;
     const taskImportance = document.getElementById('taskImportance').value;
     const taskCategory = document.getElementById('taskCategory').value;
+
+    if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory) {
+        alert("Please fill in all the fields.");
+        return;
+    }
+
+    const taskTimeInSeconds = parseInt(taskTime) * 60; // Convert minutes to seconds
 
     const taskId = 'task' + new Date().getTime(); // Generate a unique ID for the task
 
     const taskElement = document.createElement('li');
     taskElement.classList.add('task');
     taskElement.setAttribute('data-id', taskId);
-    taskElement.setAttribute('data-expected-time', taskTime);
+    taskElement.setAttribute('data-expected-time', taskTimeInSeconds);
+    taskElement.setAttribute('draggable', 'true');
+    taskElement.ondragstart = drag;
 
     taskElement.innerHTML = `
         <span class="task-name">${taskName}</span>
         <button class="timer-btn" onclick="toggleTimer(this)">Start</button>
         <button class="finish-btn" onclick="finishTask(this)">Finish</button>
-        <span class="timer-display">${formatTime(taskTime)}</span>
+        <button class="edit-btn" onclick="editTask(this)">Edit</button>
+        <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+        <span class="timer-display">${formatTime(taskTimeInSeconds)}</span>
     `;
 
     // Determine the correct section based on urgency and importance
@@ -250,4 +239,42 @@ function formatTime(seconds) {
     const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
     const remainingSeconds = String(seconds % 60).padStart(2, '0');
     return `${hours}:${minutes}:${remainingSeconds}`;
+}
+
+function editTask(button) {
+    const taskElement = button.closest('.task');
+    const taskName = taskElement.querySelector('.task-name').textContent;
+    const taskTime = parseInt(taskElement.getAttribute('data-expected-time')) / 60; // Convert seconds to minutes
+    const taskUrgency = taskElement.getAttribute('data-urgency');
+    const taskImportance = taskElement.getAttribute('data-importance');
+    const taskCategory = taskElement.getAttribute('data-category');
+
+    document.getElementById('taskName').value = taskName;
+    document.getElementById('taskTime').value = taskTime;
+    document.getElementById('taskUrgency').value = taskUrgency;
+    document.getElementById('taskImportance').value = taskImportance;
+    document.getElementById('taskCategory').value = taskCategory;
+    openTaskModal();
+
+    deleteTask(button); // Remove the old task, new one will be added on form submission
+}
+
+function deleteTask(button) {
+    const taskElement = button.closest('.task');
+    taskElement.remove();
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+}
+
+function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const taskElement = document.getElementById(data);
+    event.target.closest('ul').appendChild(taskElement);
 }
