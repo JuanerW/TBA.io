@@ -203,3 +203,51 @@ function drop(event) {
         target.parentNode.insertBefore(task, target.nextSibling);
     }
 }
+
+document.getElementById('taskForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const taskName = document.getElementById('taskName').value;
+    const taskTime = parseInt(document.getElementById('taskTime').value) * 60; // Convert minutes to seconds
+    const taskUrgency = document.getElementById('taskUrgency').value;
+    const taskImportance = document.getElementById('taskImportance').value;
+    const taskCategory = document.getElementById('taskCategory').value;
+
+    const taskId = 'task' + new Date().getTime(); // Generate a unique ID for the task
+
+    const taskElement = document.createElement('li');
+    taskElement.classList.add('task');
+    taskElement.setAttribute('data-id', taskId);
+    taskElement.setAttribute('data-expected-time', taskTime);
+
+    taskElement.innerHTML = `
+        <span class="task-name">${taskName}</span>
+        <button class="timer-btn" onclick="toggleTimer(this)">Start</button>
+        <button class="finish-btn" onclick="finishTask(this)">Finish</button>
+        <span class="timer-display">${formatTime(taskTime)}</span>
+    `;
+
+    // Determine the correct section based on urgency and importance
+    let sectionId;
+    if (taskUrgency === 'urgent' && taskImportance === 'important') {
+        sectionId = 'do-list';
+    } else if (taskUrgency === 'not-urgent' && taskImportance === 'important') {
+        sectionId = 'decide-list';
+    } else if (taskUrgency === 'urgent' && taskImportance === 'not-important') {
+        sectionId = 'delegate-list';
+    } else {
+        sectionId = 'delete-list';
+    }
+
+    document.getElementById(sectionId).appendChild(taskElement);
+
+    closeTaskModal();
+    document.getElementById('taskForm').reset();
+});
+
+function formatTime(seconds) {
+    const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const remainingSeconds = String(seconds % 60).padStart(2, '0');
+    return `${hours}:${minutes}:${remainingSeconds}`;
+}

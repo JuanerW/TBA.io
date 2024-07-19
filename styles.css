@@ -218,3 +218,16 @@ body {
     background-color: #002244; /* Even darker blue */
 }
 
+.timer-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+
+.timer-display {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.timer-exceeded {
+  color: red;
+}
