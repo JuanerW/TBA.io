@@ -12,11 +12,15 @@ function toggleTimer(button) {
         // If timer is running, pause it
         clearInterval(timers[taskId].interval);
         button.textContent = 'Resume';
+        button.classList.remove('paused');
+        button.classList.add('resumed');
         timers[taskId].interval = null;
     } else {
         // If timer is paused or not started, start/resume it
         const endTime = new Date().getTime() + timers[taskId].remainingTime * 1000;
         button.textContent = 'Pause';
+        button.classList.remove('resumed');
+        button.classList.add('paused');
 
         timers[taskId].interval = setInterval(() => {
             updateCountdownDisplay(taskElement, endTime, taskId);
@@ -81,7 +85,7 @@ function addTask() {
     const taskCategory = document.getElementById('taskCategory').value;
 
     if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory) {
-        //alert('Please fill in all the fields.');
+        alert('Please fill in all the fields.');
         return;
     }
 

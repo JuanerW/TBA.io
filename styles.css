@@ -231,3 +231,86 @@ body {
 .timer-exceeded {
   color: red;
 }
+
+/* Enhanced button styles with icons */
+
+/* General button styles */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Timer buttons */
+.timer-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.timer-btn:hover {
+    background-color: #45a049;
+}
+
+.timer-btn::before {
+    content: '\23F5'; /* Play symbol */
+    margin-right: 5px;
+}
+
+.timer-btn.paused::before {
+    content: '\23F8'; /* Pause symbol */
+}
+
+.timer-btn.resumed::before {
+    content: '\23F5'; /* Play symbol */
+}
+
+/* Finish button */
+.finish-btn {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.finish-btn:hover {
+    background-color: #da190b;
+}
+
+.finish-btn::before {
+    content: '\2714'; /* Check symbol */
+    margin-right: 5px;
+}
+
+/* Edit button */
+.edit-btn {
+    background-color: #008CBA; /* Blue */
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #007bb5;
+}
+
+.edit-btn::before {
+    content: '\270E'; /* Pencil symbol */
+    margin-right: 5px;
+}
+
+/* Delete button */
+.delete-btn {
+    background-color: #e7e7e7; /* Grey */
+    color: black;
+}
+
+.delete-btn:hover {
+    background-color: #d6d6d6;
+}
+
+.delete-btn::before {
+    content: '\1F5D1'; /* Trash symbol */
+    margin-right: 5px;
+}
