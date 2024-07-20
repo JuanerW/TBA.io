@@ -81,7 +81,7 @@ function addTask() {
     const taskCategory = document.getElementById('taskCategory').value;
 
     if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory) {
-        alert('Please fill in all the fields.');
+        //alert('Please fill in all the fields.');
         return;
     }
 
