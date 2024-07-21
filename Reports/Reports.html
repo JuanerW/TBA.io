@@ -6,7 +6,7 @@
     <title>Task Management Reports Page</title>
     <link rel="stylesheet" href="./Reports.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./Reports.js"></script>
+    <script src="./Reports.js" defer></script>
 </head>
 
 <body>
@@ -31,19 +31,57 @@
         <a href="./Reports.html">Reports</a>
         <a href="../Team/Team.html">Teams</a>
         <a href="../Settings/Settings.html">Settings</a>
+        <a href="../login/login.html" class="login-btn">Login</a>
     </div>
 
+    <!-- Main Content -->
     <div id="main">
-        <!-- Main content goes here -->
-        <h2>Task Completion Status</h2>
-        <div class="chart-container">
-            <canvas id="taskPieChart"></canvas>
-            <div id="taskSummary">
-                <p id="completedTasks"></p>
-                <p id="incompleteTasks"></p>
+        
+        <!-- <div class="time-range">
+            <button onclick="setTimeRange('daily')">Daily</button>
+            <button onclick="setTimeRange('monthly')">Monthly</button>
+            <button onclick="setTimeRange('yearly')">Yearly</button>
+        </div> -->
+        <div class="report-container">
+            <div class="chart-box">
+                <canvas id="taskPieChart"></canvas>
+            </div>
+            <div class="task-categories">
+                <div class="category-box do">
+                    <h3>Do</h3>
+                    <p id="doTasks">8</p>
+                </div>
+                <div class="category-box decide">
+                    <h3>Decide</h3>
+                    <p id="decideTasks">7</p>
+                </div>
+                <div class="category-box delegate">
+                    <h3>Delegate</h3>
+                    <p id="delegateTasks">9</p>
+                </div>
+                <div class="category-box delete">
+                    <h3>Delete</h3>
+                    <p id="deleteTasks">10</p>
+                </div>
+            </div>
+            <div class="analysis-container">
+                <div class="analysis-box summary">
+                    <h3>Task Summary</h3>
+                    <p id="completedTasks">Completed Tasks: XX</p>
+                    <p id="incompleteTasks">Incomplete Tasks: XX</p>
+                    <p id="inProgressTasks">In Progress Tasks: XX</p>
+                </div>
+                <div class="analysis-box additional-analysis">
+                    <h3>Additional Analysis</h3>
+                    <p>Average time to complete tasks: <span id="averageTime">2 min</span></p>
+                    <p>Most common task category: <span id="commonCategory">Work</span></p>
+                </div>
+                <div class="analysis-box overall-summary">
+                    <h3>Summary</h3>
+                    <!-- Additional summary content goes here -->
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-    
