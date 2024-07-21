@@ -13,18 +13,6 @@ Task Management Based on Eisenhower Matrix<br/>
 Visualization<br/>
 - Monthly and annually report with graphs to visualize task progress and distribution<br/>
 
-Collaboration<br/>
-- Real-time editing allows multiple users to edit and add task simultaneously<br/>
-- Commenting and feedback<br/>
-
-Cloud Synchronization<br/>
--  Multi-device synchronization: Access and manage tasks on different devices seamlessly.<br/>
-- Cross-platform compatibility (web, mobile, desktop).<br/>
-
-Automatic Backup<br/>
-- Regular automatic backups to prevent data loss.<br/>
-- Version history and restore options.<br/>
-
 Artificial Intelligence Integration<br/>
 - AI-driven task prioritization: Automatically sorts tasks based on priority.<br/>
 - Time estimation: AI estimates the time required for each task.<br/>
@@ -35,10 +23,6 @@ User Interface and Experience<br/>
 - Customizable themes and layouts.<br/>
 - Notifications and reminders for task deadlines.<br/>
 
-Security and Privacy<br/>
-- Secure login and authentication.<br/>
-- Data encryption to protect user information.<br/>
-- Privacy controls and settings.<br/>
 
 Additional Features<br/>
 - Integration with other productivity tools (e.g., calendars, email).<br/>
