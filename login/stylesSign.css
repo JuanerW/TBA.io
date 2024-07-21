@@ -1,18 +1,35 @@
-* {box-sizing: border-box}
-
-/* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
+body {
+  font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #F07167, #FED9B7, #FDFCDC, #00AFB9, #0081A7); /* Gradient background */
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  padding: 20px;
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #0081A7; /* Main Blue Color */
+}
+
+p {
+  text-align: center;
+  color: #333;
 }
 
 hr {
@@ -20,49 +37,68 @@ hr {
   margin-bottom: 25px;
 }
 
-/* Set a style for all buttons */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #FFFDF2; /* Background Light */
+  color: #0081A7; /* Text */
+}
+
 button {
-  background-color: #04AA6D;
+  background-color: #0081A7; /* Main Blue Color */
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
-  opacity: 0.9;
+  border-radius: 5px;
+  transition: background-color 0.3s, opacity 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for buttons */
 }
 
 button:hover {
-  opacity:1;
+  background-color: #00AFB9; /* Light Blue Color */
+  opacity: 0.8;
 }
 
-/* Extra styles for the cancel button */
+.cancelbtn, .signupbtn {
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
 .cancelbtn {
-  padding: 14px 20px;
   background-color: #f44336;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
+.cancelbtn:hover {
+  background-color: #da190b;
 }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
-
-/* Clear floats */
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
 
-/* Change styles for cancel button and signup button on extra small screens */
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive design for small screens */
 @media screen and (max-width: 300px) {
   .cancelbtn, .signupbtn {
-    width: 100%;
+      width: 100%;
   }
 }
+

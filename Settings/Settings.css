@@ -7,36 +7,20 @@ body {
 }
 
 /* Header Styles */
-header {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding: 10px;
+    background-color: #F07167; /* Primary */
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
-.openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #e74c3c;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-}
 
 .header-center h1 {
     margin: 0;
-    font-size: 24px;
 }
 
 .header-right {
@@ -44,9 +28,22 @@ header {
     align-items: center;
 }
 
-.logo {
-    height: 100px;
-    margin-right: 20px;
+.header-right .logo {
+    width: 50px;
+    margin-left: 10px;
+}
+
+.header-right .header-icon {
+    margin-left: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.header-right .header-icon:hover {
+    color: #0081A7;
+    transform: scale(1.2);
 }
 
 /* Sidebar Styles */
@@ -57,32 +54,40 @@ header {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #34495e;
+    background-color: #F07167; /* Primary */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
 }
 
-.sidebar a {
+.sidebar.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+
+.sidebar a, .sidebar .login-btn {
     padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
-    color: #ecf0f1;
+    color: white;
     display: block;
-    transition: 0.3s;
+    transition: background-color 0.3s, padding 0.3s;
 }
 
-.sidebar a:hover {
-    color: #e74c3c;
+.sidebar a:hover, .sidebar .login-btn:hover {
+    background-color: #FF8C89; /* Primary Light */
+    color: #0081A7; /* Text */
+    padding-left: 25px; /* Indent on hover */
 }
 
-.closebtn {
+.sidebar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-    color: #ecf0f1;
 }
 
 #main {
