@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TBA Tutorial Page</title>
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/70d96a9cb5.js" crossorigin="anonymous"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,11 +16,97 @@
       background-color: #f4f4f4;
     }
 
-    header {
-      background: #333;
-      color: #fff;
-      padding: 1rem 0;
-      text-align: center;
+    /* Header Styles */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #F07167;
+      /* Primary */
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Shadow for header */
+      transition: background-color 0.5s, box-shadow 0.5s;
+    }
+
+
+    .header-center h1 {
+      margin: 0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right .logo {
+      width: 50px;
+      margin-left: 10px;
+    }
+
+    .header-right .header-icon {
+      margin-left: 15px;
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .header-right .header-icon:hover {
+      color: #0081A7;
+      transform: scale(1.2);
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #F07167;
+      /* Primary */
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+      /* Shadow for sidebar */
+    }
+
+    .sidebar.slide-in {
+      animation: slideIn 0.5s forwards;
+    }
+
+    .sidebar a,
+    .sidebar .login-btn {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: background-color 0.3s, padding 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar .login-btn:hover {
+      background-color: #FF8C89;
+      /* Primary Light */
+      color: #0081A7;
+      /* Text */
+      padding-left: 25px;
+      /* Indent on hover */
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
     }
 
     nav {
@@ -67,8 +156,52 @@
 
 <body>
   <header>
-    <h1>TBA Tutorial Page</h1>
+    <div class="header-container">
+      <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
+      <div class="header-center">
+        <h1>Tutorial</h1>
+      </div>
+      <div class="header-right">
+        <a href="../Calendar/calendar.html" class="header-icon" aria-label="Calendar">
+          <i class="fas fa-calendar-alt"></i>
+        </a>
+        <a href="../login/login.html" class="header-icon" aria-label="Account">
+          <i class="fas fa-user"></i>
+        </a>
+        <a href="../AboutUs/AboutUs.html" aria-label="About Us">
+          <img src="../Resources/logo.png" alt="Task Manager Logo" class="logo">
+        </a>
+
+      </div>
+    </div>
   </header>
+
+
+  <!-- Sidebar -->
+  <nav id="mySidebar" class="sidebar">
+    <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
+    <a href="../index.html">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a href="../AboutUs/AboutUs.html">
+      <i class="fas fa-info-circle"></i> About Us
+    </a>
+    <a href="../Reports/Reports.html">
+      <i class="fas fa-chart-bar"></i> Reports
+    </a>
+    <a href="../Team/Team.html">
+      <i class="fas fa-users"></i> Teams
+    </a>
+    <a href="../Settings/Settings.html">
+      <i class="fas fa-cog"></i> Settings
+    </a>
+    <a href="../login/login.html" class="login-btn">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </a>
+    <a href="../tutorial.html">
+      <i class="fas fa-question-circle"></i> Tutorial
+    </a>
+  </nav>
 
   <div class="container">
     <div id="step1" class="tutorial-step">
@@ -151,9 +284,9 @@
         greater ease and clarity. Experience the difference of a structured and efficient task management system today!
       </p>
     </div>
-      <br>
-      <br>
-      <br>
+    <br>
+    <br>
+    <br>
   </div>
   <footer>
     <p>&copy; 2024 Task Booster Assistance. Less Hair Loss Inc.</p>

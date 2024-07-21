@@ -14,17 +14,26 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* Header Styles */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #F07167; /* Main Red Color */
+    background-color: #F07167; /* Primary */
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
+
 
 .header-center h1 {
     margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
 }
 
 .header-right .logo {
@@ -32,6 +41,20 @@ body {
     margin-left: 10px;
 }
 
+.header-right .header-icon {
+    margin-left: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.header-right .header-icon:hover {
+    color: #0081A7;
+    transform: scale(1.2);
+}
+
+/* Sidebar Styles */
 .sidebar {
     height: 100%;
     width: 0;
@@ -39,12 +62,17 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #F07167; /* Main Red Color */
+    background-color: #F07167; /* Primary */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
+}
+
+.sidebar.slide-in {
+    animation: slideIn 0.5s forwards;
 }
 
 .sidebar a, .sidebar .login-btn {
@@ -53,11 +81,13 @@ body {
     font-size: 18px;
     color: white;
     display: block;
-    transition: 0.3s;
+    transition: background-color 0.3s, padding 0.3s;
 }
 
 .sidebar a:hover, .sidebar .login-btn:hover {
-    background-color: #C14A4E; /* Darker Red */
+    background-color: #FF8C89; /* Primary Light */
+    color: #0081A7; /* Text */
+    padding-left: 25px; /* Indent on hover */
 }
 
 .sidebar .closebtn {

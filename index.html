@@ -9,10 +9,14 @@
     <script src="scripts.js" defer></script>
     <!-- Google Font: Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <script
+      src="https://kit.fontawesome.com/70d96a9cb5.js"
+      crossorigin="anonymous"
+    ></script>
 </head>
 
 <body>
-    <!-- Header -->
     <header>
         <div class="header-container">
             <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
@@ -20,23 +24,46 @@
                 <h1>Task Manager</h1>
             </div>
             <div class="header-right">
-                <img src="./Resources/logo.webp" alt="Task Manager Logo" class="logo">
+                <a href="./calendar/calendar.html" class="header-icon" aria-label="Calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                </a>
+                <a href="./login/login.html" class="header-icon" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="./AboutUs/AboutUs.html" aria-label="About Us">
+                    <img src="./Resources/logo.png" alt="Task Manager Logo" class="logo">
+                </a>
+                
             </div>
         </div>
     </header>
+    
 
     <!-- Sidebar -->
     <nav id="mySidebar" class="sidebar">
         <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
-        <a href="index.html">Home</a>
-        <a href="./AboutUs/AboutUs.html">About Us</a>
-        <a href="./Reports/Reports.html">Reports</a>
-        <a href="./Team/Team.html">Teams</a>
-        <a href="./Settings/Settings.html">Settings</a>
-        <a href="./login/login.html" class="login-btn">Login</a>
-        <a href="tutorial.html">Tutorial</a>
+        <a href="index.html">
+            <i class="fas fa-home"></i>  Home
+        </a>
+        <a href="./AboutUs/AboutUs.html">
+            <i class="fas fa-info-circle"></i>  About Us
+        </a>
+        <a href="./Reports/Reports.html">
+            <i class="fas fa-chart-bar"></i>  Reports
+        </a>
+        <a href="./Team/Team.html">
+            <i class="fas fa-users"></i>  Teams
+        </a>
+        <a href="./Settings/Settings.html">
+            <i class="fas fa-cog"></i>  Settings
+        </a>
+        <a href="./login/login.html" class="login-btn">
+            <i class="fas fa-sign-in-alt"></i>  Login
+        </a>
+        <a href="tutorial.html">
+            <i class="fas fa-question-circle"></i>  Tutorial
+        </a>
     </nav>
-
     <!-- Main Content -->
     <main id="main">
         <div class="filter-sort">

@@ -20,18 +20,32 @@ body {
     transition: background-color 0.5s, box-shadow 0.5s;
 }
 
-.header-container:hover {
-    background-color: #FF8C89; /* Lighter primary color on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-}
 
 .header-center h1 {
     margin: 0;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
 .header-right .logo {
     width: 50px;
     margin-left: 10px;
+}
+
+.header-right .header-icon {
+    margin-left: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.header-right .header-icon:hover {
+    color: #0081A7;
+    transform: scale(1.2);
 }
 
 /* Sidebar Styles */
