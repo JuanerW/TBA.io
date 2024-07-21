@@ -1,30 +1,32 @@
-/* styles.css */
-
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
     margin: 0;
     padding: 0;
-    background-color: #e0e7ff; /* Light background for contrast */
-    color: #333;
+    background-color: #FDFCDC; /* Background */
+    color: #0081A7; /* Text */
+    transition: background-color 0.5s, color 0.5s; /* Smooth transition for background and text color */
 }
 
+/* Header Styles */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #003366; /* Darker blue */
+    background-color: #F07167; /* Primary */
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+.header-container:hover {
+    background-color: #FF8C89; /* Lighter primary color on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 
 .header-center h1 {
     margin: 0;
-}
-
-.header-right input {
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
 }
 
 .header-right .logo {
@@ -32,6 +34,7 @@ body {
     margin-left: 10px;
 }
 
+/* Sidebar Styles */
 .sidebar {
     height: 100%;
     width: 0;
@@ -39,13 +42,17 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #003366; /* Darker blue */
+    background-color: #F07167; /* Primary */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
-    
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
+}
+
+.sidebar.slide-in {
+    animation: slideIn 0.5s forwards;
 }
 
 .sidebar a, .sidebar .login-btn {
@@ -54,12 +61,13 @@ body {
     font-size: 18px;
     color: white;
     display: block;
-    transition: 0.3s;
+    transition: background-color 0.3s, padding 0.3s;
 }
 
-
 .sidebar a:hover, .sidebar .login-btn:hover {
-    background-color: #002244; /* Even darker blue */
+    background-color: #FF8C89; /* Primary Light */
+    color: #0081A7; /* Text */
+    padding-left: 25px; /* Indent on hover */
 }
 
 .sidebar .closebtn {
@@ -70,34 +78,99 @@ body {
     margin-left: 50px;
 }
 
+/* Main Content Styles */
 #main {
-    transition: margin-left .5s;
+    transition: margin-left 0.5s;
     padding: 20px;
 }
 
-.filter-sort label, .filter-sort select {
-    margin: 10px;
+.filter-sort {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #FFEDCD; /* Secondary Light */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for filter-sort section */
+    transition: box-shadow 0.5s;
 }
 
+.filter-sort:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+.filter-sort label {
+    margin-right: 10px;
+    color: #0081A7; /* Text */
+}
+
+.filter-sort select, .filter-sort input {
+    margin-right: 20px;
+    padding: 5px 10px;
+    border: 1px solid #00AFB9; /* Accent */
+    border-radius: 4px;
+    background-color: #FFFDF2; /* Background Light */
+    color: #0081A7; /* Text */
+    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+}
+
+.filter-sort select:focus, .filter-sort input:focus {
+    outline: none;
+    border-color: #0081A7; /* Text */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
+}
+
+/* Eisenhower Matrix Styles */
 .matrix {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2x2 grid */
     gap: 10px;
+    flex-grow: 1;
 }
 
 .matrix-cell {
     padding: 10px;
-    border: 1px solid #003366; /* Darker blue */
     border-radius: 4px;
-    background-color: white;
-    min-height: 150px;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for matrix cells */
+    transition: box-shadow 0.5s, transform 0.3s;
+}
+
+.matrix-cell:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.primary-color {
+    background-color: #FF8C89; /* Primary Light */
+    border: 1px solid #F07167; /* Primary */
+}
+
+.secondary-color {
+    background-color: #FFEDCD; /* Secondary Light */
+    border: 1px solid #FED9B7; /* Secondary */
+}
+
+.accent-color {
+    background-color: #33D1CC; /* Accent Light */
+    border: 1px solid #00AFB9; /* Accent */
+    color: white;
+}
+
+.text-color {
+    background-color: #3399CC; /* Text Light */
+    border: 1px solid #0081A7; /* Text */
+    color: white;
 }
 
 .matrix-cell h2 {
     margin-top: 0;
-    color: #003366; /* Darker blue */
+    color: white;
+}
+#decide-this h2{
+    color: #0081A7;
 }
 
 .task-list {
@@ -110,63 +183,99 @@ body {
 .task-list li {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #003366; /* Darker blue */
+    border: 1px solid #00AFB9; /* Accent */
     border-radius: 4px;
-    background-color: #f0f8ff;
+    background-color: #f1f3f5;
     cursor: grab;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for task items */
+    transition: box-shadow 0.5s, transform 0.3s;
+}
+
+.task-list li:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
 }
 
 .task-list li button {
-    background-color: #003366;
+    background-color: #00AFB9; /* Accent */
     color: white;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
-    margin-left: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .task-list li button:hover {
-    background-color: #002244; /* Even darker blue */
+    background-color: #0081A7; /* Text */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-.progress-bars {
+.completed-tasks {
     margin-top: 20px;
+    background-color: #FFFDF2; /* Background Light */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #00AFB9; /* Accent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for completed tasks */
+    transition: box-shadow 0.5s;
 }
 
-.progress-bar {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 4px;
-    overflow: hidden;
+.completed-tasks:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 
-.progress-bar .progress {
-    width: 50%; /* Adjust this width as per the progress */
+.completed-tasks h2 {
+    color: #F07167; /* Primary */
+    margin-top: 0;
+    cursor: pointer;
+}
+
+.task-box {
+    width: 20px;
     height: 20px;
-    background-color: #003366; /* Darker blue */
+    background-color: #00AFB9; /* Accent */
+    margin-right: 10px;
+    border-radius: 4px;
 }
 
+.completed-task-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Add Task Button */
 .add-task-btn {
-    padding: 10px 20px;
+    padding: 10px 35px;
     border: none;
     border-radius: 50%;
-    background-color: #003366; /* Darker blue */
+    background-color: #F07167; /* Primary */
     color: white;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 85px;
     position: fixed;
     bottom: 20px;
     right: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for add task button */
 }
 
 .add-task-btn:hover {
-    background-color: #002244; /* Even darker blue */
+    background-color: #0081A7; /* Text */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -177,19 +286,31 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
+    transition: background-color 0.5s; /* Smooth transition for background color */
+}
+
+.modal.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-content {
     background-color: white;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #003366; /* Darker blue */
+    border: 1px solid #00AFB9; /* Accent */
     width: 80%;
     border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for modal content */
+    transition: box-shadow 0.5s, transform 0.3s;
+}
+
+.modal-content:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
 .modal-content h2 {
-    color: #003366; /* Darker blue */
+    color: #F07167; /* Primary */
 }
 
 .modal-content label {
@@ -201,35 +322,49 @@ body {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #003366; /* Darker blue */
+    border: 1px solid #00AFB9; /* Accent */
     border-radius: 4px;
+    background-color: #FFFDF2; /* Background Light */
+    color: #0081A7; /* Text */
+    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+}
+
+.modal-content input:focus, .modal-content select:focus {
+    outline: none;
+    border-color: #0081A7; /* Text */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
 }
 
 .modal-content button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #003366; /* Darker blue */
+    background-color: #F07167; /* Primary */
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for modal button */
 }
 
 .modal-content button:hover {
-    background-color: #002244; /* Even darker blue */
+    background-color: #0081A7; /* Text */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 
+/* Timer Styles */
 .timer-btn {
-  margin-left: 10px;
-  padding: 5px 10px;
+    margin-left: 10px;
+    padding: 5px 10px;
 }
 
 .timer-display {
-  margin-left: 10px;
-  font-weight: bold;
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 .timer-exceeded {
-  color: red;
+    color: red;
 }
 
 /* Enhanced button styles with icons */
@@ -245,6 +380,13 @@ button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for general buttons */
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 
 /* Timer buttons */
@@ -303,7 +445,7 @@ button {
 /* Delete button */
 .delete-btn {
     background-color: #e7e7e7; /* Grey */
-    color: black;
+    color: black.
 }
 
 .delete-btn:hover {
@@ -313,4 +455,51 @@ button {
 .delete-btn::before {
     content: '\1F5D1'; /* Trash symbol */
     margin-right: 5px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Apply fade-in animation to elements */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Task completion animation */
+.task-complete {
+    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+
+.task-complete.completed {
+    transform: scale(0.95);
+    opacity: 0.7;
+    background-color: #d4edda; /* Light green to indicate completion */
+}
+
+/* Collapsible styles */
+.task-list.collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.task-list.expanded {
+    max-height: 1000px; /* Arbitrary large value */
 }

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management Home Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
-    <script src="assets/js/dataHandler.js" defer></script>
-    <script src="timer.js" defer></script> <!-- Added timer script -->
+    <!-- Google Font: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -18,16 +20,14 @@
                 <h1>Task Manager</h1>
             </div>
             <div class="header-right">
-                <a href="./Calendar/calendar.html" class="calendar-link">Calendar</a>
-                <input type="text" id="taskSearch" placeholder="Search tasks..." oninput="searchTasks()">
-                <img src="./Resources/logo.webp" alt="Logo" class="logo">
+                <img src="./Resources/logo.webp" alt="Task Manager Logo" class="logo">
             </div>
         </div>
     </header>
 
     <!-- Sidebar -->
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+    <nav id="mySidebar" class="sidebar">
+        <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
         <a href="index.html">Home</a>
         <a href="./AboutUs/AboutUs.html">About Us</a>
         <a href="./Reports/Reports.html">Reports</a>
@@ -35,16 +35,13 @@
         <a href="./Settings/Settings.html">Settings</a>
         <a href="./login/login.html" class="login-btn">Login</a>
         <a href="tutorial.html">Tutorial</a>
-    </div>
+    </nav>
 
     <!-- Main Content -->
-    <div id="main">
-        <h2>Welcome to the Task Management System</h2>
-        <p>This is your dashboard where you can manage tasks, view reports, and collaborate with your team.</p>
-
+    <main id="main">
         <div class="filter-sort">
             <label for="taskFilter">Filter by:</label>
-            <select id="taskFilter" onchange="filterTasks()">
+            <select id="taskFilter" class="form-control" onchange="filterTasks()">
                 <option value="all">All</option>
                 <option value="work">Work</option>
                 <option value="personal">Personal</option>
@@ -52,58 +49,61 @@
             </select>
 
             <label for="taskSort">Sort by:</label>
-            <select id="taskSort" onchange="sortTasks()">
+            <select id="taskSort" class="form-control" onchange="sortTasks()">
                 <option value="priority">Priority</option>
                 <option value="deadline">Deadline</option>
             </select>
+
+            <input type="text" id="taskSearch" class="form-control" placeholder="Search tasks..."
+                oninput="searchTasks()">
         </div>
 
-        <div class="matrix">
-            <div class="matrix-cell" id="do-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <section class="matrix">
+            <div class="matrix-cell primary-color" id="do-this" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <h2>DO THIS</h2>
                 <ul id="do-list" class="task-list"></ul>
             </div>
-            <div class="matrix-cell" id="decide-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="matrix-cell secondary-color" id="decide-this" ondrop="drop(event)"
+                ondragover="allowDrop(event)">
                 <h2>DECIDE THIS</h2>
                 <ul id="decide-list" class="task-list"></ul>
             </div>
-            <div class="matrix-cell" id="delegate-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="matrix-cell accent-color" id="delegate-this" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <h2>DELEGATE THIS</h2>
                 <ul id="delegate-list" class="task-list"></ul>
             </div>
-            <div class="matrix-cell" id="delete-this" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="matrix-cell text-color" id="delete-this" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <h2>DELETE THIS</h2>
                 <ul id="delete-list" class="task-list"></ul>
             </div>
-        </div>
+        </section>
 
-        <div class="progress-bars">
-            <h2>Progress</h2>
-            <div class="progress-bar" id="overall-progress">
-                <div class="progress"></div>
-            </div>
-        </div>
+        <section class="completed-tasks">
+            <h2 onclick="toggleCompletedTasks()">Tasks Complete</h2>
+            <ul id="completed-task-list" class="task-list expanded">
+            </ul>
+        </section>
 
-        <button class="add-task-btn" onclick="openTaskModal()">+</button>
+        <button class="add-task-btn" aria-label="Add Task" onclick="openTaskModal()">+</button>
 
         <!-- Task Modal -->
         <div id="taskModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeTaskModal()">&times;</span>
+                <button class="close" aria-label="Close Task Modal" onclick="closeTaskModal()">&times;</button>
                 <h2>Add Task</h2>
                 <form id="taskForm">
                     <label for="taskName">Task Name:</label>
                     <input type="text" id="taskName" name="taskName" required>
-                    
+
                     <label for="taskTime">Time Required (minutes):</label>
                     <input type="number" id="taskTime" name="taskTime" required>
-                    
+
                     <label for="taskUrgency">Urgency:</label>
                     <select id="taskUrgency" name="taskUrgency" required>
                         <option value="urgent">Urgent</option>
                         <option value="not-urgent">Not Urgent</option>
                     </select>
-                    
+
                     <label for="taskImportance">Importance:</label>
                     <select id="taskImportance" name="taskImportance" required>
                         <option value="important">Important</option>
@@ -117,13 +117,23 @@
                         <option value="other">Other</option>
                     </select>
 
+                    <label for="taskDeadline">Deadline (Optional):</label>
+                    <input type="date" id="taskDeadline" name="taskDeadline">
+
                     <button type="submit">Add Task</button>
                 </form>
             </div>
         </div>
 
-        <h2>Tasks Complete</h2>
-        <ul id="completed-task-list"></ul>
-    </div>
+        <!-- Task Info Modal -->
+        <div id="taskInfoModal" class="modal">
+            <div class="modal-content">
+                <button class="close" aria-label="Close Task Info Modal" onclick="closeTaskInfoModal()">&times;</button>
+                <h2>Task Information</h2>
+                <p id="taskInfo"></p>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

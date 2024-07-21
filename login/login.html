@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="stylesLog.css">
-    
+    <!-- Google Font: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form id="loginForm">
+    <form id="loginForm" onsubmit="validateForm(event)">
         <div class="imgcontainer">
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
         </div>
 
         <div class="container">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
             <button type="submit">Login</button>
             <label>
@@ -26,13 +27,39 @@
             </label>
         </div>
 
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
+        <div class="container" style="background-color:#FFFDF2">
+            <button type="button" class="cancelbtn" onclick="window.location.href='../index.html'">Cancel</button>
             <span class="psw">Forgot <a href="#">password?</a></span>
             <p>Don't have an account? <a href="signup.html">Sign up</a></p>
-            <div id="errorMessage"></div>
+            <div id="errorMessage" class="error-message"></div>
         </div>
-        
     </form>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            const username = document.getElementById('uname').value;
+            const password = document.getElementById('psw').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Password validation: at least 8 characters, at least one number, and at least one letter
+            const passwordPattern = /^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/;
+
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Username and Password are required.';
+            } else if (!passwordPattern.test(password)) {
+                errorMessage.textContent = 'Password must be at least 8 characters long and contain at least one number and one letter.';
+            } else {
+                errorMessage.textContent = '';
+                alert('Login successful!');
+                const redirectToHome = confirm('Do you want to go back to the home page?');
+                if (redirectToHome) {
+                    window.location.href = '../index.html';
+                } else {
+                    document.getElementById('loginForm').reset();
+                }
+            }
+        }
+    </script>
 </body>
 </html>
