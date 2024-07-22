@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            alert("读取成功"); 
-            console.log("Tasks fetched successfully:", data); 
+            alert("读取成功"); // 弹出 "读取成功" 的消息
+            console.log("Tasks fetched successfully:", data); // 调试信息
             return data;
         } catch (error) {
             console.error("Failed to fetch tasks:", error);
@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderTasks(tasks, year, month) {
-        console.log("Rendering tasks for year:", year, " month:", month); 
+        console.log("Rendering tasks for year:", year, " month:", month); // 调试信息
         tasks.forEach(task => {
             const taskDate = new Date(task.date);
-            console.log("Checking task:", task); 
+            console.log("Checking task:", task); // 调试信息
             if (taskDate.getFullYear() === year && taskDate.getMonth() === month) {
                 const day = taskDate.getDate();
                 const cell = document.querySelector(`#calendarBody td[data-day="${day}"]`);
@@ -148,6 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
         currentDate.setFullYear(year);
         renderCalendar(currentDate);
         document.getElementById('datePicker').style.display = 'none';
+    });
+
+    // 添加Home按钮点击事件
+    document.getElementById('homeButton').addEventListener('click', function () {
+        window.location.href = '../index.html'; // 修改为导航到上一级目录的index.html
     });
 
     renderCalendar(currentDate);

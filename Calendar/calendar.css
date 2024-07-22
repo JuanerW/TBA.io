@@ -1,13 +1,69 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
+    margin: 0;
+    padding: 0;
+    background-color: #FDFCDC; /* Background */
+    color: #0081A7; /* Text */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
+    transition: background-color 0.5s, color 0.5s; /* Smooth transition for background and text color */
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #F07167; /* Primary */
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    margin-bottom: 20px;
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.navigation div {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.navigation span {
+    margin: 0 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#homeButton, #prevMonth, #nextMonth, #openPicker {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s, transform 0.3s;
+}
+
+#homeButton:hover, #prevMonth:hover, #nextMonth:hover, #openPicker:hover {
+    color: #FFEDCD;
+    transform: scale(1.1);
+}
+
+/* Calendar Styles */
 .calendar {
     width: 100%;
     max-width: 800px;
@@ -15,33 +71,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #f2f2f2;
-    border-bottom: 1px solid #ddd;
-}
-
-.header div {
-    display: flex;
-    align-items: center;
-}
-
-.header span {
-    margin: 0 5px;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-#prevMonth, #nextMonth, #openPicker {
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
+    text-align: center;
 }
 
 table {
@@ -52,11 +82,12 @@ table {
 th, td {
     width: 14.28%;
     text-align: center;
-    padding: 20px 0;
-    border: 1px solid #ddd;
     vertical-align: top;
-    position: relative;
-    height: 100px; /* 调整日期格子的高度 */
+    border: 1px solid #ddd;
+    padding: 10px; /* 增加内边距 */
+    transition: background-color 0.3s, transform 0.3s;
+    min-height: 120px; /* 设置最小高度 */
+    max-height: 200px; /* 设置最大高度 */
 }
 
 tbody td {
@@ -64,7 +95,8 @@ tbody td {
 }
 
 tbody td:hover {
-    background: #f9f9f9;
+    background: #FFEDCD;
+    transform: scale(1.05);
 }
 
 tbody td.inactive {
@@ -72,7 +104,7 @@ tbody td.inactive {
 }
 
 .task {
-    background-color: yellow;
+    background-color: #FF8C89; /* Primary Light */
     padding: 2px 4px;
     margin-top: 5px;
     font-size: 12px;
@@ -80,6 +112,7 @@ tbody td.inactive {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: white;
 }
 
 .date-picker {
@@ -94,6 +127,12 @@ tbody td.inactive {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     z-index: 1000;
+    transition: box-shadow 0.5s, transform 0.3s;
+}
+
+.date-picker:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translate(-50%, -50%) scale(1.05); /* Slightly enlarge on hover */
 }
 
 .picker-header {
@@ -104,4 +143,34 @@ tbody td.inactive {
 
 select {
     padding: 5px;
+    border: 1px solid #00AFB9; /* Accent */
+    border-radius: 4px;
+    background-color: #FFFDF2; /* Background Light */
+    color: #0081A7; /* Text */
+    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+}
+
+select:focus {
+    outline: none;
+    border-color: #0081A7; /* Text */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for general buttons */
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
