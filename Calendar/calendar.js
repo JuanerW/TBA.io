@@ -14,7 +14,50 @@ document.addEventListener('DOMContentLoaded', function () {
         return daysInMonth[month];
     }
 
-    function renderCalendar(date) {
+    async function fetchTasks() {
+        try {
+            const response = await fetch('tasks.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log("Tasks fetched successfully:", data); // 调试信息
+            return data;
+        } catch (error) {
+            console.error("Failed to fetch tasks:", error);
+            return [];
+        }
+    }
+
+    function renderTasks(tasks, year, month) {
+        console.log("Rendering tasks for year:", year, " month:", month); // 调试信息
+        tasks.forEach(task => {
+            const taskDate = new Date(task.date);
+            console.log("Checking task:", task); // 调试信息
+            if (taskDate.getFullYear() === year && taskDate.getMonth() === month) {
+                const day = taskDate.getDate();
+                const cell = document.querySelector(`#calendarBody td[data-day="${day}"]`);
+                if (cell) {
+                    const taskDiv = document.createElement('div');
+                    taskDiv.classList.add('task');
+                    taskDiv.textContent = `${task.title} (${task.timeRequired})`;
+                    
+                    const taskDetails = document.createElement('div');
+                    taskDetails.classList.add('task-details');
+                    taskDetails.innerHTML = `
+                        <strong>Urgency:</strong> ${task.urgency}<br>
+                        <strong>Importance:</strong> ${task.importance}<br>
+                        <strong>Category:</strong> ${task.category}
+                    `;
+                    taskDiv.appendChild(taskDetails);
+                    
+                    cell.appendChild(taskDiv);
+                }
+            }
+        });
+    }
+
+    async function renderCalendar(date) {
         const month = date.getMonth();
         const year = date.getFullYear();
         const firstDay = new Date(year, month, 1).getDay();
@@ -41,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let cell = document.createElement('td');
             cell.textContent = day;
+            cell.dataset.day = day;
             row.appendChild(cell);
         }
 
@@ -51,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         calendarBody.appendChild(row);
+
+        const tasks = await fetchTasks();
+        renderTasks(tasks, year, month);
     }
 
     function populateDatePicker() {

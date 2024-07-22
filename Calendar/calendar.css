@@ -92,7 +92,6 @@ select {
     padding: 5px;
 }
 
-/* 添加或修改 CSS 文件中的样式 */
 .calendar-link {
     background-color: #4CAF50; /* 背景颜色 */
     color: white; /* 文本颜色 */
@@ -109,5 +108,3 @@ select {
     background-color: #45a049; /* 悬停时的背景颜色 */
     color: white; /* 悬停时的文本颜色 */
 }
-
-
