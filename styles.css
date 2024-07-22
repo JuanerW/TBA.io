@@ -21,6 +21,7 @@ body {
 }
 
 
+
 .header-center h1 {
     margin: 0;
 }
@@ -186,6 +187,12 @@ body {
 #decide-this h2{
     color: #0081A7;
 }
+#delete-list {
+    color: #0081A7;
+}
+#delegate-list {
+    color: #0081A7;
+}
 
 .task-list {
     list-style: none;
@@ -232,6 +239,31 @@ body {
     background-color: #0081A7; /* Text */
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
+#taskForm label,
+#taskForm input,
+#taskForm select {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#taskForm input,
+#taskForm select {
+    padding: 8px;
+    border: 1px solid #00AFB9; /* Accent */
+    border-radius: 4px;
+    background-color: #FFFDF2; /* Background Light */
+    color: #0081A7; /* Text */
+    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+}
+
+#taskForm input:focus,
+#taskForm select:focus {
+    outline: none;
+    border-color: #0081A7; /* Text */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
+}
+
 
 .completed-tasks {
     margin-top: 20px;
@@ -288,6 +320,24 @@ body {
     transform: scale(1.1); /* Slightly enlarge on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
+/* Tooltip and Highlight Styles */
+.tooltip {
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+
+
+.highlight {
+    position: relative;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 0, 0.8);
+    z-index: 999;
+}
 
 /* Modal Styles */
 .modal {
@@ -327,26 +377,8 @@ body {
     color: #F07167; /* Primary */
 }
 
-.modal-content label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-.modal-content input, .modal-content select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #00AFB9; /* Accent */
-    border-radius: 4px;
-    background-color: #FFFDF2; /* Background Light */
+.modal-content p {
     color: #0081A7; /* Text */
-    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
-}
-
-.modal-content input:focus, .modal-content select:focus {
-    outline: none;
-    border-color: #0081A7; /* Text */
-    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
 }
 
 .modal-content button {
@@ -358,6 +390,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for modal button */
+    margin-top: 20px;
 }
 
 .modal-content button:hover {
@@ -517,3 +550,9 @@ button:hover {
 .task-list.expanded {
     max-height: 1000px; /* Arbitrary large value */
 }
+
+.introjs-tooltip .introjs-button {
+    text-shadow: none;
+}
+
+

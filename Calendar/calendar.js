@@ -1,3 +1,5 @@
+// Calendar Page Script
+
 document.addEventListener('DOMContentLoaded', function () {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -14,16 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return daysInMonth[month];
     }
 
-    async function fetchTasks() {
+
+    function fetchTasks() {
         try {
-            const response = await fetch('tasks.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            alert("读取成功"); // 弹出 "读取成功" 的消息
-            console.log("Tasks fetched successfully:", data); // 调试信息
-            return data;
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            console.log("Tasks fetched successfully:", tasks); 
+            return tasks;
+
         } catch (error) {
             console.error("Failed to fetch tasks:", error);
             return [];
@@ -31,27 +30,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderTasks(tasks, year, month) {
-        console.log("Rendering tasks for year:", year, " month:", month); // 调试信息
+        console.log("Rendering tasks for year:", year, " month:", month); 
         tasks.forEach(task => {
-            const taskDate = new Date(task.date);
-            console.log("Checking task:", task); // 调试信息
+
+            const taskDate = new Date(task.deadline); // Use the task deadline
+
+
+            console.log("Checking task:", task); 
             if (taskDate.getFullYear() === year && taskDate.getMonth() === month) {
                 const day = taskDate.getDate();
                 const cell = document.querySelector(`#calendarBody td[data-day="${day}"]`);
                 if (cell) {
                     const taskDiv = document.createElement('div');
                     taskDiv.classList.add('task');
-                    taskDiv.textContent = `${task.title} (${task.timeRequired})`;
+
+                    taskDiv.textContent = `${task.name}`; // Only show the task name
                     
                     const taskDetails = document.createElement('div');
                     taskDetails.classList.add('task-details');
+                    taskDetails.style.display = 'none'; // Hide details by default
                     taskDetails.innerHTML = `
+                        <strong>Time:</strong> ${task.time / 60} minutes<br>
+
+                    
+
                         <strong>Urgency:</strong> ${task.urgency}<br>
                         <strong>Importance:</strong> ${task.importance}<br>
                         <strong>Category:</strong> ${task.category}
                     `;
                     taskDiv.appendChild(taskDetails);
                     
+
+                    taskDiv.addEventListener('click', () => {
+                        taskDetails.style.display = taskDetails.style.display === 'none' ? 'block' : 'none';
+                    });
+                    
+
                     cell.appendChild(taskDiv);
                 }
             }
@@ -97,7 +111,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         calendarBody.appendChild(row);
 
-        const tasks = await fetchTasks();
+
+        const tasks = fetchTasks();
+
         renderTasks(tasks, year, month);
     }
 
@@ -150,9 +166,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('datePicker').style.display = 'none';
     });
 
-    // 添加Home按钮点击事件
+
+    
     document.getElementById('homeButton').addEventListener('click', function () {
-        window.location.href = '../index.html'; // 修改为导航到上一级目录的index.html
+        window.location.href = '../index.html'; 
+
     });
 
     renderCalendar(currentDate);

@@ -8,10 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./Reports.js" defer></script>
     <!-- Font Awesome for Icons -->
-    <script
-      src="https://kit.fontawesome.com/70d96a9cb5.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/70d96a9cb5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,7 +33,6 @@
         </div>
     </header>
 
-
     <!-- Sidebar -->
     <nav id="mySidebar" class="sidebar">
         <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
@@ -58,19 +54,10 @@
         <a href="../login/login.html" class="login-btn">
             <i class="fas fa-sign-in-alt"></i> Login
         </a>
-        <a href="../tutorial.html">
-            <i class="fas fa-question-circle"></i> Tutorial
-        </a>
     </nav>
 
     <!-- Main Content -->
     <div id="main">
-        
-        <!-- <div class="time-range">
-            <button onclick="setTimeRange('daily')">Daily</button>
-            <button onclick="setTimeRange('monthly')">Monthly</button>
-            <button onclick="setTimeRange('yearly')">Yearly</button>
-        </div> -->
         <div class="report-container">
             <div class="chart-box">
                 <canvas id="taskPieChart"></canvas>
@@ -78,32 +65,32 @@
             <div class="task-categories">
                 <div class="category-box do">
                     <h3>Do</h3>
-                    <p id="doTasks">8</p>
+                    <p id="doTasks">0</p>
                 </div>
                 <div class="category-box decide">
                     <h3>Decide</h3>
-                    <p id="decideTasks">7</p>
+                    <p id="decideTasks">0</p>
                 </div>
                 <div class="category-box delegate">
                     <h3>Delegate</h3>
-                    <p id="delegateTasks">9</p>
+                    <p id="delegateTasks">0</p>
                 </div>
                 <div class="category-box delete">
                     <h3>Delete</h3>
-                    <p id="deleteTasks">10</p>
+                    <p id="deleteTasks">0</p>
                 </div>
             </div>
             <div class="analysis-container">
                 <div class="analysis-box summary">
                     <h3>Task Summary</h3>
-                    <p id="completedTasks">Completed Tasks: XX</p>
-                    <p id="incompleteTasks">Incomplete Tasks: XX</p>
-                    <p id="inProgressTasks">In Progress Tasks: XX</p>
+                    <p id="completedTasks">Completed Tasks: 0</p>
+                    <p id="incompleteTasks">Incomplete Tasks: 0</p>
+                    <p id="inProgressTasks">In Progress Tasks: 0</p>
                 </div>
                 <div class="analysis-box additional-analysis">
                     <h3>Additional Analysis</h3>
-                    <p>Average time to complete tasks: <span id="averageTime">2 min</span></p>
-                    <p>Most common task category: <span id="commonCategory">Work</span></p>
+                    <p>Average time to complete tasks: <span id="averageTime">0 min</span></p>
+                    <p>Most common task category: <span id="commonCategory">N/A</span></p>
                 </div>
                 <div class="analysis-box overall-summary">
                     <h3>Summary</h3>
