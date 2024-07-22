@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click event listener for clearing completed tasks
     document.getElementById('clearCompletedTasksBtn')?.addEventListener('click', clearCompletedTasks);
+
+    // Show the welcome screen on page load
+    showWelcomeScreen();
 });
 
 
@@ -72,7 +75,7 @@ function closeTaskModal() {
 function openTaskInfoModal(taskInfo) {
     const taskInfoModal = document.getElementById('taskInfoModal');
     const taskInfoElement = document.getElementById('taskInfo');
-    taskInfoElement.textContent = taskInfo;
+    taskInfoElement.innerHTML = taskInfo.split('\n').map(info => `<p>${info}</p>`).join('');
     taskInfoModal.style.display = 'block';
     taskInfoModal.classList.add('fade-in');
 }
@@ -154,9 +157,8 @@ function addTask() {
     const taskCategory = document.getElementById('taskCategory').value;
     const taskDeadline = document.getElementById('taskDeadline').value; // Get the task deadline
 
-    if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory || !taskDeadline) {
-        alert('Please fill in all the fields.');
-        return;
+    if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory) {
+        return; // Do not submit the form if required fields are empty
     }
 
     const taskTimeInSeconds = parseInt(taskTime) * 60; // Convert minutes to seconds
@@ -222,6 +224,7 @@ function addTaskToDOM(task, isCompleted = false) {
             Urgency: ${task.urgency}
             Importance: ${task.importance}
             Category: ${task.category}
+            Deadline: ${task.deadline || 'N/A'}
         `);
         document.getElementById('completed-task-list').appendChild(taskElement);
     } else {
@@ -334,6 +337,7 @@ function finishTask(button) {
             Urgency: ${taskElement.getAttribute('data-urgency')}
             Importance: ${taskElement.getAttribute('data-importance')}
             Category: ${taskElement.getAttribute('data-category')}
+            Deadline: ${taskElement.getAttribute('data-deadline') || 'N/A'}
         `);
         completedTaskList.appendChild(taskElement);
         taskElement.querySelector('.timer-btn').remove();
@@ -447,4 +451,59 @@ function getPriorityValue(task) {
     if (task.getAttribute('data-urgency') === 'not-urgent' && task.getAttribute('data-importance') === 'important') return 2;
     if (task.getAttribute('data-urgency') === 'urgent' && task.getAttribute('data-importance') === 'not-important') return 1;
     return 0;
+}
+
+// Tutorial functions
+function startTutorial() {
+    introJs().setOptions({
+        steps: [
+            { 
+                intro: "Welcome to the Task Manager! Let's go through the core features." 
+            },
+            {
+                element: '.add-task-btn',
+                intro: 'Click here to add a new task.'
+            },
+            {
+                element: '#do-this',
+                intro: 'These are urgent and important tasks. Do them immediately to prevent any negative consequences.'
+            },
+            {
+                element: '#decide-this',
+                intro: 'These tasks are important but not urgent. Schedule them to be done at a later time.'
+            },
+            {
+                element: '#delegate-this',
+                intro: 'These tasks are urgent but not important. Delegate them to others if possible.'
+            },
+            {
+                element: '#delete-this',
+                intro: 'These tasks are neither urgent nor important. Consider eliminating them.'
+            },
+            {
+                element: '.filter-sort',
+                intro: 'Use these options to filter, sort and search your tasks.'
+            },
+            {
+                element: '.completed-tasks',
+                intro: 'Completed tasks will appear here.'
+            },
+            {
+                element: '.header-icon[href="./calendar/calendar.html"]',
+                intro: 'Click here to view the calendar.'
+            },
+            {
+                element: '.header-icon[href="./login/login.html"]',
+                intro: 'Click here to login.'
+            },
+            {
+                element: '.openbtn',
+                intro: 'Click here to open the sidebar menu.'
+            },
+            {
+                element: '.header-icon[onclick="startTutorial()"]',
+                intro: 'Click this icon anytime to replay the tutorial. Enjoy ^^ '
+            }
+        ]
+    }).start();
 }
