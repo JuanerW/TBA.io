@@ -19,7 +19,6 @@ body {
     transition: background-color 0.5s, box-shadow 0.5s;
 }
 
-
 .header-center h1 {
     margin: 0;
 }
@@ -91,58 +90,70 @@ body {
     margin-left: 50px;
 }
 
+/* Main Content */
 #main {
     transition: margin-left 0.5s;
     padding: 16px;
 }
 
-/* About Section Styles */
-.about-section {
+/* Section Styles */
+section {
     padding: 20px;
     background-color: #ffffff;
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Ensure overall text alignment is left */
 }
 
-.about-section p {
-    color: #2c3e50;
-    font-size: 18px;
+/* Profile Section */
+.profiles-section {
+    text-align: left; /* Align text to the left */
 }
 
-.button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 16px;
-    color: white;
-    background-color: #F07167;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+.profile-container {
+    display: flex;
+    flex-direction: column; /* Stack profiles vertically */
+    align-items: flex-start; /* Align profiles to the left */
 }
 
-.button:hover {
-    background-color: #c0392b;
+.profile {
+    display: flex; /* Align items horizontally */
+    align-items: flex-start; /* Align items to the top */
+    margin: 10px 0; /* Vertical margin for spacing between profiles */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%; /* Ensure profiles take full width of container */
+    max-width: 600px; /* Limit the maximum width of profiles */
 }
 
-/* Features Section Styles */
-.features-section {
-    padding: 20px;
-    background-color: #ffffff;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.profile img {
+    width: 150px;
+    height: 150px; /* Set consistent height for images */
+    object-fit: cover;
+    border-right: none; /* Remove the red line */
 }
 
+.profile-info {
+    padding: 10px;
+    flex: 1; /* Take up remaining space */
+}
+
+.profile-info p {
+    margin: 10px 0;
+}
+
+/* Features Section */
 .features-section h2 {
-    color: #2c3e50;
-    font-size: 24px;
-    margin-bottom: 15px;
+    text-align: left; /* Align text to the left */
 }
 
 .features-section ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .features-section li {
@@ -155,6 +166,11 @@ body {
     color: #2c3e50;
 }
 
+/* About Eisenhower Matrix Section */
+.about-section h2, .about-section p {
+    text-align: left; /* Align text to the left */
+}
+
 /* Contact Section Styles */
 .contact-section {
     padding: 20px;
@@ -162,12 +178,14 @@ body {
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Ensure overall text alignment is left */
 }
 
 .contact-section h2 {
     color: #2c3e50;
     font-size: 24px;
     margin-bottom: 15px;
+    text-align: left; /* Ensure the heading is left-aligned */
 }
 
 .contact-section form {
@@ -179,6 +197,7 @@ body {
     font-size: 18px;
     color: #2c3e50;
     margin-bottom: 5px;
+    text-align: left; /* Ensure labels are left-aligned */
 }
 
 .contact-section input,
@@ -188,6 +207,8 @@ body {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%; /* Ensure full width for text fields */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .contact-section button {
@@ -198,74 +219,60 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    align-self: flex-start; /* Align the button to the start (left) of the form */
 }
 
 .contact-section button:hover {
     background-color: #c0392b;
+    transform: scale(1.05);
 }
 
-/* Profiles Section Styles */
-.profiles-section {
-    padding: 20px;
-    background-color: #ffffff;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+/* Back to Main Page Button */
+.about-section .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0; /* Remove white space around the button */
+    background-color: #F07167; /* Red background color */
+    color: white; /* Text color */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
-.profiles-section h2 {
-    color: #2c3e50;
-    font-size: 24px;
-    margin-bottom: 15px;
+.about-section .button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    color: white; /* Ensure text color remains white on hover */
+    transform: scale(1.05);
 }
 
-.profile-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.profile {
-    width: 150px;
-    text-align: center;
-}
-
-.profile img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-}
-
-.profile p {
-    margin-top: 10px;
-    font-size: 16px;
+/* Animations */
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 250px;
+    }
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .openbtn {
-        font-size: 18px;
-        padding: 8px 12px;
-    }
-
-    .logo {
-        height: 50px;
-        margin-right: 10px;
-    }
-
-    .sidebar a {
+    .header-right .header-icon {
         font-size: 20px;
     }
 
-    .closebtn {
-        font-size: 30px;
-        right: 15px;
+    .profile img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .features-section h2, .features-section ul, .about-section h2, .about-section p {
+        max-width: 100%;
+    }
+
+    .contact-section form {
+        width: 100%;
+        padding: 0 20px;
     }
 }
