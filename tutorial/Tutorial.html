@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBA Tutorial Page</title>
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/70d96a9cb5.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Header Styles */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #F07167;
+      /* Primary */
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Shadow for header */
+      transition: background-color 0.5s, box-shadow 0.5s;
+    }
+
+
+    .header-center h1 {
+      margin: 0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right .logo {
+      width: 50px;
+      margin-left: 10px;
+    }
+
+    .header-right .header-icon {
+      margin-left: 15px;
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .header-right .header-icon:hover {
+      color: #0081A7;
+      transform: scale(1.2);
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #F07167;
+      /* Primary */
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+      /* Shadow for sidebar */
+    }
+
+    .sidebar.slide-in {
+      animation: slideIn 0.5s forwards;
+    }
+
+    .sidebar a,
+    .sidebar .login-btn {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: background-color 0.3s, padding 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar .login-btn:hover {
+      background-color: #FF8C89;
+      /* Primary Light */
+      color: #0081A7;
+      /* Text */
+      padding-left: 25px;
+      /* Indent on hover */
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    nav {
+      background: #444;
+      color: #fff;
+      padding: 0.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 1rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .container {
+      padding: 1rem;
+    }
+
+    .tutorial-step {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
+      <div class="header-center">
+        <h1>Tutorial</h1>
+      </div>
+      <div class="header-right">
+        <a href="../Calendar/calendar.html" class="header-icon" aria-label="Calendar">
+          <i class="fas fa-calendar-alt"></i>
+        </a>
+        <a href="../login/login.html" class="header-icon" aria-label="Account">
+          <i class="fas fa-user"></i>
+        </a>
+        <a href="../AboutUs/AboutUs.html" aria-label="About Us">
+          <img src="../Resources/logo.png" alt="Task Manager Logo" class="logo">
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Sidebar -->
+  <nav id="mySidebar" class="sidebar">
+    <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
+    <a href="../index.html">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a href="../AboutUs/AboutUs.html">
+      <i class="fas fa-info-circle"></i> About Us
+    </a>
+    <a href="../Reports/Reports.html">
+      <i class="fas fa-chart-bar"></i> Reports
+    </a>
+    <a href="../Team/Team.html">
+      <i class="fas fa-users"></i> Teams
+    </a>
+    <a href="../Settings/Settings.html">
+      <i class="fas fa-cog"></i> Settings
+    </a>
+    <a href="../login/login.html" class="login-btn">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </a>
+    <a href="../tutorial.html">
+      <i class="fas fa-question-circle"></i> Tutorial
+    </a>
+  </nav>
+
+  <div class="container">
+    <div id="step1" class="tutorial-step">
+      <h2>Step 1: Introduction</h2>
+      <p>Welcome to Task Booster Assistance, your ultimate productivity partner designed to streamline your workflow and
+        maximize efficiency. Our application leverages advanced algorithms and intuitive design to help you manage tasks
+        seamlessly, prioritize effectively, and achieve your goals with ease. Whether you're a busy professional
+        juggling multiple projects or a student striving to stay on top of your coursework, Task Booster Assistance
+        offers a comprehensive suite of tools tailored to your unique needs. Say goodbye to overwhelming to-do lists and
+        hello to a more organized, productive you. Get started today and experience the transformative power of Task
+        Booster Assistance!</p>
+    </div>
+    <div id="step2" class="tutorial-step">
+      <h2>Step 2: Setting Up</h2>
+      <p>Follow these simple steps to set up and start optimizing your productivity:</p>
+      <h3>Sign Up / Log In</h3>
+      <p>
+        <strong>Sign Up:</strong>
+      <ul>
+        <li>Visit our website or open the Task Booster Assistance app.</li>
+        <li>Click on the "Sign Up" button.</li>
+        <li>Fill in the required information such as your name, email address, and password.</li>
+        <li>Verify your email address through the confirmation link sent to your inbox.</li>
+      </ul>
+      <strong>Log In:</strong>
+      <ul>
+        <li>If you already have an account, simply click on the "Log In" button.</li>
+        <li>Enter your email address and password to access your dashboard.</li>
+      </ul>
+      </p>
+      <h3>Set Up Your Profile</h3>
+      <p>
+        <strong>Personal Information:</strong>
+      <ul>
+        <li>Once logged in, navigate to your profile settings.</li>
+        <li>Fill in your personal details like your name, job title, and a profile picture.</li>
+      </ul>
+      <strong>Preferences:</strong>
+      <ul>
+        <li>Set your task management preferences, including default urgency and importance levels, time zone, and
+          notification settings.</li>
+      </ul>
+      </p>
+      <h3>Add Your First Task</h3>
+      <p>
+        <strong>Navigate to 'Add Task':</strong>
+      <ul>
+        <li>From your dashboard, click on the "Add Task" button.</li>
+      </ul>
+      <strong>Enter Task Details:</strong>
+      <ul>
+        <li>Task Name: Provide a clear and descriptive name for the task.</li>
+        <li>Time Required (minutes): Estimate how long it will take to complete the task.</li>
+        <li>Urgency: Select the urgency level of the task (e.g., Low, Medium, High).</li>
+        <li>Importance: Specify the importance level (e.g., Low, Medium, High).</li>
+        <li>Category: Choose the relevant category for the task (e.g., Work, Personal, Study).</li>
+      </ul>
+      <strong>Save Task:</strong>
+      <ul>
+        <li>Click on the "Save" button to add the task to your task list.</li>
+      </ul>
+      </p>
+    </div>
+    <div id="step3" class="tutorial-step">
+      <h2>Step 3: Implementation</h2>
+      <p>Welcome to Task Booster Assistance, a cutting-edge productivity tool designed to revolutionize the way you
+        manage your tasks. Our application utilizes a matrix system to help you organize your tasks into four actionable
+        categories: "Do This," "Decide This," "Delegate This," and "Delete This." This approach ensures that you can
+        prioritize and handle your responsibilities with maximum efficiency. Additionally, our integrated calendar
+        allows you to keep track of your schedule effortlessly.</p>
+      <p>When adding a task, users will be prompted to set the following details:</p>
+      <ul>
+        <li><strong>Task Name:</strong> Clearly identify the task.</li>
+        <li><strong>Time Required (minutes):</strong> Estimate the duration needed to complete the task.</li>
+        <li><strong>Urgency:</strong> Indicate the urgency level of the task.</li>
+        <li><strong>Importance:</strong> Specify the importance of the task.</li>
+        <li><strong>Category:</strong> Classify the task into a relevant category.</li>
+      </ul>
+      <p>With Task Booster Assistance, you can streamline your workflow, stay organized, and achieve your goals with
+        greater ease and clarity. Experience the difference of a structured and efficient task management system today!
+      </p>
+    </div>
+    <br>
+    <br>
+    <br>
+  </div>
+  <footer>
+    <p>&copy; 2024 Task Booster Assistance. Less Hair Loss Inc.</p>
+  </footer>
+</body>
+
+</html>
