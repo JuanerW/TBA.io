@@ -345,6 +345,7 @@ function finishTask(button) {
         taskElement.querySelector('.edit-btn').remove();
         taskElement.querySelector('.delete-btn').remove();
 
+
         saveTasksToStorage();
     }, 600); // Delay to allow the animation to complete
 }

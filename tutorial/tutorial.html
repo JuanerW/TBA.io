@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBA Tutorial Page</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #F07167, #FED9B7, #FDFCDC, #00AFB9, #0081A7); /* Gradient background */
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    header {
+      background: #F07167;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    nav {
+      background: #444;
+      color: #fff;
+      padding: 0.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 1rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .container {
+      padding: 1rem;
+    }
+
+    .tutorial-step {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      color: #333; /* Adjust text color for better readability */
+    }
+
+    footer {
+      background: #F07167;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      height: 4%;
+      bottom: 0;
+    }
+
+    /* New styles for the home button */
+    .home-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      color: #383838;
+      background-color: #EDEADE;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .home-button:hover {
+      background-color: #FFD9D9;
+      transform: scale(1.05);
+    }
+
+    .home-button:active {
+      background-color: #FFD9D9;
+      transform: scale(1.02);
+    }
+
+    .clickable-image {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .clickable-image:hover {
+      transform: scale(1.05);
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <h1>TBA Tutorial Page</h1>
+    <a href="../index.html" class="home-button">HOME</a>
+  </header>
+
+  <div class="container">
+    <div id="step1" class="tutorial-step">
+      <h2>Introduction</h2>
+      <p>Welcome to Task Booster Assistance, your ultimate productivity partner designed to streamline your workflow and
+        maximize efficiency. Our application leverages advanced algorithms and intuitive design to help you manage tasks
+        seamlessly, prioritize effectively, and achieve your goals with ease. Whether you're a busy professional
+        juggling multiple projects or a student striving to stay on top of your coursework, Task Booster Assistance
+        offers a comprehensive suite of tools tailored to your unique needs. Say goodbye to overwhelming to-do lists and
+        hello to a more organized, productive you. Get started today and experience the transformative power of Task
+        Booster Assistance!</p>
+
+      <a href="../index.html" class="clickable-image">
+      <img src="Screenshot 2024-07-21 204927.png" alt="TASK" width="700" height="400">
+      </a>
+
+      <ul>
+      <li><strong>Toggle Sidebar:</strong> Click the ☰ button to open or close the sidebar for better viewing space.</li>
+
+      </ul>
+
+    </div>
+   
+
+
+    
+    <div id="step2" class="tutorial-step">
+      <h2>Setting Up</h2>
+      <p>Follow these simple steps to set up and start optimizing your productivity:</p>
+      <h3>Sign Up / Log In</h3>
+      <p>
+        <strong>Sign Up:</strong>
+      <ul>
+        <li>Visit our website or open the Task Booster Assistance app.</li>
+        <li>Click on the "Sign Up" button.</li>
+        <li>Fill in the required information such as your name, email address, and password.</li>
+        <li>Verify your email address through the confirmation link sent to your inbox.</li>
+      
+
+      <a href="../login/signup.html" class="clickable-image">
+        <img src="Screenshot 2024-07-21 204704.png" alt="Login page" width="165" height="200">
+      </a>
+        </ul>
+
+      
+      <strong>Log In:</strong>
+      <ul>
+        <li>If you already have an account, simply click on the "Log In" button.</li>
+        <li>Enter your email address and password to access your dashboard.</li>
+      
+
+      <a href="../login/login.html" class="clickable-image">
+        <img src="Screenshot 2024-07-21 204201.png" alt="Login page" width="170" height="220">
+      </a>
+
+        </ul>
+      
+      </p>
+    </div>
+
+      <div id="step3" class="tutorial-step">
+      <h2>Set Up Your Profile</h2>
+      <p>
+        <strong>Personal Information:</strong>
+      <ul>
+        <li>Once logged in, navigate to your profile settings.</li>
+        <li>Fill in your personal details like your name, job title, and a profile picture.</li>
+      </ul>
+      <strong>Preferences:</strong>
+      <ul>
+        <li>Set your task management preferences, including default urgency and importance levels, time zone, and
+          notification settings.</li>
+      </ul>
+      </p>
+      <h3>Add Your First Task</h3>
+      <p>
+        <strong>Navigate to 'Add Task':</strong>
+      <ul>
+        <li>From your dashboard, click on the "Add Task" button.
+
+        </li>
+
+        <img src="Screenshot 2024-07-21 205943.png" alt="Add TASK button" width="100" height="100">
+    
+
+        
+      </ul>
+      <strong>Enter Task Details:</strong>
+        <ul>
+          <li><strong>Task Name:</strong> Clearly identify the task.</li>
+          <li><strong>Time Required (minutes):</strong> Estimate the duration needed to complete the task.</li>
+          <li><strong>Urgency:</strong> Indicate the urgency level of the task.</li>
+          <li><strong>Importance:</strong> Specify the importance of the task.</li>
+          <li><strong>Category:</strong> Classify the task into a relevant category.</li>
+
+      
+
+      <img src="Screenshot 2024-07-21 210403.png" alt="Add TASK detail" width="880" height="400">
+        </ul>
+      
+      <strong>Save Task:</strong>
+      <ul>
+        <li>Click on the "Add Task" button to add and save the task to your task list.</li>
+      </ul>
+      </p>
+    </div>
+    <div id="step4" class="tutorial-step">
+      <h2>Calender</h2>
+      <p>On the Home page, at the top left corner has calendar icon.</p>
+
+      <a href="../Calendar/calendar.html" class="clickable-image">
+      <img src="Screenshot 2024-07-21 211011.png" alt="calendar button" width="100" height="100">
+      </a>
+      
+      <p>The calendar it will help user to observe each task more intuitively!</p>
+
+      <a href="../Calendar/calendar.html" class="clickable-image">
+        <img src="Screenshot 2024-07-21 211512.png" alt="calendar page" width="165" height="200">
+      </a>
+      </div>
+      
+    <div id="step4" class="tutorial-step">
+
+      <h2> Reports</h2>
+
+      <p>On the slide bar, there is a report icon.</p>
+
+      <img src="Screenshot 2024-07-21 212030.png" alt="report in slides" width="130" height="200">
+
+      <br>
+       <br>
+       <br>
+       <br>
+      <a href="../Reports/Reports.html" class="clickable-image">
+        <img src="Screenshot 2024-07-21 212202.png" alt="TASK" width="700" height="400">
+        </a>
+
+      <ul>
+        <li><strong>Open Reports Page:</strong> Click on the "Reports" link in the sidebar to navigate to the Reports page.
+</li>
+        <li><strong>View Pie Chart:</strong> Check the pie chart for a quick overview of completed and incomplete tasks.
+</li>
+        <li><strong>Task Categories:</strong> Review the task categories (Do, Decide, Delegate, Delete) to see the number of tasks in each.</li>
+        <li><strong>Task Summary:</strong> Look at the "Task Summary" box for details on completed, incomplete, and in-progress tasks.
+</li>
+        <li><strong>Additional Analysis:</strong> Find average completion time and the most common task category in the "Additional Analysis" box.</li>
+
+        <li><strong>Overall Summary:</strong> Check the "Summary" section for additional insights and overall performance.</li>
+
+      </ul>
+      </div>
+
+    
+      <div id="step5" class="tutorial-step">
+      <p>With Task Booster Assistance, you can streamline your workflow, stay organized, and achieve your goals with
+        greater ease and clarity. Experience the difference of a structured and efficient task management system today!
+      </p>
+      <br>
+      <br>
+        <br>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Task Booster Assistance. Less Hair Loss Inc.</p>
+  </footer>
+</body>
+
+</html>

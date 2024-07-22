@@ -16,7 +16,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 
 }
 
@@ -68,7 +67,9 @@ body {
 /* Calendar Styles */
 .calendar {
     width: 100%;
+
     max-width: 1200px; /* Increased max-width for larger calendar */
+
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -86,10 +87,12 @@ th, td {
     text-align: center;
     vertical-align: top;
     border: 1px solid #ddd;
+
     padding: 10px; /* Increased padding */
     transition: background-color 0.3s, transform 0.3s;
     min-height: 120px; /* Set minimum height */
     max-height: 200px; /* Set maximum height */
+
 }
 
 tbody td {
