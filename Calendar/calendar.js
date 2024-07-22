@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("Tasks fetched successfully:", data); // 调试信息
+            alert("读取成功"); 
+            console.log("Tasks fetched successfully:", data); 
             return data;
         } catch (error) {
             console.error("Failed to fetch tasks:", error);
@@ -30,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderTasks(tasks, year, month) {
-        console.log("Rendering tasks for year:", year, " month:", month); // 调试信息
+        console.log("Rendering tasks for year:", year, " month:", month); 
         tasks.forEach(task => {
             const taskDate = new Date(task.date);
-            console.log("Checking task:", task); // 调试信息
+            console.log("Checking task:", task); 
             if (taskDate.getFullYear() === year && taskDate.getMonth() === month) {
                 const day = taskDate.getDate();
                 const cell = document.querySelector(`#calendarBody td[data-day="${day}"]`);
