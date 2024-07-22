@@ -21,6 +21,7 @@ body {
 }
 
 
+
 .header-center h1 {
     margin: 0;
 }
@@ -288,6 +289,22 @@ body {
     transform: scale(1.1); /* Slightly enlarge on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
+/* Tooltip and Highlight Styles */
+.tooltip {
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+.highlight {
+    position: relative;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 0, 0.8);
+    z-index: 999;
+}
 
 /* Modal Styles */
 .modal {
@@ -517,3 +534,5 @@ button:hover {
 .task-list.expanded {
     max-height: 1000px; /* Arbitrary large value */
 }
+
+

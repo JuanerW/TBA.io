@@ -1,23 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('taskPieChart').getContext('2d');
-    const completedTasks = 20; // Example value
-    const incompleteTasks = 10; // Example value
-    const inProgressTasks = 5; // Example value
-    const averageTime = "2 hours"; // Example value
-    const commonCategory = "Work"; // Example value
-    const doTasks = 8; // Example value
-    const decideTasks = 7; // Example value
-    const delegateTasks = 9; // Example value
-    const deleteTasks = 10; // Example value
+    loadTaskData();
+});
 
-    const taskPieChart = new Chart(ctx, {
+function loadTaskData() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+    const doTasks = tasks.filter(task => task.urgency === 'urgent' && task.importance === 'important').length;
+    const decideTasks = tasks.filter(task => task.urgency === 'not-urgent' && task.importance === 'important').length;
+    const delegateTasks = tasks.filter(task => task.urgency === 'urgent' && task.importance === 'not-important').length;
+    const deleteTasks = tasks.filter(task => task.urgency === 'not-urgent' && task.importance === 'not-important').length;
+
+    document.getElementById('doTasks').textContent = doTasks;
+    document.getElementById('decideTasks').textContent = decideTasks;
+    document.getElementById('delegateTasks').textContent = delegateTasks;
+    document.getElementById('deleteTasks').textContent = deleteTasks;
+
+    const inProgressTasks = tasks.filter(task => task.status === 'inProgress').length;
+    const notStartedTasks = tasks.length - inProgressTasks;
+    const completedTaskCount = completedTasks.length;
+
+    document.getElementById('completedTasks').textContent = `Completed Tasks: ${completedTaskCount}`;
+    document.getElementById('incompleteTasks').textContent = `Not Started Tasks: ${notStartedTasks}`;
+    document.getElementById('inProgressTasks').textContent = `In Progress Tasks: ${inProgressTasks}`;
+
+    const taskCompletionTimes = completedTasks.map(task => task.time);
+    const averageCompletionTime = taskCompletionTimes.length ? taskCompletionTimes.reduce((a, b) => a + b, 0) / taskCompletionTimes.length : 0;
+    document.getElementById('averageTime').textContent = `${(averageCompletionTime / 60).toFixed(2)} min`;
+
+    const categories = tasks.map(task => task.category);
+    const categoryCounts = categories.reduce((acc, category) => {
+        acc[category] = (acc[category] || 0) + 1;
+        return acc;
+    }, {});
+
+    const mostCommonCategory = Object.keys(categoryCounts).reduce((a, b) => categoryCounts[a] > categoryCounts[b] ? a : b, '');
+    document.getElementById('commonCategory').textContent = mostCommonCategory;
+
+    generatePieChart(completedTaskCount, inProgressTasks, notStartedTasks);
+}
+
+function generatePieChart(completedTasks, inProgressTasks, notStartedTasks) {
+    const ctx = document.getElementById('taskPieChart').getContext('2d');
+    new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Completed Tasks', 'Incomplete Tasks'],
+            labels: ['Completed Tasks', 'In Progress Tasks', 'Not Started Tasks'],
             datasets: [{
-                data: [completedTasks, incompleteTasks],
-                backgroundColor: ['#00AFB9', '#F07167'],
-                hoverBackgroundColor: ['#007D89', '#C14A4E']
+                data: [completedTasks, inProgressTasks, notStartedTasks],
+                backgroundColor: ['#00AFB9', '#F07167', '#FFD166'],
+                hoverBackgroundColor: ['#007D89', '#C14A4E', '#D8A73C']
             }]
         },
         options: {
@@ -29,17 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    document.getElementById('completedTasks').textContent = `Completed Tasks: ${completedTasks}`;
-    document.getElementById('incompleteTasks').textContent = `Incomplete Tasks: ${incompleteTasks}`;
-    document.getElementById('inProgressTasks').textContent = `In Progress Tasks: ${inProgressTasks}`;
-    document.getElementById('averageTime').textContent = averageTime;
-    document.getElementById('commonCategory').textContent = commonCategory;
-    document.getElementById('doTasks').textContent = doTasks;
-    document.getElementById('decideTasks').textContent = decideTasks;
-    document.getElementById('delegateTasks').textContent = delegateTasks;
-    document.getElementById('deleteTasks').textContent = deleteTasks;
-});
+}
 
 function toggleNav() {
     const sidebar = document.getElementById("mySidebar");

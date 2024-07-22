@@ -8,32 +8,36 @@
     <script src="calendar.js" defer></script>
 </head>
 <body>
-    <div class="calendar">
+    <div class="container">
         <div class="header">
-            <button id="prevMonth">«</button>
-            <div>
-                <span id="month"></span>
-                <span id="year"></span>
+            <button id="homeButton">Home</button>
+            <div class="navigation">
+                <button id="prevMonth">«</button>
+                <div>
+                    <span id="month"></span>
+                    <span id="year"></span>
+                </div>
+                <button id="nextMonth">»</button>
+                <button id="openPicker">📅</button>
             </div>
-            <button id="nextMonth">»</button>
-            <button id="openPicker">📅</button>
         </div>
-        <table id="calendarTable">
-            <thead>
-                <tr>
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                </tr>
-            </thead>
-            <tbody id="calendarBody"></tbody>
-        </table>
+        <div class="calendar">
+            <table id="calendarTable">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarBody"></tbody>
+            </table>
+        </div>
     </div>
-
     <div id="datePicker" class="date-picker">
         <div class="picker-header">
             <select id="monthSelect"></select>

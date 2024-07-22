@@ -1,4 +1,50 @@
+// Home Page Script
+
 let timers = {}; // Store timers for each task
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadTasksFromStorage(); // Load tasks from local storage on page load
+    restoreTimersFromStorage(); // Restore timers from local storage on page load
+
+    document.getElementById('signupBtn')?.addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
+
+    document.getElementById('taskForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        addTask();
+    });
+
+    document.getElementById('taskModal').addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeTaskModal();
+        }
+    });
+
+    // Apply fade-in effect to elements on page load
+    document.querySelectorAll('.matrix-cell, .filter-sort, .add-task-btn').forEach(element => {
+        element.classList.add('fade-in');
+    });
+
+    // Toggle sidebar with slide-in effect
+    document.querySelector('.openbtn').addEventListener('click', () => {
+        const sidebar = document.getElementById('mySidebar');
+        sidebar.classList.toggle('slide-in');
+    });
+
+    // Add click event listener to completed tasks
+    document.getElementById('completed-task-list').addEventListener('click', function(event) {
+        const taskElement = event.target.closest('.completed-task-item');
+        if (taskElement) {
+            const taskInfo = taskElement.getAttribute('data-info');
+            openTaskInfoModal(taskInfo);
+        }
+    });
+
+    // Add click event listener for clearing completed tasks
+    document.getElementById('clearCompletedTasksBtn')?.addEventListener('click', clearCompletedTasks);
+});
+
 
 function toggleNav() {
     const sidebar = document.getElementById("mySidebar");
@@ -40,42 +86,167 @@ function toggleCompletedTasks() {
     completedTaskList.classList.toggle('expanded');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('signupBtn')?.addEventListener('click', function() {
-        window.location.href = 'index.html';
-    });
+function loadTasksFromStorage() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
 
-    document.getElementById('taskForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        addTask();
-    });
+    tasks.forEach(task => addTaskToDOM(task));
+    completedTasks.forEach(task => addTaskToDOM(task, true));
+}
 
-    document.getElementById('taskModal').addEventListener('click', function(event) {
-        if (event.target.classList.contains('modal')) {
-            closeTaskModal();
+function saveTasksToStorage() {
+    const tasks = Array.from(document.querySelectorAll('.task:not(.completed-task-item)')).map(taskElement => ({
+        id: taskElement.dataset.id,
+        name: taskElement.querySelector('.task-name').textContent,
+        time: parseInt(taskElement.getAttribute('data-expected-time')),
+        urgency: taskElement.getAttribute('data-urgency'),
+        importance: taskElement.getAttribute('data-importance'),
+        category: taskElement.getAttribute('data-category'),
+        deadline: taskElement.getAttribute('data-deadline'),
+        status: taskElement.getAttribute('data-status') || 'notStarted'
+    }));
+
+    const completedTasks = Array.from(document.querySelectorAll('.completed-task-item')).map(taskElement => ({
+        id: taskElement.dataset.id,
+        name: taskElement.querySelector('.task-name').textContent,
+        time: parseInt(taskElement.getAttribute('data-expected-time')),
+        urgency: taskElement.getAttribute('data-urgency'),
+        importance: taskElement.getAttribute('data-importance'),
+        category: taskElement.getAttribute('data-category'),
+        deadline: taskElement.getAttribute('data-deadline'),
+        completed: true
+    }));
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+}
+
+function saveTimersToStorage() {
+    localStorage.setItem('timers', JSON.stringify(timers));
+}
+
+function restoreTimersFromStorage() {
+    const storedTimers = JSON.parse(localStorage.getItem('timers')) || {};
+    Object.keys(storedTimers).forEach(taskId => {
+        const timerData = storedTimers[taskId];
+        if (timerData.endTime) {
+            const taskElement = document.querySelector(`.task[data-id="${taskId}"]`);
+            if (taskElement) {
+                const endTime = new Date(timerData.endTime).getTime();
+                timers[taskId] = {
+                    remainingTime: timerData.remainingTime,
+                    interval: setInterval(() => {
+                        updateCountdownDisplay(taskElement, endTime, taskId);
+                    }, 1000)
+                };
+                taskElement.querySelector('.timer-btn').textContent = 'Pause';
+                taskElement.querySelector('.timer-btn').classList.add('paused');
+            }
         }
     });
+}
 
-    // Apply fade-in effect to elements on page load
-    document.querySelectorAll('.matrix-cell, .filter-sort, .add-task-btn').forEach(element => {
-        element.classList.add('fade-in');
-    });
+function addTask() {
+    const taskName = document.getElementById('taskName').value.trim();
+    const taskTime = document.getElementById('taskTime').value.trim();
+    const taskUrgency = document.getElementById('taskUrgency').value;
+    const taskImportance = document.getElementById('taskImportance').value;
+    const taskCategory = document.getElementById('taskCategory').value;
+    const taskDeadline = document.getElementById('taskDeadline').value; // Get the task deadline
 
-    // Toggle sidebar with slide-in effect
-    document.querySelector('.openbtn').addEventListener('click', () => {
-        const sidebar = document.getElementById('mySidebar');
-        sidebar.classList.toggle('slide-in');
-    });
+    if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory || !taskDeadline) {
+        alert('Please fill in all the fields.');
+        return;
+    }
 
-    // Add click event listener to completed tasks
-    document.getElementById('completed-task-list').addEventListener('click', function(event) {
-        const taskElement = event.target.closest('.completed-task-item');
-        if (taskElement) {
-            const taskInfo = taskElement.getAttribute('data-info');
-            openTaskInfoModal(taskInfo);
+    const taskTimeInSeconds = parseInt(taskTime) * 60; // Convert minutes to seconds
+    const taskId = 'task' + new Date().getTime(); // Generate a unique ID for the task
+
+    const task = {
+        id: taskId,
+        name: taskName,
+        time: taskTimeInSeconds,
+        urgency: taskUrgency,
+        importance: taskImportance,
+        category: taskCategory,
+        deadline: taskDeadline, // Save the task deadline
+        status: 'notStarted'
+    };
+
+    addTaskToDOM(task);
+    saveTaskToStorage(task); // Save the task to localStorage
+
+    closeTaskModal();
+    document.getElementById('taskForm').reset();
+}
+
+function saveTaskToStorage(task) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function addTaskToDOM(task, isCompleted = false) {
+    const taskElement = document.createElement('li');
+    taskElement.classList.add('task', 'fade-in');
+    if (isCompleted) {
+        taskElement.classList.add('completed-task-item');
+    }
+    taskElement.setAttribute('data-id', task.id);
+    taskElement.setAttribute('data-expected-time', task.time);
+    taskElement.setAttribute('data-urgency', task.urgency);
+    taskElement.setAttribute('data-importance', task.importance);
+    taskElement.setAttribute('data-category', task.category);
+    taskElement.setAttribute('data-status', task.status);
+    taskElement.setAttribute('data-deadline', task.deadline); // Add the deadline attribute
+    taskElement.setAttribute('draggable', 'true');
+    taskElement.ondragstart = drag;
+
+    taskElement.innerHTML = `
+        <span class="task-name">${task.name}</span>
+        <div class="button-group">
+            ${isCompleted ? '' : `
+                <button class="timer-btn" onclick="toggleTimer(this)">Start</button>
+                <button class="finish-btn" onclick="finishTask(this)">Finish</button>
+                <button class="edit-btn" onclick="editTask(this)">Edit</button>
+                <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+            `}
+        </div>
+        <span class="timer-display">${formatTime(task.time)}</span>
+    `;
+
+    if (isCompleted) {
+        taskElement.setAttribute('data-info', `
+            Name: ${task.name}
+            Time: ${task.time / 60} minutes
+            Urgency: ${task.urgency}
+            Importance: ${task.importance}
+            Category: ${task.category}
+        `);
+        document.getElementById('completed-task-list').appendChild(taskElement);
+    } else {
+        // Determine the correct section based on urgency and importance
+        let sectionId;
+        if (task.urgency === 'urgent' && task.importance === 'important') {
+            sectionId = 'do-list';
+        } else if (task.urgency === 'not-urgent' && task.importance === 'important') {
+            sectionId = 'decide-list';
+        } else if (task.urgency === 'urgent' && task.importance === 'not-important') {
+            sectionId = 'delegate-list';
+        } else {
+            sectionId = 'delete-list';
         }
-    });
-});
+
+        document.getElementById(sectionId).appendChild(taskElement);
+    }
+}
+
+function formatTime(seconds) {
+    const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const remainingSeconds = String(seconds % 60).padStart(2, '0');
+    return `${hours}:${minutes}:${remainingSeconds}`;
+}
 
 function toggleTimer(button) {
     const taskElement = button.closest('.task');
@@ -92,6 +263,8 @@ function toggleTimer(button) {
         button.classList.remove('paused');
         button.classList.add('resumed');
         timers[taskId].interval = null;
+        // Save the remaining time to local storage
+        saveTimersToStorage();
     } else {
         // If timer is paused or not started, start/resume it
         const endTime = new Date().getTime() + timers[taskId].remainingTime * 1000;
@@ -102,6 +275,11 @@ function toggleTimer(button) {
         timers[taskId].interval = setInterval(() => {
             updateCountdownDisplay(taskElement, endTime, taskId);
         }, 1000);
+        taskElement.setAttribute('data-status', 'inProgress');
+        saveTasksToStorage();
+        // Save the end time and remaining time to local storage
+        timers[taskId].endTime = endTime;
+        saveTimersToStorage();
     }
 }
 
@@ -162,73 +340,9 @@ function finishTask(button) {
         taskElement.querySelector('.finish-btn').remove();
         taskElement.querySelector('.edit-btn').remove();
         taskElement.querySelector('.delete-btn').remove();
+
+        saveTasksToStorage();
     }, 600); // Delay to allow the animation to complete
-}
-
-document.getElementById('taskForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    addTask();
-});
-
-function addTask() {
-    const taskName = document.getElementById('taskName').value.trim();
-    const taskTime = document.getElementById('taskTime').value.trim();
-    const taskUrgency = document.getElementById('taskUrgency').value;
-    const taskImportance = document.getElementById('taskImportance').value;
-    const taskCategory = document.getElementById('taskCategory').value;
-
-    if (!taskName || !taskTime || !taskUrgency || !taskImportance || !taskCategory) {
-        alert('Please fill in all the fields.');
-        return;
-    }
-
-    const taskTimeInSeconds = parseInt(taskTime) * 60; // Convert minutes to seconds
-    const taskId = 'task' + new Date().getTime(); // Generate a unique ID for the task
-
-    const taskElement = document.createElement('li');
-    taskElement.classList.add('task', 'fade-in');
-    taskElement.setAttribute('data-id', taskId);
-    taskElement.setAttribute('data-expected-time', taskTimeInSeconds);
-    taskElement.setAttribute('data-urgency', taskUrgency);
-    taskElement.setAttribute('data-importance', taskImportance);
-    taskElement.setAttribute('data-category', taskCategory);
-    taskElement.setAttribute('draggable', 'true');
-    taskElement.ondragstart = drag;
-
-    taskElement.innerHTML = `
-        <span class="task-name">${taskName}</span>
-        <div class="button-group">
-            <button class="timer-btn" onclick="toggleTimer(this)">Start</button>
-            <button class="finish-btn" onclick="finishTask(this)">Finish</button>
-            <button class="edit-btn" onclick="editTask(this)">Edit</button>
-            <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
-        </div>
-        <span class="timer-display">${formatTime(taskTimeInSeconds)}</span>
-    `;
-
-    // Determine the correct section based on urgency and importance
-    let sectionId;
-    if (taskUrgency === 'urgent' && taskImportance === 'important') {
-        sectionId = 'do-list';
-    } else if (taskUrgency === 'not-urgent' && taskImportance === 'important') {
-        sectionId = 'decide-list';
-    } else if (taskUrgency === 'urgent' && taskImportance === 'not-important') {
-        sectionId = 'delegate-list';
-    } else {
-        sectionId = 'delete-list';
-    }
-
-    document.getElementById(sectionId).appendChild(taskElement);
-
-    closeTaskModal();
-    document.getElementById('taskForm').reset();
-}
-
-function formatTime(seconds) {
-    const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
-    const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-    const remainingSeconds = String(seconds % 60).padStart(2, '0');
-    return `${hours}:${minutes}:${remainingSeconds}`;
 }
 
 function editTask(button) {
@@ -255,6 +369,17 @@ function deleteTask(button) {
     clearInterval(timers[taskId]?.interval); // Clear the timer interval if it exists
     delete timers[taskId]; // Remove the timer from the timers object
     taskElement.remove();
+    saveTasksToStorage();
+    saveTimersToStorage(); // Save the updated timers to storage
+}
+
+function clearCompletedTasks() {
+    // Remove all completed tasks from the DOM
+    const completedTaskList = document.getElementById('completed-task-list');
+    completedTaskList.innerHTML = '';
+
+    // Clear completed tasks from local storage
+    localStorage.removeItem('completedTasks');
 }
 
 function allowDrop(event) {
@@ -272,11 +397,8 @@ function drop(event) {
     const dropTarget = event.target.closest('ul');
     if (dropTarget && dropTarget.id.includes('-list')) {
         dropTarget.appendChild(draggedElement);
+        saveTasksToStorage();
     }
-}
-
-function login() {
-    alert('Login functionality to be implemented.');
 }
 
 function searchTasks() {
@@ -297,7 +419,7 @@ function filterTasks() {
         if (filterValue === 'all') {
             task.style.display = '';
         } else {
-            task.style.display = task.classList.contains(filterValue) ? '' : 'none';
+            task.style.display = task.getAttribute('data-category') === filterValue ? '' : 'none';
         }
     });
 }
@@ -313,7 +435,7 @@ function sortTasks() {
                 if (sortValue === 'priority') {
                     return getPriorityValue(b) - getPriorityValue(a);
                 } else if (sortValue === 'deadline') {
-                    return parseInt(a.textContent.split(' - ')[1]) - parseInt(b.textContent.split(' - ')[1]);
+                    return new Date(a.getAttribute('data-deadline')) - new Date(b.getAttribute('data-deadline'));
                 }
             })
             .forEach(node => list.appendChild(node));
@@ -321,7 +443,8 @@ function sortTasks() {
 }
 
 function getPriorityValue(task) {
-    if (task.classList.contains('priority-high')) return 3;
-    if (task.classList.contains('priority-medium')) return 2;
-    return 1;
+    if (task.getAttribute('data-urgency') === 'urgent' && task.getAttribute('data-importance') === 'important') return 3;
+    if (task.getAttribute('data-urgency') === 'not-urgent' && task.getAttribute('data-importance') === 'important') return 2;
+    if (task.getAttribute('data-urgency') === 'urgent' && task.getAttribute('data-importance') === 'not-important') return 1;
+    return 0;
 }

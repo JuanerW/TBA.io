@@ -1,3 +1,5 @@
+// Calendar Page Script
+
 document.addEventListener('DOMContentLoaded', function () {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -14,7 +16,52 @@ document.addEventListener('DOMContentLoaded', function () {
         return daysInMonth[month];
     }
 
-    function renderCalendar(date) {
+    function fetchTasks() {
+        try {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            console.log("Tasks fetched successfully:", tasks); // 调试信息
+            return tasks;
+        } catch (error) {
+            console.error("Failed to fetch tasks:", error);
+            return [];
+        }
+    }
+
+    function renderTasks(tasks, year, month) {
+        console.log("Rendering tasks for year:", year, " month:", month); // 调试信息
+        tasks.forEach(task => {
+            const taskDate = new Date(task.deadline); // Use the task deadline
+            console.log("Checking task:", task); // 调试信息
+            if (taskDate.getFullYear() === year && taskDate.getMonth() === month) {
+                const day = taskDate.getDate();
+                const cell = document.querySelector(`#calendarBody td[data-day="${day}"]`);
+                if (cell) {
+                    const taskDiv = document.createElement('div');
+                    taskDiv.classList.add('task');
+                    taskDiv.textContent = `${task.name}`; // Only show the task name
+                    
+                    const taskDetails = document.createElement('div');
+                    taskDetails.classList.add('task-details');
+                    taskDetails.style.display = 'none'; // Hide details by default
+                    taskDetails.innerHTML = `
+                        <strong>Time:</strong> ${task.time / 60} minutes<br>
+                        <strong>Urgency:</strong> ${task.urgency}<br>
+                        <strong>Importance:</strong> ${task.importance}<br>
+                        <strong>Category:</strong> ${task.category}
+                    `;
+                    taskDiv.appendChild(taskDetails);
+                    
+                    taskDiv.addEventListener('click', () => {
+                        taskDetails.style.display = taskDetails.style.display === 'none' ? 'block' : 'none';
+                    });
+                    
+                    cell.appendChild(taskDiv);
+                }
+            }
+        });
+    }
+
+    async function renderCalendar(date) {
         const month = date.getMonth();
         const year = date.getFullYear();
         const firstDay = new Date(year, month, 1).getDay();
@@ -41,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let cell = document.createElement('td');
             cell.textContent = day;
+            cell.dataset.day = day;
             row.appendChild(cell);
         }
 
@@ -51,6 +99,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         calendarBody.appendChild(row);
+
+        const tasks = fetchTasks();
+        renderTasks(tasks, year, month);
     }
 
     function populateDatePicker() {
@@ -100,6 +151,11 @@ document.addEventListener('DOMContentLoaded', function () {
         currentDate.setFullYear(year);
         renderCalendar(currentDate);
         document.getElementById('datePicker').style.display = 'none';
+    });
+
+    
+    document.getElementById('homeButton').addEventListener('click', function () {
+        window.location.href = '../index.html'; 
     });
 
     renderCalendar(currentDate);

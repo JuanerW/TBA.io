@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,48 +108,49 @@
             <h2 onclick="toggleCompletedTasks()">Tasks Complete</h2>
             <ul id="completed-task-list" class="task-list expanded">
             </ul>
+            <button id="clearCompletedTasksBtn" aria-label="Clear Completed Tasks" onclick="clearCompletedTasks()">Clear</button>
         </section>
 
         <button class="add-task-btn" aria-label="Add Task" onclick="openTaskModal()">+</button>
 
-        <!-- Task Modal -->
-        <div id="taskModal" class="modal">
-            <div class="modal-content">
-                <button class="close" aria-label="Close Task Modal" onclick="closeTaskModal()">&times;</button>
-                <h2>Add Task</h2>
-                <form id="taskForm">
-                    <label for="taskName">Task Name:</label>
-                    <input type="text" id="taskName" name="taskName" required>
+        
+       <div id="taskModal" class="modal">
+    <div class="modal-content">
+        <button class="close" aria-label="Close Task Modal" onclick="closeTaskModal()">&times;</button>
+        <h2 id="taskModalTitle">Add Task</h2>
+        <form id="taskForm">
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" name="taskName" required>
 
-                    <label for="taskTime">Time Required (minutes):</label>
-                    <input type="number" id="taskTime" name="taskTime" required>
+            <label for="taskTime">Time Required (minutes):</label>
+            <input type="number" id="taskTime" name="taskTime" required>
 
-                    <label for="taskUrgency">Urgency:</label>
-                    <select id="taskUrgency" name="taskUrgency" required>
-                        <option value="urgent">Urgent</option>
-                        <option value="not-urgent">Not Urgent</option>
-                    </select>
+            <label for="taskUrgency">Urgency:</label>
+            <select id="taskUrgency" name="taskUrgency" required>
+                <option value="urgent">Urgent</option>
+                <option value="not-urgent">Not Urgent</option>
+            </select>
 
-                    <label for="taskImportance">Importance:</label>
-                    <select id="taskImportance" name="taskImportance" required>
-                        <option value="important">Important</option>
-                        <option value="not-important">Not Important</option>
-                    </select>
+            <label for="taskImportance">Importance:</label>
+            <select id="taskImportance" name="taskImportance" required>
+                <option value="important">Important</option>
+                <option value="not-important">Not Important</option>
+            </select>
 
-                    <label for="taskCategory">Category:</label>
-                    <select id="taskCategory" name="taskCategory" required>
-                        <option value="work">Work</option>
-                        <option value="personal">Personal</option>
-                        <option value="other">Other</option>
-                    </select>
+            <label for="taskCategory">Category:</label>
+            <select id="taskCategory" name="taskCategory" required>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="other">Other</option>
+            </select>
 
-                    <label for="taskDeadline">Deadline (Optional):</label>
-                    <input type="date" id="taskDeadline" name="taskDeadline">
+            <label for="taskDeadline">Deadline (Optional):</label>
+            <input type="date" id="taskDeadline" name="taskDeadline">
 
-                    <button type="submit">Add Task</button>
-                </form>
-            </div>
-        </div>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+</div>
 
         <!-- Task Info Modal -->
         <div id="taskInfoModal" class="modal">
