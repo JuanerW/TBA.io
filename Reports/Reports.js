@@ -1,6 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadTaskData();
+    loadSettings(); // Load settings from localStorage
 });
+//Changing color with difference vector
+function hexToRgb(hex) {
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+    return [r, g, b];
+}
+function applyDifference(baseColor, diffVector) {
+    let [r, g, b] = hexToRgb(baseColor);
+    let [dr, dg, db] = diffVector;
+
+    r = Math.min(255, Math.max(0, r + dr));
+    g = Math.min(255, Math.max(0, g + dg));
+    b = Math.min(255, Math.max(0, b + db));
+
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function loadSettings() {
+    const defaultSettings = {
+        sidebarColor: '#F07167',
+        headerColor: '#F07167',
+        backgroundColor: '#FDFCDC',
+        doColor: '#FF8C89',
+        decideColor: '#FFEDCD',
+        delegateColor: '#33D1CC',
+        deleteColor: '#3399CC',
+        CompleteColor: '#00AFB9',
+        InProgressColor: '#F07167',
+        NotStartColor: '#FFD166'
+    };
+    const settings = JSON.parse(localStorage.getItem('settings')) || defaultSettings;
+    document.querySelector('.sidebar').style.backgroundColor = settings.sidebarColor;
+    document.querySelector('.header-container').style.backgroundColor = settings.headerColor;
+
+
+    document.body.style.backgroundColor = settings.backgroundColor;
+
+    document.querySelector('.category-box.do').style.backgroundColor = applyDifference(settings.doColor, [-15, -27, -34]);
+    document.querySelector('.category-box.decide').style.backgroundColor = applyDifference(settings.decideColor, [-1, -20, -22]);
+    document.querySelector('.category-box.delegate').style.backgroundColor = applyDifference(settings.delegateColor, [-51, -34, -19]);
+    document.querySelector('.category-box.delete').style.backgroundColor = applyDifference(settings.deleteColor, [-51, -24, -37]);
+
+}
 
 function loadTaskData() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -96,26 +141,61 @@ function generateCompletionReport(tasks, completedTasks, inProgressTasks, notSta
 
 
 function generatePieChart(completedTasks, inProgressTasks, notStartedTasks) {
+    const defaultSettings = {
+        sidebarColor: '#F07167',
+        headerColor: '#F07167',
+        backgroundColor: '#FDFCDC',
+        doColor: '#FF8C89',
+        decideColor: '#FFEDCD',
+        delegateColor: '#33D1CC',
+        deleteColor: '#3399CC',
+        CompleteColor: '#00AFB9',
+        InProgressColor: '#F07167',
+        NotStartColor: '#FFD166'
+    };
+
+    // Load settings from localStorage or use default settings
+    const settings = JSON.parse(localStorage.getItem('settings')) || defaultSettings;
+
+    // Retrieve colors from settings
+    const CompleteColors = settings.CompleteColor;
+    const InProgressColors = settings.InProgressColor;
+    const NotStartColors = settings.NotStartColor;
+
+    // Debugging output to ensure colors are correctly assigned
+    console.log('CompleteColors:', CompleteColors);
+    console.log('InProgressColors:', InProgressColors);
+    console.log('NotStartColors:', NotStartColors);
+
     const ctx = document.getElementById('taskPieChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Completed Tasks', 'In Progress Tasks', 'Not Started Tasks'],
-            datasets: [{
-                data: [completedTasks, inProgressTasks, notStartedTasks],
-                backgroundColor: ['#00AFB9', '#F07167', '#FFD166'],
-                hoverBackgroundColor: ['#007D89', '#C14A4E', '#D8A73C']
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
+
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed Tasks', 'In Progress Tasks', 'Not Started Tasks'],
+                datasets: [{
+                    data: [completedTasks, inProgressTasks, notStartedTasks],
+                    backgroundColor: [CompleteColors, InProgressColors, NotStartColors],
+                    hoverBackgroundColor: [
+                        applyDifference(CompleteColors, [-15, -27, -34]), 
+                        applyDifference(InProgressColors, [-15, -27, -34]), 
+                        applyDifference(NotStartColors, [-15, -27, -34])
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
                 }
             }
-        }
-    });
+        });
+    } else {
+        console.error('Failed to get canvas context for pie chart');
+    }
 }
 
 function toggleNav() {
