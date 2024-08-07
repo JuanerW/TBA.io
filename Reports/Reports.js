@@ -94,8 +94,8 @@ function generateCompletionReport(tasks, completedTasks, inProgressTasks, notSta
 
     if (totalTasks === 0) {
         const messages = [
-            'You currently have no tasks.<br>It’s a great time to plan new goals and take action!<br>Consider what you want to achieve in the coming days, and start setting some actionable tasks.<br>Remember, starting small can lead to big changes!',
-            'No tasks are present at the moment.<br>This could be the perfect opportunity to reflect on your goals and set new ones.<br>What are some things you’ve been wanting to accomplish?<br>Now is a great time to map out your plans and start taking steps forward.',
+            'You currently have no tasks.<br>It\'s a great time to plan new goals and take action!<br>Consider what you want to achieve in the coming days, and start setting some actionable tasks.<br>Remember, starting small can lead to big changes!',
+            'No tasks are present at the moment.<br>This could be the perfect opportunity to reflect on your goals and set new ones.<br>What are some things you\'ve been wanting to accomplish?<br>Now is a great time to map out your plans and start taking steps forward.',
             'Your task list is empty, which means you have a clean slate to work with.<br>Use this opportunity to think about both your short-term and long-term objectives.<br>Planning ahead can set the stage for future success, so why not start today?'
         ];
         report = messages[Math.floor(Math.random() * messages.length)];
@@ -118,7 +118,7 @@ function generateCompletionReport(tasks, completedTasks, inProgressTasks, notSta
             report = messages[Math.floor(Math.random() * messages.length)];
         } else if (completionRate >= 50) {
             const messages = [
-                `Good start! You have completed ${completedTasks} out of ${totalTasks} tasks, with a completion rate of ${completionRate}%.<br>There’s room for improvement, but you’re off to a good start.<br>Focus on time management to boost your efficiency!<br>Every small effort adds up to big results!<br>Consider breaking your tasks into smaller, more manageable parts to make progress more visible.`,
+                `Good start! You have completed ${completedTasks} out of ${totalTasks} tasks, with a completion rate of ${completionRate}%.<br>There\'s room for improvement, but you\'re off to a good start.<br>Focus on time management to boost your efficiency!<br>Every small effort adds up to big results!<br>Consider breaking your tasks into smaller, more manageable parts to make progress more visible.`,
                 `Nice effort! Completing ${completedTasks} out of ${totalTasks} tasks shows a completion rate of ${completionRate}%.<br>Focus on enhancing your time management skills to boost your productivity further.<br>Look at where you spend most of your time and identify any areas where you might be able to streamline or delegate tasks.`,
                 `Decent progress! You've completed ${completedTasks} of ${totalTasks} tasks, resulting in a ${completionRate}% completion rate.<br>Keep improving and strive for higher efficiency!<br>Think about adopting new productivity techniques or tools that might help you work more effectively.`
             ];
