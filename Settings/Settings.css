@@ -1,9 +1,15 @@
 /* Global Styles */
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    /* Applying Google Font: Roboto */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #FDFCDC;
+    /* Background */
+    color: #0081A7;
+    /* Text */
+    transition: background-color 0.5s, color 0.5s;
+    /* Smooth transition for background and text color */
 }
 
 /* Header Styles */
@@ -12,12 +18,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #F07167; /* Primary */
+    background-color: #F07167;
+    /* Primary */
     color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for header */
     transition: background-color 0.5s, box-shadow 0.5s;
 }
-
 
 .header-center h1 {
     margin: 0;
@@ -54,20 +61,19 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #F07167; /* Primary */
+    background-color: #F07167;
+    /* Primary */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for sidebar */
 }
 
-.sidebar.slide-in {
-    animation: slideIn 0.5s forwards;
-}
-
-.sidebar a, .sidebar .login-btn {
+.sidebar a,
+.sidebar .login-btn {
     padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
@@ -76,10 +82,14 @@ body {
     transition: background-color 0.3s, padding 0.3s;
 }
 
-.sidebar a:hover, .sidebar .login-btn:hover {
-    background-color: #FF8C89; /* Primary Light */
-    color: #0081A7; /* Text */
-    padding-left: 25px; /* Indent on hover */
+.sidebar a:hover,
+.sidebar .login-btn:hover {
+    background-color: #FF8C89;
+    /* Primary Light */
+    color: #0081A7;
+    /* Text */
+    padding-left: 25px;
+    /* Indent on hover */
 }
 
 .sidebar .closebtn {
@@ -95,38 +105,31 @@ body {
     padding: 16px;
 }
 
-/* Main Content Styles */
-#main h2 {
-    color: #2c3e50;
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-#main p {
-    color: #7f8c8d;
+form div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+form button {
+    padding: 10px;
+    background-color: #F07167;
+    /* Primary */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    .openbtn {
-        font-size: 18px;
-        padding: 8px 12px;
-    }
-
-    .logo {
-        height: 100px;
-        margin-right: 10px;
-    }
-
-    .sidebar a {
-        font-size: 20px;
-    }
-
-    .closebtn {
-        font-size: 30px;
-        right: 15px;
-    }
+form button:hover {
+    background-color: #0081A7;
+    /* Text */
 }
