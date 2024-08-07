@@ -3,6 +3,9 @@
 let timers = {}; // Store timers for each task
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    loadSettings(); // Load settings from localStorage
+    
     loadTasksFromStorage(); // Load tasks from local storage on page load
     restoreTimersFromStorage(); // Restore timers from local storage on page load
 
@@ -48,6 +51,27 @@ document.addEventListener('DOMContentLoaded', () => {
     showWelcomeScreen();
 });
 
+function loadSettings() {
+    const defaultSettings = {
+        sidebarColor: '#F07167',
+        headerColor: '#F07167',
+        backgroundColor: '#FDFCDC',
+        doColor: '#FF8C89',
+        decideColor: '#FFEDCD',
+        delegateColor: '#33D1CC',
+        deleteColor: '#3399CC'
+    };
+
+    const settings = JSON.parse(localStorage.getItem('settings')) || defaultSettings;
+
+    document.querySelector('.sidebar').style.backgroundColor = settings.sidebarColor;
+    document.querySelector('.header-container').style.backgroundColor = settings.headerColor;
+    document.body.style.backgroundColor = settings.backgroundColor;
+    document.querySelector('.primary-color').style.backgroundColor = settings.doColor;
+    document.querySelector('.secondary-color').style.backgroundColor = settings.decideColor;
+    document.querySelector('.accent-color').style.backgroundColor = settings.delegateColor;
+    document.querySelector('.text-color').style.backgroundColor = settings.deleteColor;
+}
 
 function toggleNav() {
     const sidebar = document.getElementById("mySidebar");
@@ -187,6 +211,7 @@ function saveTaskToStorage(task) {
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
+
 
 function addTaskToDOM(task, isCompleted = false) {
     const taskElement = document.createElement('li');
@@ -458,8 +483,8 @@ function getPriorityValue(task) {
 function startTutorial() {
     introJs().setOptions({
         steps: [
-            { 
-                intro: "Welcome to the Task Manager! Let's go through the core features." 
+            {
+                intro: "Welcome to the Task Manager! Let's go through the core features."
             },
             {
                 element: '.add-task-btn',
