@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management Setting Page</title>
-    <link rel="stylesheet" href="./Settings.css">
-    <script src="./Settings.js"></script>
-    <!-- Font Awesome for Icons -->
-    <script
-      src="https://kit.fontawesome.com/70d96a9cb5.js"
-      crossorigin="anonymous"
-    ></script>
+    <title>Settings</title>
+    <link rel="stylesheet" href="Settings.css"> <!-- Adjust path as necessary -->
+    <script src="Settings.js" defer></script> <!-- Ensure this path is correct -->
+    <!-- Google Font: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -18,7 +16,7 @@
         <div class="header-container">
             <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
             <div class="header-center">
-                <h1>Setting</h1>
+                <h1>Task Manager - Settings</h1>
             </div>
             <div class="header-right">
                 <a href="../Calendar/calendar.html" class="header-icon" aria-label="Calendar">
@@ -27,14 +25,15 @@
                 <a href="../login/login.html" class="header-icon" aria-label="Account">
                     <i class="fas fa-user"></i>
                 </a>
+                <a href="#" class="header-icon" aria-label="Tutorial" onclick="startTutorial()">
+                    <i class="fas fa-question-circle"></i>
+                </a>
                 <a href="../AboutUs/AboutUs.html" aria-label="About Us">
                     <img src="../Resources/logo.png" alt="Task Manager Logo" class="logo">
                 </a>
-
             </div>
         </div>
     </header>
-
 
     <!-- Sidebar -->
     <nav id="mySidebar" class="sidebar">
@@ -51,19 +50,89 @@
         <a href="../Team/Team.html">
             <i class="fas fa-users"></i> Teams
         </a>
-        <a href="../Settings/Settings.html">
+        <a href="./Settings.html">
             <i class="fas fa-cog"></i> Settings
         </a>
         <a href="../login/login.html" class="login-btn">
             <i class="fas fa-sign-in-alt"></i> Login
         </a>
-        
     </nav>
 
-    <div id="main">
-        <!-- Main content goes here -->
-    </div>
+    <!-- Main Content -->
+    <main id="main">
+        <h2>Customize Appearance</h2>
+        <form id="settingsForm" onsubmit="saveSettings(event)">
+            <!-- General Appearance Settings -->
+            <label for="sidebarColor">Sidebar Color:</label>
+            <div>
+                <input type="color" id="sidebarColor" name="sidebarColor" value="#F07167">
+                <button type="button" onclick="resetColor('sidebarColor', '#F07167')">Reset</button>
+            </div>
 
-    
+            <label for="headerColor">Header Color:</label>
+            <div>
+                <input type="color" id="headerColor" name="headerColor" value="#F07167">
+                <button type="button" onclick="resetColor('headerColor', '#F07167')">Reset</button>
+            </div>
+
+            <label for="backgroundColor">Background Color:</label>
+            <div>
+                <input type="color" id="backgroundColor" name="backgroundColor" value="#FDFCDC">
+                <button type="button" onclick="resetColor('backgroundColor', '#FDFCDC')">Reset</button>
+            </div>
+
+            <!-- Task Appearance Settings -->
+            <h2>Task Appearance</h2>
+
+            <label for="doColor">"DO THIS" Color:</label>
+            <div>
+                <input type="color" id="doColor" name="doColor" value="#FF8C89">
+                <button type="button" onclick="resetColor('doColor', '#FF8C89')">Reset</button>
+            </div>
+
+            <label for="decideColor">"DECIDE THIS" Color:</label>
+            <div>
+                <input type="color" id="decideColor" name="decideColor" value="#FFEDCD">
+                <button type="button" onclick="resetColor('decideColor', '#FFEDCD')">Reset</button>
+            </div>
+
+            <label for="delegateColor">"DELEGATE THIS" Color:</label>
+            <div>
+                <input type="color" id="delegateColor" name="delegateColor" value="#33D1CC">
+                <button type="button" onclick="resetColor('delegateColor', '#33D1CC')">Reset</button>
+            </div>
+
+            <label for="deleteColor">"DELETE THIS" Color:</label>
+            <div>
+                <input type="color" id="deleteColor" name="deleteColor" value="#3399CC">
+                <button type="button" onclick="resetColor('deleteColor', '#3399CC')">Reset</button>
+            </div>
+
+            <h2>Pie Chart Appearance</h2>
+            
+            <label for="CompleteColor">Pie Chart "Completed Tasks" Color:</label>
+            <div>
+                <input type="color" id="CompleteColor" name="CompleteColor" value="#00AFB9">
+                <button type="button" onclick="resetColor('CompleteColor', '#00AFB9')">Reset</button>
+            </div>
+
+            <label for="InProgressColor">Pie Chart "In Progress Tasks" Color:</label>
+            <div>
+                <input type="color" id="InProgressColor" name="InProgressColor" value="#F07167">
+                <button type="button" onclick="resetColor('InProgressColor', '#F07167')">Reset</button>
+            </div>
+
+            <label for="NotStartColor">Pie Chart "Not Started Tasks" Color:</label>
+            <div>
+                <input type="color" id="NotStartColor" name="NotStartColor" value="#FFD166">
+                <button type="button" onclick="resetColor('NotStartColor', '#FFD166')">Reset</button>
+            </div>
+
+            
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </main>
 </body>
+
 </html>
