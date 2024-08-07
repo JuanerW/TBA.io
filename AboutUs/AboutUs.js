@@ -1,4 +1,4 @@
-//open and close sidebar function
+// Open and close sidebar function
 function toggleNav() {
     var sidebar = document.getElementById("mySidebar");
     var main = document.getElementById("main");
@@ -11,14 +11,16 @@ function toggleNav() {
     }
 }
 
-function openTaskModal() {
-    document.getElementById('taskModal').style.display = 'block';
+// Open and close the contact form modal (if you add a modal for the contact form)
+function openContactModal() {
+    document.getElementById('contactModal').style.display = 'block';
 }
 
-function closeTaskModal() {
-    document.getElementById('taskModal').style.display = 'none';
+function closeContactModal() {
+    document.getElementById('contactModal').style.display = 'none';
 }
 
+// Add a task to the task list (if applicable, similar to what you did on the home page)
 function addTask() {
     const taskName = document.getElementById('taskName').value;
     const taskTime = document.getElementById('taskTime').value;
@@ -65,6 +67,7 @@ function addTask() {
     document.getElementById('taskForm').reset();
 }
 
+// Edit a task
 function editTask(task) {
     const taskDetails = task.firstChild.textContent.split(' - ');
     const taskName = taskDetails[0];
@@ -77,6 +80,25 @@ function editTask(task) {
     deleteTask(task);
 }
 
+// Delete a task
 function deleteTask(task) {
     task.parentNode.removeChild(task);
 }
+
+function loadSettings() {
+    const defaultSettings = {
+        sidebarColor: '#F07167',
+        headerColor: '#F07167',
+        backgroundColor: '#FDFCDC'
+    };
+    const settings = JSON.parse(localStorage.getItem('settings')) || defaultSettings;
+    document.querySelector('.sidebar').style.backgroundColor = settings.sidebarColor;
+    document.querySelector('.header-container').style.backgroundColor = settings.headerColor;
+    document.body.style.backgroundColor = settings.backgroundColor;
+
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadSettings(); // Load settings from localStorage
+});
