@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    loadSettings(); // Load settings from localStorage
     loadTeamMembers();
     loadComments();
     document.getElementById('teamMemberForm').addEventListener('submit', function(event) {
@@ -14,6 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
         addComment();
     });
 });
+
+function loadSettings() {
+    const defaultSettings = {
+        sidebarColor: '#F07167',
+        headerColor: '#F07167',
+        backgroundColor: '#FDFCDC'
+    };
+    const settings = JSON.parse(localStorage.getItem('settings')) || defaultSettings;
+    document.querySelector('.sidebar').style.backgroundColor = settings.sidebarColor;
+    document.querySelector('.header-container').style.backgroundColor = settings.headerColor;
+    document.body.style.backgroundColor = settings.backgroundColor;
+}
 
 function toggleNav() {
     var sidebar = document.getElementById("mySidebar");
@@ -82,6 +95,9 @@ function removeTeamMember(button) {
     let teamMembers = JSON.parse(localStorage.getItem('teamMembers')) || [];
     teamMembers = teamMembers.filter(member => member.id !== memberId);
     localStorage.setItem('teamMembers', JSON.stringify(teamMembers));
+
+    // Update comments to handle removed team members
+    updateCommentsAfterMemberRemoval(memberId);
 }
 
 function editEvaluationScore(memberId) {
@@ -197,4 +213,12 @@ function removeComment(button) {
     let comments = JSON.parse(localStorage.getItem('comments')) || [];
     comments = comments.filter(comment => comment.id !== commentId);
     localStorage.setItem('comments', JSON.stringify(comments));
+}
+
+function updateCommentsAfterMemberRemoval(memberId) {
+    let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    comments = comments.filter(comment => comment.memberId !== memberId);
+    localStorage.setItem('comments', JSON.stringify(comments));
+    document.getElementById('comments-list').innerHTML = '';
+    comments.forEach(comment => addCommentToDOM(comment));
 }
