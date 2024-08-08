@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressBar(); // Update progress bar on page load
 });
 
+
 function updateProgressBar() {
     const tasks = document.querySelectorAll('.task');
     const completedTasks = document.querySelectorAll('.task.completed');

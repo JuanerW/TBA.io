@@ -18,7 +18,6 @@ body {
     transition: background-color 0.5s, box-shadow 0.5s;
 }
 
-
 .header-center h1 {
     margin: 0;
 }
@@ -129,5 +128,135 @@ body {
         font-size: 30px;
         right: 15px;
     }
+}
+
+/* Team Section */
+#team-section, #comments-section {
+    margin: 20px 0;
+}
+
+#team-section h2, #comments-section h2 {
+    color: #F07167;
+}
+
+#team-list, #comments-list {
+    list-style: none;
+    padding: 0;
+}
+
+#team-list li, #comments-list li {
+    padding: 10px;
+    border: 1px solid #00AFB9;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#team-list .member-role, #comments-list .comment-text {
+    color: #0081A7;
+    font-style: italic;
+}
+
+/* Add Team Member and Add Comment Button */
+#team-section button, #comments-section button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F07167;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#team-section button:hover, #comments-section button:hover {
+    background-color: #0081A7;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    transition: background-color 0.5s;
+}
+
+.modal.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #00AFB9;
+    width: 80%;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s, transform 0.3s;
+}
+
+.modal-content:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.modal-content h2 {
+    color: #F07167;
+}
+
+.modal-content p {
+    color: #0081A7;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F07167;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.modal-content button:hover {
+    background-color: #0081A7;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Evaluation Score */
+.evaluation-score {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #F07167;
+}
+
+.evaluation-btn, .comment-btn {
+    margin-left: 10px;
+    background-color: #0081A7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.evaluation-btn:hover, .comment-btn:hover {
+    background-color: #005f73;
+    transform: scale(1.05);
 }
 

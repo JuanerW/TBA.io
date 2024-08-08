@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management Team Page</title>
+    <title>Task Management Assisstants Page</title>
     <link rel="stylesheet" href="./Team.css">
-    <script src="./Team.js"></script>
+    <script src="./Team.js" defer></script>
     <!-- Font Awesome for Icons -->
-    <script
-      src="https://kit.fontawesome.com/70d96a9cb5.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/70d96a9cb5.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
     <header>
         <div class="header-container">
             <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
             <div class="header-center">
-                <h1>Team</h1>
+                <h1>Assisstants</h1>
             </div>
             <div class="header-right">
                 <a href="../Calendar/calendar.html" class="header-icon" aria-label="Calendar">
@@ -30,12 +26,9 @@
                 <a href="../AboutUs/AboutUs.html" aria-label="About Us">
                     <img src="../Resources/logo.png" alt="Task Manager Logo" class="logo">
                 </a>
-
             </div>
         </div>
     </header>
-
-
     <!-- Sidebar -->
     <nav id="mySidebar" class="sidebar">
         <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
@@ -49,7 +42,7 @@
             <i class="fas fa-chart-bar"></i> Reports
         </a>
         <a href="../Team/Team.html">
-            <i class="fas fa-users"></i> Teams
+            <i class="fas fa-users"></i> Assisstants
         </a>
         <a href="../Settings/Settings.html">
             <i class="fas fa-cog"></i> Settings
@@ -57,13 +50,58 @@
         <a href="../login/login.html" class="login-btn">
             <i class="fas fa-sign-in-alt"></i> Login
         </a>
-       
     </nav>
-
     <div id="main">
-        <!-- Main content goes here -->
+        <!-- Team Section -->
+        <section id="team-section">
+            <h2>Assisstant Members</h2>
+            <ul id="team-list"></ul>
+            <button onclick="openTeamMemberModal()">Add Assisstant Member</button>
+        </section>
+        <section id="comments-section">
+            <h2>Comments</h2>
+            <ul id="comments-list"></ul>
+        </section>
+        <!-- Add Team Member Modal -->
+        <div id="teamMemberModal" class="modal">
+            <div class="modal-content">
+                <button class="close" aria-label="Close Team Member Modal" onclick="closeTeamMemberModal()">&times;</button>
+                <h2>Add Assisstant Member</h2>
+                <form id="teamMemberForm">
+                    <label for="memberName">Name:</label>
+                    <input type="text" id="memberName" name="memberName" required>
+                    <label for="memberRole">Role:</label>
+                    <input type="text" id="memberRole" name="memberRole" required>
+                    <button type="submit">Add Member</button>
+                </form>
+            </div>
+        </div>
+        <!-- Edit Evaluation Score Modal -->
+        <div id="evaluationModal" class="modal">
+            <div class="modal-content">
+                <button class="close" aria-label="Close Evaluation Modal" onclick="closeEvaluationModal()">&times;</button>
+                <h2>Edit Evaluation Score</h2>
+                <form id="evaluationForm">
+                    <input type="hidden" id="evaluationMemberId" name="evaluationMemberId">
+                    <label for="evaluationScore">Score:</label>
+                    <input type="number" id="evaluationScore" name="evaluationScore" required>
+                    <button type="submit">Update Score</button>
+                </form>
+            </div>
+        </div>
+        <!-- Add Comment Modal -->
+        <div id="commentModal" class="modal">
+            <div class="modal-content">
+                <button class="close" aria-label="Close Comment Modal" onclick="closeCommentModal()">&times;</button>
+                <h2>Add Comment</h2>
+                <form id="commentForm">
+                    <input type="hidden" id="commentMemberId" name="commentMemberId">
+                    <label for="commentText">Comment:</label>
+                    <textarea id="commentText" name="commentText" required></textarea>
+                    <button type="submit">Add Comment</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    
 </body>
 </html>
