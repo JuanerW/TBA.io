@@ -37,11 +37,11 @@ function addTeamMember() {
     const memberRole = document.getElementById('memberRole').value.trim();
 
     if (!memberName || !memberRole) {
-        return;
+        return; // Do not submit the form if required fields are empty
     }
 
     const member = {
-        id: 'member' + new Date().getTime(),
+        id: 'member' + new Date().getTime(), // Generate a unique ID for the member
         name: memberName,
         role: memberRole,
         evaluationScore: 0 // Default evaluation score
@@ -59,8 +59,8 @@ function addTeamMemberToDOM(member) {
     memberElement.setAttribute('data-id', member.id);
     memberElement.innerHTML = `
         <span>${member.name} <span class="member-role">(${member.role})</span></span>
-        <span class="evaluation-score">Comprehensive Score: ${member.evaluationScore}</span>
-        <button class="evaluation-btn" onclick="editEvaluationScore('${member.id}')">Edit Comprehensive Score</button>
+        <span class="evaluation-score">Score: ${member.evaluationScore}</span>
+        <button class="evaluation-btn" onclick="editEvaluationScore('${member.id}')">Edit Score</button>
         <button class="comment-btn" onclick="openCommentModal('${member.id}')">Add Comment</button>
         <button onclick="removeTeamMember(this)">Remove</button>
     `;
@@ -146,10 +146,11 @@ function addComment() {
     const commentText = document.getElementById('commentText').value.trim();
 
     if (!commentText) {
-        return;
+        return; // Do not submit the form if the comment is empty
     }
 
     const comment = {
+        id: 'comment' + new Date().getTime(),
         memberId,
         text: commentText,
         timestamp: new Date().toLocaleString()
@@ -179,8 +180,21 @@ function addCommentToDOM(comment) {
     const memberName = member ? member.name : 'Unknown';
 
     const commentElement = document.createElement('li');
+    commentElement.setAttribute('data-id', comment.id);
     commentElement.innerHTML = `
         <span>${comment.timestamp} - <span class="comment-text">${comment.text}</span> <strong>(${memberName})</strong></span>
+        <button onclick="removeComment(this)">Delete</button>
     `;
     document.getElementById('comments-list').appendChild(commentElement);
+}
+
+function removeComment(button) {
+    const commentElement = button.closest('li');
+    const commentId = commentElement.dataset.id;
+
+    commentElement.remove();
+
+    let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    comments = comments.filter(comment => comment.id !== commentId);
+    localStorage.setItem('comments', JSON.stringify(comments));
 }
