@@ -49,7 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show the welcome screen on page load
     showWelcomeScreen();
+
+    updateProgressBar(); // Update progress bar on page load
 });
+
+function updateProgressBar() {
+    const tasks = document.querySelectorAll('.task');
+    const completedTasks = document.querySelectorAll('.task.completed');
+    const progress = (completedTasks.length / tasks.length) * 100;
+    document.getElementById('progress-bar').style.width = progress + '%';
+}
 
 function loadSettings() {
     const defaultSettings = {
@@ -350,6 +359,8 @@ function finishTask(button) {
     taskElement.classList.add('completed');
     setTimeout(() => {
         taskElement.classList.add('task-complete');
+        //taskCompleteSound.play();
+        updateProgressBar(); // Update progress bar
     }, 300);
 
     setTimeout(() => {
@@ -369,7 +380,6 @@ function finishTask(button) {
         taskElement.querySelector('.finish-btn').remove();
         taskElement.querySelector('.edit-btn').remove();
         taskElement.querySelector('.delete-btn').remove();
-
 
         saveTasksToStorage();
     }, 600); // Delay to allow the animation to complete

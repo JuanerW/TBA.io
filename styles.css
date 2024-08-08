@@ -555,4 +555,17 @@ button:hover {
     text-shadow: none;
 }
 
+#progress-bar-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px 0;
+}
 
+#progress-bar {
+    width: 0;
+    height: 20px;
+    background-color: #4caf50;
+    transition: width 0.5s;
+}
