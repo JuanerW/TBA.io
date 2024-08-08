@@ -276,3 +276,19 @@ section {
         padding: 0 20px;
     }
 }
+
+.magic-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.magic-button:hover {
+    background-color: #0056b3;
+}
+
