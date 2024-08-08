@@ -76,8 +76,8 @@ function addTeamMemberToDOM(member) {
     memberElement.setAttribute('data-id', member.id);
     memberElement.innerHTML = `
         <span>${member.name} <span class="member-role">(${member.role})</span></span>
-        <span class="evaluation-score">Score: ${member.evaluationScore}</span>
-        <button class="evaluation-btn" onclick="editEvaluationScore('${member.id}')">Edit Score</button>
+        <span class="evaluation-score">Comprehensive Score: ${member.evaluationScore}</span>
+        <button class="evaluation-btn" onclick="editEvaluationScore('${member.id}')">Edit Comprehensive Score</button>
         <button class="comment-btn" onclick="openCommentModal('${member.id}')">Add Comment</button>
         <button onclick="removeTeamMember(this)">Remove</button>
     `;
