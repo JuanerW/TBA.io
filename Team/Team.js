@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function loadSettings() {
+    const defaultSettings = {
+        sidebarColor: '#F07167',
+        headerColor: '#F07167',
+        backgroundColor: '#FDFCDC'
+    };
+    const settings = JSON.parse(localStorage.getItem('settings')) || defaultSettings;
+    document.querySelector('.sidebar').style.backgroundColor = settings.sidebarColor;
+    document.querySelector('.header-container').style.backgroundColor = settings.headerColor;
+    document.body.style.backgroundColor = settings.backgroundColor;
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadSettings(); // Load settings from localStorage
+});
+
 function toggleNav() {
     var sidebar = document.getElementById("mySidebar");
     var main = document.getElementById("main");
