@@ -300,7 +300,7 @@ function generateReportTable() {
         <table>
             <tr>
                 <th>Task Name</th>
-                <th>Time (min)</th>
+                <th>Time (sec)</th>
                 <th>Importance</th>
                 <th>Urgency</th>
             </tr>
