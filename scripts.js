@@ -637,11 +637,11 @@ function determineImportanceUrgency() {
     const importancePercentage = (importanceScore / totalQuestions) * 100;
     const urgencyPercentage = (urgencyScore / totalQuestions) * 100;
 
-    if (importancePercentage >= 70 && urgencyPercentage >= 70) {
+    if (importancePercentage >= 50 && urgencyPercentage >= 50) {
         return "Urgent and Important";
-    } else if (importancePercentage >= 70) {
+    } else if (importancePercentage >= 50) {
         return "Important but Not Urgent";
-    } else if (urgencyPercentage >= 70) {
+    } else if (urgencyPercentage >= 50) {
         return "Urgent but Not Important";
     } else {
         return "Not Urgent and Not Important";
