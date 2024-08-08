@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="stylesLog.css">
     <!-- Google Font: Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <form id="loginForm" onsubmit="validateForm(event)">
@@ -32,6 +34,14 @@
             <span class="psw">Forgot <a href="#">password?</a></span>
             <p>Don't have an account? <a href="signup.html">Sign up</a></p>
             <div id="errorMessage" class="error-message"></div>
+            <!-- Google Sign-In Button -->
+            <div id="g_id_onload"
+                 data-client_id="623143056869-b6bn5a8vcpb2fsn6lbifju730470aqb2.apps.googleusercontent.com"
+                 data-context="signin"
+                 data-login_uri="http://localhost:8000"
+                 data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
         </div>
     </form>
 
@@ -59,6 +69,30 @@
                     document.getElementById('loginForm').reset();
                 }
             }
+        }
+
+        function handleCredentialResponse(response) {
+            // 解析 JWT token
+            const data = jwt_decode(response.credential);
+            console.log("ID: " + data.sub);
+            console.log('Full Name: ' + data.name);
+            console.log('Given Name: ' + data.given_name);
+            console.log('Family Name: ' + data.family_name);
+            console.log("Image URL: " + data.picture);
+            console.log("Email: " + data.email);
+            alert(`Welcome, ${data.name}!`);
+            window.location.href = '../index.html';
+        }
+
+        // JWT 解码函数
+        function jwt_decode(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
         }
     </script>
 </body>
