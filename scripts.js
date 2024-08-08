@@ -1,24 +1,21 @@
-// Home Page Script
-
 let timers = {}; // Store timers for each task
 
 document.addEventListener('DOMContentLoaded', () => {
-
     loadSettings(); // Load settings from localStorage
-    
+
     loadTasksFromStorage(); // Load tasks from local storage on page load
     restoreTimersFromStorage(); // Restore timers from local storage on page load
 
-    document.getElementById('signupBtn')?.addEventListener('click', function() {
+    document.getElementById('signupBtn')?.addEventListener('click', function () {
         window.location.href = 'index.html';
     });
 
-    document.getElementById('taskForm').addEventListener('submit', function(event) {
+    document.getElementById('taskForm').addEventListener('submit', function (event) {
         event.preventDefault();
         addTask();
     });
 
-    document.getElementById('taskModal').addEventListener('click', function(event) {
+    document.getElementById('taskModal').addEventListener('click', function (event) {
         if (event.target.classList.contains('modal')) {
             closeTaskModal();
         }
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add click event listener to completed tasks
-    document.getElementById('completed-task-list').addEventListener('click', function(event) {
+    document.getElementById('completed-task-list').addEventListener('click', function (event) {
         const taskElement = event.target.closest('.completed-task-item');
         if (taskElement) {
             const taskInfo = taskElement.getAttribute('data-info');
@@ -47,12 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add click event listener for clearing completed tasks
     document.getElementById('clearCompletedTasksBtn')?.addEventListener('click', clearCompletedTasks);
 
-    // Show the welcome screen on page load
-    showWelcomeScreen();
-
     updateProgressBar(); // Update progress bar on page load
+    document.getElementById('nextQuestionBtn').addEventListener('click', nextQuestion);
 });
-
 
 function updateProgressBar() {
     const tasks = document.querySelectorAll('.task');
@@ -178,6 +172,8 @@ function restoreTimersFromStorage() {
                 };
                 taskElement.querySelector('.timer-btn').textContent = 'Pause';
                 taskElement.querySelector('.timer-btn').classList.add('paused');
+            } else {
+                console.error(`Task element with id ${taskId} not found.`);
             }
         }
     });
@@ -221,7 +217,6 @@ function saveTaskToStorage(task) {
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-
 
 function addTaskToDOM(task, isCompleted = false) {
     const taskElement = document.createElement('li');
@@ -342,12 +337,15 @@ function updateCountdownDisplay(taskElement, endTime, taskId) {
     const seconds = String(remainingTime % 60).padStart(2, '0');
 
     const timerDisplay = taskElement.querySelector('.timer-display');
-    timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
-
-    if (remainingTime <= parseInt(taskElement.dataset.expectedTime)) {
-        timerDisplay.classList.remove('timer-exceeded');
+    if (timerDisplay) {
+        timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+        if (remainingTime <= parseInt(taskElement.dataset.expectedTime)) {
+            timerDisplay.classList.remove('timer-exceeded');
+        } else {
+            timerDisplay.classList.add('timer-exceeded');
+        }
     } else {
-        timerDisplay.classList.add('timer-exceeded');
+        console.error(`Timer display element not found for task with id ${taskId}.`);
     }
 }
 
@@ -360,7 +358,6 @@ function finishTask(button) {
     taskElement.classList.add('completed');
     setTimeout(() => {
         taskElement.classList.add('task-complete');
-        //taskCompleteSound.play();
         updateProgressBar(); // Update progress bar
     }, 300);
 
@@ -490,6 +487,135 @@ function getPriorityValue(task) {
     return 0;
 }
 
+
+
+
+
+const quickQuestions = [
+    { question: "Does this task have a strict deadline that must be met?", type: "both" },
+    { question: "Will completing this task have a significant impact on achieving your goals?", type: "importance" },
+    { question: "Can this task be delegated to someone else without major issues?", type: "urgency" }
+];
+
+const longQuestions = [
+    { question: "Does this task have a strict deadline that must be met?", type: "both" },
+    { question: "Will completing this task have a significant impact on achieving your goals?", type: "importance" },
+    { question: "Can this task be delegated to someone else without major issues?", type: "urgency" },
+    { question: "Will delaying this task cause negative consequences?", type: "urgency" },
+    { question: "Is this task required to meet a commitment made to others?", type: "importance" },
+    { question: "Will this task help you avoid future problems or crises?", type: "both" },
+    { question: "Is this task directly related to your core responsibilities?", type: "importance" },
+    { question: "Will completing this task significantly improve your efficiency or productivity?", type: "importance" },
+    { question: "Will this task contribute to long-term success or strategic goals?", type: "importance" },
+    { question: "Is this task dependent on the completion of other tasks?", type: "urgency" }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let importanceScore = 0;
+let urgencyScore = 0;
+
+function openTaskModal() {
+    document.getElementById('taskModal').style.display = 'block';
+}
+
+function closeTaskModal() {
+    document.getElementById('taskModal').style.display = 'none';
+}
+
+function openAssessmentChoices(type) {
+    closeTaskModal();
+    document.getElementById('assessmentChoicesModal').style.display = 'block';
+    document.getElementById('assessmentChoicesModal').dataset.type = type;
+}
+
+function closeAssessmentChoices() {
+    document.getElementById('assessmentChoicesModal').style.display = 'none';
+    openTaskModal();
+}
+
+function openQuickAssessment() {
+    currentQuestions = quickQuestions;
+    closeAssessmentChoices();
+    openModal();
+}
+
+function openLongAssessment() {
+    currentQuestions = longQuestions;
+    closeAssessmentChoices();
+    openModal();
+}
+
+function openModal() {
+    document.getElementById('importanceUrgencyModal').style.display = 'block';
+    showQuestion();
+}
+
+function closeModal() {
+    document.getElementById('importanceUrgencyModal').style.display = 'none';
+    currentQuestionIndex = 0;
+    importanceScore = 0;
+    urgencyScore = 0;
+}
+
+function showQuestion() {
+    document.getElementById('question-container').innerText = currentQuestions[currentQuestionIndex].question;
+    document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}/${currentQuestions.length}`;
+    document.getElementById('nextQuestionBtn').style.display = 'none';
+}
+
+function answerQuestion(answer) {
+    const questionType = currentQuestions[currentQuestionIndex].type;
+    if (answer === 'yes') {
+        if (questionType === 'importance') {
+            importanceScore++;
+        } else if (questionType === 'urgency') {
+            urgencyScore++;
+        } else if (questionType === 'both') {
+            importanceScore++;
+            urgencyScore++;
+        }
+    }
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < currentQuestions.length) {
+        showQuestion();
+    } else {
+        displayResult();
+        closeModal();
+    }
+}
+
+function displayResult() {
+    const suggestion = determineImportanceUrgency();
+    document.getElementById('resultText').innerText = `Based on your answers, the task is: ${suggestion}`;
+    openResultModal();
+}
+
+function determineImportanceUrgency() {
+    const totalQuestions = currentQuestions.length;
+    const importancePercentage = (importanceScore / totalQuestions) * 100;
+    const urgencyPercentage = (urgencyScore / totalQuestions) * 100;
+
+    if (importancePercentage >= 70 && urgencyPercentage >= 70) {
+        return "Urgent and Important";
+    } else if (importancePercentage >= 70) {
+        return "Important but Not Urgent";
+    } else if (urgencyPercentage >= 70) {
+        return "Urgent but Not Important";
+    } else {
+        return "Not Urgent and Not Important";
+    }
+}
+
+function openResultModal() {
+    document.getElementById('resultModal').style.display = 'block';
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').style.display = 'none';
+}
+
 // Tutorial functions
 function startTutorial() {
     introJs().setOptions({
@@ -526,7 +652,7 @@ function startTutorial() {
                 intro: 'Completed tasks will appear here.'
             },
             {
-                element: '.header-icon[href="./calendar/calendar.html"]',
+                element: '.header-icon[href="./Calendar/calendar.html"]',
                 intro: 'Click here to view the calendar.'
             },
             {

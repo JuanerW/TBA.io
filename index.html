@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,13 +21,16 @@
             border: 2px solid #0081A7;
             border-radius: 8px;
         }
+
         .introjs-tooltiptext {
             color: #0081A7;
             font-size: 16px;
         }
+
         .introjs-tooltipbuttons {
             text-align: center;
         }
+
         .introjs-button {
             background-color: #F07167;
             border: none;
@@ -37,6 +41,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .introjs-button:hover {
             background-color: #0081A7;
         }
@@ -51,11 +56,8 @@
                 <h1>Task Manager</h1>
             </div>
             <div class="header-right">
-
-                <a href="./Calendar/calendar.html" class="header-icon" aria-label="Calendar" data-intro="Click here to view the calendar.">
-
-             
-
+                <a href="./Calendar/calendar.html" class="header-icon" aria-label="Calendar"
+                    data-intro="Click here to view the calendar.">
                     <i class="fas fa-calendar-alt"></i>
                 </a>
                 <a href="./login/login.html" class="header-icon" aria-label="Account" data-intro="Click here to login.">
@@ -67,8 +69,6 @@
                 <a href="./AboutUs/AboutUs.html" aria-label="About Us">
                     <img src="./Resources/logo.png" alt="Task Manager Logo" class="logo">
                 </a>
-                
-               
             </div>
         </div>
     </header>
@@ -77,27 +77,25 @@
     <nav id="mySidebar" class="sidebar">
         <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
         <a href="index.html">
-            <i class="fas fa-home"></i>  Home
+            <i class="fas fa-home"></i> Home
         </a>
         <a href="./AboutUs/AboutUs.html">
-            <i class="fas fa-info-circle"></i>  About Us
+            <i class="fas fa-info-circle"></i> About Us
         </a>
         <a href="./Reports/Reports.html">
-            <i class="fas fa-chart-bar"></i>  Reports
+            <i class="fas fa-chart-bar"></i> Reports
         </a>
-        <a href="./Team/Team.html">
-            <i class="fas fa-users"></i>  Assisstants
-        </a>
+        <!-- <a href="./Team/Team.html">
+            <i class="fas fa-users"></i> Assistants
+        </a> -->
         <a href="./Settings/Settings.html">
-            <i class="fas fa-cog"></i>  Settings
+            <i class="fas fa-cog"></i> Settings
         </a>
         <a href="./login/login.html" class="login-btn">
-            <i class="fas fa-sign-in-alt"></i>  Login
+            <i class="fas fa-sign-in-alt"></i> Login
         </a>
-
-        
-
     </nav>
+
     <!-- Main Content -->
     <main id="main">
         <div class="filter-sort" data-intro="Use these options to filter and sort your tasks.">
@@ -120,19 +118,23 @@
         </div>
 
         <section class="matrix">
-            <div class="matrix-cell primary-color" id="do-this" ondrop="drop(event)" ondragover="allowDrop(event)" data-intro="These are urgent and important tasks. Do them immediately to prevent any negative consequences.">
+            <div class="matrix-cell primary-color" id="do-this" ondrop="drop(event)" ondragover="allowDrop(event)"
+                data-intro="These are urgent and important tasks. Do them immediately to prevent any negative consequences.">
                 <h2>DO THIS</h2>
                 <ul id="do-list" class="task-list"></ul>
             </div>
-            <div class="matrix-cell secondary-color" id="decide-this" ondrop="drop(event)" ondragover="allowDrop(event)" data-intro="These tasks are important but not urgent. Schedule them to be done at a later time.">
+            <div class="matrix-cell secondary-color" id="decide-this" ondrop="drop(event)" ondragover="allowDrop(event)"
+                data-intro="These tasks are important but not urgent. Schedule them to be done at a later time.">
                 <h2>DECIDE THIS</h2>
                 <ul id="decide-list" class="task-list"></ul>
             </div>
-            <div class="matrix-cell accent-color" id="delegate-this" ondrop="drop(event)" ondragover="allowDrop(event)" data-intro="These tasks are urgent but not important. Delegate them to others if possible.">
+            <div class="matrix-cell accent-color" id="delegate-this" ondrop="drop(event)" ondragover="allowDrop(event)"
+                data-intro="These tasks are urgent but not important. Delegate them to others if possible.">
                 <h2>DELEGATE THIS</h2>
                 <ul id="delegate-list" class="task-list"></ul>
             </div>
-            <div class="matrix-cell text-color" id="delete-this" ondrop="drop(event)" ondragover="allowDrop(event)" data-intro="These tasks are neither urgent nor important. Consider eliminating them.">
+            <div class="matrix-cell text-color" id="delete-this" ondrop="drop(event)" ondragover="allowDrop(event)"
+                data-intro="These tasks are neither urgent nor important. Consider eliminating them.">
                 <h2>DELETE THIS</h2>
                 <ul id="delete-list" class="task-list"></ul>
             </div>
@@ -140,12 +142,14 @@
 
         <section class="completed-tasks" data-intro="Completed tasks will appear here.">
             <h2 onclick="toggleCompletedTasks()">Tasks Complete</h2>
-            <ul id="completed-task-list" class="task-list expanded">
-            </ul>
-            <button id="clearCompletedTasksBtn" aria-label="Clear Completed Tasks" onclick="clearCompletedTasks()">Clear</button>
+            <ul id="completed-task-list" class="task-list expanded"></ul>
+            <button id="clearCompletedTasksBtn" aria-label="Clear Completed Tasks"
+                onclick="clearCompletedTasks()">Clear</button>
         </section>
 
-        <button class="add-task-btn" aria-label="Add Task" onclick="openTaskModal()" data-intro="Click here to add a new task.">+</button>
+        <button class="add-task-btn" aria-label="Add Task" onclick="openTaskModal()"
+            data-intro="Click here to add a new task.">+</button>
+
 
         <div id="taskModal" class="modal">
             <div class="modal-content">
@@ -158,17 +162,22 @@
                     <label for="taskTime">Time Required (minutes):</label>
                     <input type="number" id="taskTime" name="taskTime" required>
 
-                    <label for="taskUrgency">Urgency:</label>
+                    <label for="taskUrgency">Urgency: <a href="#" onclick="openAssessmentChoices('urgency')">Need a
+                            suggestion?</a> </label>
+
                     <select id="taskUrgency" name="taskUrgency" required>
                         <option value="urgent">Urgent</option>
                         <option value="not-urgent">Not Urgent</option>
                     </select>
 
-                    <label for="taskImportance">Importance:</label>
+
+                    <label for="taskImportance">Importance:<a href="#"
+                            onclick="openAssessmentChoices('importance')">Need a suggestion?</a></label>
                     <select id="taskImportance" name="taskImportance" required>
                         <option value="important">Important</option>
                         <option value="not-important">Not Important</option>
                     </select>
+
 
                     <label for="taskCategory">Category:</label>
                     <select id="taskCategory" name="taskCategory" required>
@@ -182,11 +191,50 @@
 
                     <button type="submit">Add Task</button>
                 </form>
+                <div id="suggestionResult" style="margin-top: 20px;"></div>
             </div>
         </div>
-        <div id="progress-bar-container">
-            <div id="progress-bar"></div>
+
+        <div id="assessmentChoicesModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAssessmentChoices()">&times;</span>
+                <h2>Determine Task Importance and Urgency</h2>
+                <div class="assessment-buttons">
+                    <div class="assessment-button">
+                        <button onclick="openQuickAssessment()">Quick Test</button>
+                        <p>A few questions to quickly assess the task's priority.</p>
+                    </div>
+                    <div class="assessment-button">
+                        <button onclick="openLongAssessment()">Full Test</button>
+                        <p>A detailed assessment with more questions for a thorough evaluation.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div id="importanceUrgencyModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Determine Task Importance and Urgency</h2>
+                <div id="question-container" class="question-container"></div>
+                <div class="question-number" id="question-number"></div>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion('yes')">Yes</button>
+                    <button onclick="answerQuestion('no')">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeResultModal()">&times;</span>
+                <h2>Task Priority Result</h2>
+                <p id="resultText"></p>
+            </div>
+        </div>
+
+
+        
 
         <!-- Task Info Modal -->
         <div id="taskInfoModal" class="modal">

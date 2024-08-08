@@ -1,15 +1,20 @@
 /* Global Styles */
+:root {
+    --primary-color: #F07167;
+    --secondary-color: #0081A7;
+    --background-color: #FDFCDC;
+    --box-background-color: #FFFDF2;
+    --box-border-color: #00AFB9;
+    --hover-color: #FF8C89;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    /* Applying Google Font: Roboto */
     margin: 0;
     padding: 0;
-    background-color: #FDFCDC;
-    /* Background */
-    color: #0081A7;
-    /* Text */
+    background-color: var(--background-color);
+    color: var(--secondary-color);
     transition: background-color 0.5s, color 0.5s;
-    /* Smooth transition for background and text color */
 }
 
 /* Header Styles */
@@ -18,11 +23,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #F07167;
-    /* Primary */
+    background-color: var(--primary-color);
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Shadow for header */
     transition: background-color 0.5s, box-shadow 0.5s;
 }
 
@@ -49,7 +52,7 @@ body {
 }
 
 .header-right .header-icon:hover {
-    color: #0081A7;
+    color: var(--secondary-color);
     transform: scale(1.2);
 }
 
@@ -61,15 +64,13 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #F07167;
-    /* Primary */
+    background-color: var(--primary-color);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
     box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
-    /* Shadow for sidebar */
 }
 
 .sidebar a,
@@ -84,12 +85,9 @@ body {
 
 .sidebar a:hover,
 .sidebar .login-btn:hover {
-    background-color: #FF8C89;
-    /* Primary Light */
-    color: #0081A7;
-    /* Text */
+    background-color: var(--hover-color);
+    color: var(--secondary-color);
     padding-left: 25px;
-    /* Indent on hover */
 }
 
 .sidebar .closebtn {
@@ -100,36 +98,121 @@ body {
     margin-left: 50px;
 }
 
+/* Main Content Styles */
 #main {
     transition: margin-left 0.5s;
-    padding: 16px;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Settings Container */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Settings Boxes Wrapper */
+.settings-boxes-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Settings Box Styles */
+.settings-box {
+    background-color: var(--box-background-color);
+    border: 1px solid var(--box-border-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.settings-box h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 /* Form Styles */
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    width: 100%;
 }
 
-form div {
+form .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 15%;
+}
+
+form .color-input {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-form button {
-    padding: 10px;
-    background-color: #F07167;
-    /* Primary */
+form label {
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+form input[type="color"] {
+    width: 50px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+.save-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-form button:hover {
-    background-color: #0081A7;
-    /* Text */
+.save-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+    }
+    .header-right {
+        justify-content: center;
+    }
+    .settings-boxes-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .settings-box {
+        width: 90%;
+    }
 }

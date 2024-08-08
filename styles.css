@@ -1,11 +1,15 @@
 /* General Styles */
 body {
-    font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
+    font-family: 'Roboto', sans-serif;
+    /* Applying Google Font: Roboto */
     margin: 0;
     padding: 0;
-    background-color: #FDFCDC; /* Background */
-    color: #0081A7; /* Text */
-    transition: background-color 0.5s, color 0.5s; /* Smooth transition for background and text color */
+    background-color: #FDFCDC;
+    /* Background */
+    color: #0081A7;
+    /* Text */
+    transition: background-color 0.5s, color 0.5s;
+    /* Smooth transition for background and text color */
 }
 
 /* Header Styles */
@@ -14,13 +18,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #F07167; /* Primary */
+    background-color: #F07167;
+    /* Primary */
     color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for header */
     transition: background-color 0.5s, box-shadow 0.5s;
 }
-
-
 
 .header-center h1 {
     margin: 0;
@@ -57,20 +61,23 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #F07167; /* Primary */
+    background-color: #F07167;
+    /* Primary */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for sidebar */
 }
 
 .sidebar.slide-in {
     animation: slideIn 0.5s forwards;
 }
 
-.sidebar a, .sidebar .login-btn {
+.sidebar a,
+.sidebar .login-btn {
     padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
@@ -79,10 +86,14 @@ body {
     transition: background-color 0.3s, padding 0.3s;
 }
 
-.sidebar a:hover, .sidebar .login-btn:hover {
-    background-color: #FF8C89; /* Primary Light */
-    color: #0081A7; /* Text */
-    padding-left: 25px; /* Indent on hover */
+.sidebar a:hover,
+.sidebar .login-btn:hover {
+    background-color: #FF8C89;
+    /* Primary Light */
+    color: #0081A7;
+    /* Text */
+    padding-left: 25px;
+    /* Indent on hover */
 }
 
 .sidebar .closebtn {
@@ -103,44 +114,72 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    background-color: #FFEDCD; /* Secondary Light */
+    background-color: #FFEDCD;
+    /* Secondary Light */
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for filter-sort section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for filter-sort section */
     transition: box-shadow 0.5s;
 }
 
 .filter-sort:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
 }
 
 .filter-sort label {
     margin-right: 10px;
-    color: #0081A7; /* Text */
+    color: #0081A7;
+    /* Text */
 }
 
-.filter-sort select, .filter-sort input {
+.filter-sort select,
+.filter-sort input {
     margin-right: 20px;
     padding: 5px 10px;
-    border: 1px solid #00AFB9; /* Accent */
+    border: 1px solid #00AFB9;
+    /* Accent */
     border-radius: 4px;
-    background-color: #FFFDF2; /* Background Light */
-    color: #0081A7; /* Text */
-    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+    background-color: #FFFDF2;
+    /* Background Light */
+    color: #0081A7;
+    /* Text */
+    transition: border-color 0.5s, box-shadow 0.5s;
+    /* Smooth transition for border and shadow */
 }
 
-.filter-sort select:focus, .filter-sort input:focus {
+.filter-sort select:focus,
+.filter-sort input:focus {
     outline: none;
-    border-color: #0081A7; /* Text */
-    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
+    border-color: #0081A7;
+    /* Text */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5);
+    /* Shadow on focus */
 }
 
 /* Eisenhower Matrix Styles */
 .matrix {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2x2 grid */
+    grid-template-columns: 1fr 1fr;
+    /* 2x2 grid */
     gap: 10px;
     flex-grow: 1;
+}
+
+/* Grid Layout */
+.grid-layout .matrix-cell {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 2.5%;
+}
+
+/* List Layout */
+.list-layout .matrix-cell {
+    width: 100%;
+    display: block;
+    margin: 10px 0;
 }
 
 .matrix-cell {
@@ -149,34 +188,45 @@ body {
     min-height: 250px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for matrix cells */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for matrix cells */
     transition: box-shadow 0.5s, transform 0.3s;
 }
 
 .matrix-cell:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
+    transform: translateY(-5px);
+    /* Lift effect on hover */
 }
 
 .primary-color {
-    background-color: #FF8C89; /* Primary Light */
-    border: 1px solid #F07167; /* Primary */
+    background-color: #FF8C89;
+    /* Primary Light */
+    border: 1px solid #F07167;
+    /* Primary */
 }
 
 .secondary-color {
-    background-color: #FFEDCD; /* Secondary Light */
-    border: 1px solid #FED9B7; /* Secondary */
+    background-color: #FFEDCD;
+    /* Secondary Light */
+    border: 1px solid #FED9B7;
+    /* Secondary */
 }
 
 .accent-color {
-    background-color: #33D1CC; /* Accent Light */
-    border: 1px solid #00AFB9; /* Accent */
+    background-color: #33D1CC;
+    /* Accent Light */
+    border: 1px solid #00AFB9;
+    /* Accent */
     color: white;
 }
 
 .text-color {
-    background-color: #3399CC; /* Text Light */
-    border: 1px solid #0081A7; /* Text */
+    background-color: #3399CC;
+    /* Text Light */
+    border: 1px solid #0081A7;
+    /* Text */
     color: white;
 }
 
@@ -184,12 +234,15 @@ body {
     margin-top: 0;
     color: white;
 }
-#decide-this h2{
+
+#decide-this h2 {
     color: #0081A7;
 }
+
 #delete-list {
     color: #0081A7;
 }
+
 #delegate-list {
     color: #0081A7;
 }
@@ -204,20 +257,24 @@ body {
 .task-list li {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #00AFB9; /* Accent */
+    border: 1px solid #00AFB9;
+    /* Accent */
     border-radius: 4px;
     background-color: #f1f3f5;
     cursor: grab;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for task items */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for task items */
     transition: box-shadow 0.5s, transform 0.3s;
 }
 
 .task-list li:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
+    transform: translateY(-5px);
+    /* Lift effect on hover */
 }
 
 .button-group {
@@ -226,7 +283,8 @@ body {
 }
 
 .task-list li button {
-    background-color: #00AFB9; /* Accent */
+    background-color: #00AFB9;
+    /* Accent */
     color: white;
     border: none;
     border-radius: 4px;
@@ -236,9 +294,12 @@ body {
 }
 
 .task-list li button:hover {
-    background-color: #0081A7; /* Text */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: #0081A7;
+    /* Text */
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
 }
+
 #taskForm label,
 #taskForm input,
 #taskForm select {
@@ -250,37 +311,47 @@ body {
 #taskForm input,
 #taskForm select {
     padding: 8px;
-    border: 1px solid #00AFB9; /* Accent */
+    border: 1px solid #00AFB9;
+    /* Accent */
     border-radius: 4px;
-    background-color: #FFFDF2; /* Background Light */
-    color: #0081A7; /* Text */
-    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+    background-color: #FFFDF2;
+    /* Background Light */
+    color: #0081A7;
+    /* Text */
+    transition: border-color 0.5s, box-shadow 0.5s;
+    /* Smooth transition for border and shadow */
 }
 
 #taskForm input:focus,
 #taskForm select:focus {
     outline: none;
-    border-color: #0081A7; /* Text */
-    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
+    border-color: #0081A7;
+    /* Text */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5);
+    /* Shadow on focus */
 }
-
 
 .completed-tasks {
     margin-top: 20px;
-    background-color: #FFFDF2; /* Background Light */
+    background-color: #FFFDF2;
+    /* Background Light */
     padding: 15px;
     border-radius: 8px;
-    border: 1px solid #00AFB9; /* Accent */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for completed tasks */
+    border: 1px solid #00AFB9;
+    /* Accent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for completed tasks */
     transition: box-shadow 0.5s;
 }
 
 .completed-tasks:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
 }
 
 .completed-tasks h2 {
-    color: #F07167; /* Primary */
+    color: #F07167;
+    /* Primary */
     margin-top: 0;
     cursor: pointer;
 }
@@ -288,7 +359,8 @@ body {
 .task-box {
     width: 20px;
     height: 20px;
-    background-color: #00AFB9; /* Accent */
+    background-color: #00AFB9;
+    /* Accent */
     margin-right: 10px;
     border-radius: 4px;
 }
@@ -304,7 +376,8 @@ body {
     padding: 10px 35px;
     border: none;
     border-radius: 50%;
-    background-color: #F07167; /* Primary */
+    background-color: #F07167;
+    /* Primary */
     color: white;
     cursor: pointer;
     font-size: 85px;
@@ -312,14 +385,19 @@ body {
     bottom: 20px;
     right: 20px;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for add task button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for add task button */
 }
 
 .add-task-btn:hover {
-    background-color: #0081A7; /* Text */
-    transform: scale(1.1); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    background-color: #0081A7;
+    /* Text */
+    transform: scale(1.1);
+    /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
 }
+
 /* Tooltip and Highlight Styles */
 .tooltip {
     position: absolute;
@@ -330,8 +408,6 @@ body {
     display: none;
     z-index: 1000;
 }
-
-
 
 .highlight {
     position: relative;
@@ -349,8 +425,9 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    transition: background-color 0.5s; /* Smooth transition for background color */
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: background-color 0.5s;
+    /* Smooth transition for background color */
 }
 
 .modal.fade-in {
@@ -361,42 +438,53 @@ body {
     background-color: white;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #00AFB9; /* Accent */
+    border: 1px solid #00AFB9;
+    /* Accent */
     width: 80%;
     border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for modal content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for modal content */
     transition: box-shadow 0.5s, transform 0.3s;
 }
 
 .modal-content:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
+    transform: translateY(-5px);
+    /* Lift effect on hover */
 }
 
 .modal-content h2 {
-    color: #F07167; /* Primary */
+    color: #F07167;
+    /* Primary */
 }
 
 .modal-content p {
-    color: #0081A7; /* Text */
+    color: #0081A7;
+    /* Text */
 }
 
 .modal-content button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #F07167; /* Primary */
+    background-color: #F07167;
+    /* Primary */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for modal button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for modal button */
     margin-top: 20px;
 }
 
 .modal-content button:hover {
-    background-color: #0081A7; /* Text */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    background-color: #0081A7;
+    /* Text */
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
 }
 
 /* Timer Styles */
@@ -428,17 +516,21 @@ button {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for general buttons */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for general buttons */
 }
 
 button:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
 }
 
 /* Timer buttons */
 .timer-btn {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
+    /* Green */
     color: white;
 }
 
@@ -447,21 +539,25 @@ button:hover {
 }
 
 .timer-btn::before {
-    content: '\23F5'; /* Play symbol */
+    content: '\23F5';
+    /* Play symbol */
     margin-right: 5px;
 }
 
 .timer-btn.paused::before {
-    content: '\23F8'; /* Pause symbol */
+    content: '\23F8';
+    /* Pause symbol */
 }
 
 .timer-btn.resumed::before {
-    content: '\23F5'; /* Play symbol */
+    content: '\23F5';
+    /* Play symbol */
 }
 
 /* Finish button */
 .finish-btn {
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
+    /* Red */
     color: white;
 }
 
@@ -470,14 +566,16 @@ button:hover {
 }
 
 .finish-btn::before {
-    content: '\2714'; /* Check symbol */
+    content: '\2714';
+    /* Check symbol */
     margin-right: 5px;
 }
 
 /* Edit button */
 .edit-btn {
-    background-color: #008CBA; /* Blue */
-    color: white;
+    background-color: #008CBA;
+    /* Blue */
+    color: white.
 }
 
 .edit-btn:hover {
@@ -485,13 +583,15 @@ button:hover {
 }
 
 .edit-btn::before {
-    content: '\270E'; /* Pencil symbol */
+    content: '\270E';
+    /* Pencil symbol */
     margin-right: 5px;
 }
 
 /* Delete button */
 .delete-btn {
-    background-color: #e7e7e7; /* Grey */
+    background-color: #e7e7e7;
+    /* Grey */
     color: black.
 }
 
@@ -500,7 +600,8 @@ button:hover {
 }
 
 .delete-btn::before {
-    content: '\1F5D1'; /* Trash symbol */
+    content: '\1F5D1';
+    /* Trash symbol */
     margin-right: 5px;
 }
 
@@ -509,6 +610,7 @@ button:hover {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -519,6 +621,7 @@ button:hover {
     from {
         transform: translateX(-100%);
     }
+
     to {
         transform: translateX(0);
     }
@@ -537,7 +640,8 @@ button:hover {
 .task-complete.completed {
     transform: scale(0.95);
     opacity: 0.7;
-    background-color: #d4edda; /* Light green to indicate completion */
+    background-color: #d4edda;
+    /* Light green to indicate completion */
 }
 
 /* Collapsible styles */
@@ -548,7 +652,8 @@ button:hover {
 }
 
 .task-list.expanded {
-    max-height: 1000px; /* Arbitrary large value */
+    max-height: 1000px;
+    /* Arbitrary large value */
 }
 
 .introjs-tooltip .introjs-button {
@@ -568,4 +673,77 @@ button:hover {
     height: 20px;
     background-color: #4caf50;
     transition: width 0.5s;
+}
+
+/* Styles for assessment modal and buttons */
+.modal-content {
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.question-container {
+    margin-bottom: 20px;
+}
+
+.answer-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.answer-buttons button {
+    padding: 10px 20px;
+    background-color: #00AFB9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.answer-buttons button:hover {
+    background-color: #0081A7;
+    transform: scale(1.05);
+}
+
+#resultModal .modal-content {
+    color: black;
+    text-align: center;
+}
+
+#resultModal .modal-content h2 {
+    margin-bottom: 20px;
+}
+
+#resultModal .modal-content p {
+    font-size: 18px;
+}
+
+.assessment-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.assessment-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.assessment-button button {
+    width: 140px;
+    margin-bottom: 10px;
+}
+
+.question-number {
+    margin-bottom: 20px;
+    text-align: center;
 }
