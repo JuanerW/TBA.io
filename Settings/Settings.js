@@ -111,3 +111,67 @@ function resetColor(inputId, defaultColor) {
 document.addEventListener('DOMContentLoaded', () => {
     loadSettings();
 });
+
+function startSettingTutorial() {
+    introJs().setOptions({
+        steps: [
+            {
+                intro: "Welcome to the Settings page! Let's walk through how you can customize your appearance."
+            },
+            {
+                element: '#sidebarColor',
+                intro: 'This is where you can change the color of the sidebar.'
+            },
+            {
+                element: 'button[onclick="resetColor(\'sidebarColor\', \'#F07167\')"]',
+                intro: 'Click here to reset the sidebar color to its default value.'
+            },
+            {
+                element: '#headerColor',
+                intro: 'Here, you can adjust the color of the header.'
+            },
+            {
+                element: '#backgroundColor',
+                intro: 'This option lets you change the background color of the main content area.'
+            },
+            {
+                element: '#doColor',
+                intro: 'This setting allows you to change the color of the "DO THIS" box in the Eisenhower Matrix.'
+            },
+            {
+                element: '#decideColor',
+                intro: 'Here you can adjust the color of the "DECIDE THIS" box.'
+            },
+            {
+                element: '#delegateColor',
+                intro: 'This setting allows you to change the color of the "DELEGATE THIS" box.'
+            },
+            {
+                element: '#deleteColor',
+                intro: 'Here you can adjust the color of the "DELETE THIS" box.'
+            },
+            {
+                element: '#CompleteColor',
+                intro: 'Set the color for "Completed Tasks" in the Pie Chart section here.'
+            },
+            {
+                element: '#InProgressColor',
+                intro: 'This option lets you adjust the color for "In Progress Tasks" in the Pie Chart section.'
+            },
+            {
+                element: '#NotStartColor',
+                intro: 'Here you can change the color of "Not Started Tasks" in the Pie Chart section.'
+            },
+            {
+                element: '.save-btn',
+                intro: 'Once you’re done customizing, click here to save your changes.'
+            },
+            {
+                element: '.header-icon[onclick="startSettingTutorial()"]',
+                intro: 'Click this icon anytime to replay the tutorial. Enjoy ^^'
+            }
+        ]
+    }).start();
+}
+
+

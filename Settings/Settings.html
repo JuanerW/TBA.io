@@ -11,6 +11,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <script src="https://kit.fontawesome.com/70d96a9cb5.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+    <style>
+    .introjs-tooltip {
+        background-color: #FDFCDC;
+        border: 2px solid #0081A7;
+        border-radius: 8px;
+    }
+
+    .introjs-tooltiptext {
+        color: #0081A7;
+        font-size: 16px;
+    }
+
+    .introjs-tooltipbuttons {
+        text-align: center;
+    }
+
+    .introjs-button {
+        background-color: #F07167;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .introjs-button:hover {
+        background-color: #0081A7;
+    }
+</style>
 </head>
 
 <body>
@@ -28,7 +61,7 @@
                 <a href="../login/login.html" class="header-icon" aria-label="Account">
                     <i class="fas fa-user"></i>
                 </a>
-                <a href="#" class="header-icon" aria-label="Tutorial" onclick="startTutorial()">
+                <a href="#" class="header-icon" aria-label="Tutorial" onclick="startSettingTutorial()">
                     <i class="fas fa-question-circle"></i>
                 </a>
                 <a href="../AboutUs/AboutUs.html" aria-label="About Us">

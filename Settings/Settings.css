@@ -216,3 +216,49 @@ form input[type="color"] {
         width: 90%;
     }
 }
+
+/* Customize the tooltip appearance */
+.introjs-tooltip {
+    background-color: #F07167; /* Background color */
+    color: #ffffff; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+
+/* Customize the tooltip text */
+.introjs-tooltiptext {
+    font-size: 16px; /* Font size */
+    line-height: 1.5; /* Line height */
+}
+
+/* Customize the buttons */
+.introjs-button {
+    background-color: #00AFB9; /* Button background color */
+    color: #ffffff; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 3px; /* Rounded corners */
+    padding: 5px 10px; /* Padding */
+}
+
+/* Highlighted elements */
+.introjs-highlight {
+    box-shadow: 0 0 10px rgba(0, 175, 185, 0.5); /* Custom shadow for highlighted elements */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Tooltip arrow customization */
+.introjs-arrow {
+    border-top-color: #F07167; /* Arrow color */
+}
+/* Make sure highlighted elements are visible and above other content */
+.introjs-showElement {
+    z-index: 9999; /* Bring the element to the front */
+    position: relative;
+}
+
+/* Adjust the z-index of the tooltip if necessary */
+.introjs-tooltipReferenceLayer {
+    z-index: 9999;
+}
+
+
