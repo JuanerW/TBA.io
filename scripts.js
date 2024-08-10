@@ -696,10 +696,6 @@ function startTutorial() {
                 intro: 'Click here to view the calendar.'
             },
             {
-                element: '.header-icon[href="./login/login.html"]',
-                intro: 'Click here to login.'
-            },
-            {
                 element: '.openbtn',
                 intro: 'Click here to open the sidebar menu.'
             },
