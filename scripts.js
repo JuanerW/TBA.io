@@ -352,42 +352,6 @@ function openPopup(title) {
     }
 }
 
-function openThreePopup(title) {
-    // Open a new popup window
-    const popup = window.open('', 'popupWindow', 'width=400,height=200');
-
-    if (popup) {
-        // Ensure the document is fully loaded before writing to it
-        popup.document.write(`
-            <html>
-            <head>
-                <title>Task Boost Assistant</title>
-                <style>
-                    body {
-                        background-color: #F07167;
-                        color: white;
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                        padding: 20px;
-                        margin: 0;
-                    }
-                </style>
-            </head>
-            <body>
-                <h2>The task called "${title}" has one minute left</h2>
-                <p>The time is near!</p>
-                <p>You have three minute left!</p>
-            </body>
-            </html>
-        `);
-
-        // Ensure the document is closed to render the content
-        popup.document.close();
-    } else {
-        alert('Unable to open popup window. Please make sure your browser allows popups.');
-    }
-}
-
 function openHalfPopup(title) {
     // Open a new popup window
     const popup = window.open('', 'popupWindow', 'width=400,height=200');
@@ -410,7 +374,7 @@ function openHalfPopup(title) {
                 </style>
             </head>
             <body>
-                <h2>The task called "${title}" has one minute left</h2>
+                <h2>The task called "${title}" has been half</h2>
                 <p>The time is near!</p>
                 <p>Time runs to half!</p>
             </body>
@@ -446,7 +410,7 @@ function openEndPopup(title) {
                 </style>
             </head>
             <body>
-                <h2>The task called "${title}" has one minute left</h2>
+                <h2>The task called "${title}" has zero minute left</h2>
                 <p>The time is near!</p>
                 <p>Time runs to half!</p>
             </body>
@@ -483,14 +447,9 @@ function updateCountdownDisplay(taskElement, endTime, taskId) {
     const timerDisplay = taskElement.querySelector('.timer-display');
     timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
 
-    if (remainingTime / expectedTime === 0.5) {
+    if ((hours * 3600 + minutes * 60 + seconds) / expectedTime === 0.5) {
         const taskName = taskElement.querySelector('.task-name').textContent;
         openHalfPopup(taskName);
-    }
-
-    if (remainingTime === 180) {
-        const taskName = taskElement.querySelector('.task-name').textContent;
-        openThreePopup(taskName);
     }
 
     // Check if there is exactly 1 minute (60 seconds) left
@@ -499,7 +458,7 @@ function updateCountdownDisplay(taskElement, endTime, taskId) {
         openPopup(taskName);
     }
 
-    if (remainingTime === 0) {
+    if (remainingTime === 1) {
         const taskName = taskElement.querySelector('.task-name').textContent;
         openEndPopup(taskName);
     }
