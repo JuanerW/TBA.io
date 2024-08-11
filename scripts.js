@@ -352,6 +352,77 @@ function openPopup(title) {
     }
 }
 
+function openHalfPopup(title) {
+    // Open a new popup window
+    const popup = window.open('', 'popupWindow', 'width=400,height=200');
+
+    if (popup) {
+        // Ensure the document is fully loaded before writing to it
+        popup.document.write(`
+            <html>
+            <head>
+                <title>Task Boost Assistant</title>
+                <style>
+                    body {
+                        background-color: #F07167;
+                        color: white;
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                        padding: 20px;
+                        margin: 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <h2>The task called "${title}" has been half</h2>
+                <p>The time is near!</p>
+                <p>Time runs to half!</p>
+            </body>
+            </html>
+        `);
+
+        // Ensure the document is closed to render the content
+        popup.document.close();
+    } else {
+        alert('Unable to open popup window. Please make sure your browser allows popups.');
+    }
+}
+
+function openEndPopup(title) {
+    // Open a new popup window
+    const popup = window.open('', 'popupWindow', 'width=400,height=200');
+
+    if (popup) {
+        // Ensure the document is fully loaded before writing to it
+        popup.document.write(`
+            <html>
+            <head>
+                <title>Task Boost Assistant</title>
+                <style>
+                    body {
+                        background-color: #F07167;
+                        color: white;
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                        padding: 20px;
+                        margin: 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <h2>The task called "${title}" has zero minute left</h2>
+                <p>The time is near!</p>
+                <p>Time runs to half!</p>
+            </body>
+            </html>
+        `);
+
+        // Ensure the document is closed to render the content
+        popup.document.close();
+    } else {
+        alert('Unable to open popup window. Please make sure your browser allows popups.');
+    }
+}
 
 function updateCountdownDisplay(taskElement, endTime, taskId) {
     const currentTime = new Date().getTime();
@@ -375,7 +446,7 @@ function updateCountdownDisplay(taskElement, endTime, taskId) {
 
     const timerDisplay = taskElement.querySelector('.timer-display');
     timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
-
+    
     // Check if there is exactly 1 minute (60 seconds) left
     if (remainingTime === 60) { // Assuming task title is in an element with class 'task-title'
         const taskName = taskElement.querySelector('.task-name').textContent;
