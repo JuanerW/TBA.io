@@ -448,7 +448,7 @@ function updateCountdownDisplay(taskElement, endTime, taskId) {
     timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
     
     // Check if there is exactly 1 minute (60 seconds) left
-    if (remainingTime === 60) { // Assuming task title is in an element with class 'task-title'
+    if (remainingTime === 5) { // Assuming task title is in an element with class 'task-title'
         const taskName = taskElement.querySelector('.task-name').textContent;
         openPopup(taskName);
     }
