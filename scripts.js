@@ -316,77 +316,77 @@ function toggleTimer(button) {
     }
 }
 
-function openPopup(title) {
-    // Open a new popup window
-    const popup = window.open('', 'popupWindow', 'width=400,height=200');
+// function openPopup(title) {
+//     // Open a new popup window
+//     const popup = window.open('', 'popupWindow', 'width=400,height=200');
 
-    if (popup) {
-        // Ensure the document is fully loaded before writing to it
-        popup.document.write(`
-            <html>
-            <head>
-                <title>Task Boost Assistant</title>
-                <style>
-                    body {
-                        background-color: #F07167;
-                        color: white;
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                        padding: 20px;
-                        margin: 0;
-                    }
-                </style>
-            </head>
-            <body>
-                <h2>The task called "${title}" has one minute left</h2>
-                <p>The time is near!</p>
-                <p>You have one minute left!</p>
-            </body>
-            </html>
-        `);
+//     if (popup) {
+//         // Ensure the document is fully loaded before writing to it
+//         popup.document.write(`
+//             <html>
+//             <head>
+//                 <title>Task Boost Assistant</title>
+//                 <style>
+//                     body {
+//                         background-color: #F07167;
+//                         color: white;
+//                         font-family: Arial, sans-serif;
+//                         text-align: center;
+//                         padding: 20px;
+//                         margin: 0;
+//                     }
+//                 </style>
+//             </head>
+//             <body>
+//                 <h2>The task called "${title}" has one minute left</h2>
+//                 <p>The time is near!</p>
+//                 <p>You have one minute left!</p>
+//             </body>
+//             </html>
+//         `);
 
-        // Ensure the document is closed to render the content
-        popup.document.close();
-    } else {
-        alert('Unable to open popup window. Please make sure your browser allows popups.');
-    }
-}
+//         // Ensure the document is closed to render the content
+//         popup.document.close();
+//     } else {
+//         alert('Unable to open popup window. Please make sure your browser allows popups.');
+//     }
+// }
 
-function openHalfPopup(title) {
-    // Open a new popup window
-    const popup = window.open('', 'popupWindow', 'width=400,height=200');
+// function openHalfPopup(title) {
+//     // Open a new popup window
+//     const popup = window.open('', 'popupWindow', 'width=400,height=200');
 
-    if (popup) {
-        // Ensure the document is fully loaded before writing to it
-        popup.document.write(`
-            <html>
-            <head>
-                <title>Task Boost Assistant</title>
-                <style>
-                    body {
-                        background-color: #F07167;
-                        color: white;
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                        padding: 20px;
-                        margin: 0;
-                    }
-                </style>
-            </head>
-            <body>
-                <h2>The task called "${title}" has been half</h2>
-                <p>The time is near!</p>
-                <p>Time runs to half!</p>
-            </body>
-            </html>
-        `);
+//     if (popup) {
+//         // Ensure the document is fully loaded before writing to it
+//         popup.document.write(`
+//             <html>
+//             <head>
+//                 <title>Task Boost Assistant</title>
+//                 <style>
+//                     body {
+//                         background-color: #F07167;
+//                         color: white;
+//                         font-family: Arial, sans-serif;
+//                         text-align: center;
+//                         padding: 20px;
+//                         margin: 0;
+//                     }
+//                 </style>
+//             </head>
+//             <body>
+//                 <h2>The task called "${title}" has been half</h2>
+//                 <p>The time is near!</p>
+//                 <p>Time runs to half!</p>
+//             </body>
+//             </html>
+//         `);
 
-        // Ensure the document is closed to render the content
-        popup.document.close();
-    } else {
-        alert('Unable to open popup window. Please make sure your browser allows popups.');
-    }
-}
+//         // Ensure the document is closed to render the content
+//         popup.document.close();
+//     } else {
+//         alert('Unable to open popup window. Please make sure your browser allows popups.');
+//     }
+// }
 
 function openEndPopup(title) {
     // Open a new popup window
@@ -411,8 +411,6 @@ function openEndPopup(title) {
             </head>
             <body>
                 <h2>The task called "${title}" has zero minute left</h2>
-                <p>The time is near!</p>
-                <p>Time runs to half!</p>
             </body>
             </html>
         `);
@@ -448,9 +446,9 @@ function updateCountdownDisplay(taskElement, endTime, taskId) {
     timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
     
     // Check if there is exactly 1 minute (60 seconds) left
-    if (remainingTime === 5) { // Assuming task title is in an element with class 'task-title'
+    if (remainingTime === 2) { // Assuming task title is in an element with class 'task-title'
         const taskName = taskElement.querySelector('.task-name').textContent;
-        openPopup(taskName);
+        openEndPopup(taskName);
     }
 
     if (remainingTime <= parseInt(taskElement.dataset.expectedTime)) {
