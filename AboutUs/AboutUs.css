@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #FDFCDC;
     color: #333;
+    line-height: 1.6; /* Improve readability */
 }
 
 /* Header Styles */
@@ -12,7 +13,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 15px; /* Increase padding for a more spacious look */
     background-color: #F07167; /* Primary */
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
@@ -21,22 +22,19 @@ body {
 
 .header-center h1 {
     margin: 0;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
+    font-size: 28px; /* Increase font size for the header */
+    font-weight: bold; /* Make the header text bold */
 }
 
 .header-right .logo {
-    width: 50px;
-    margin-left: 10px;
+    width: 60px; /* Slightly larger logo */
+    margin-left: 15px;
 }
 
 .header-right .header-icon {
-    margin-left: 15px;
+    margin-left: 20px;
     color: white;
-    font-size: 24px;
+    font-size: 26px; /* Increase icon size */
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
 }
@@ -68,9 +66,9 @@ body {
 }
 
 .sidebar a, .sidebar .login-btn {
-    padding: 10px 15px;
+    padding: 12px 20px; /* Increase padding for better touch targets */
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px; /* Increase font size for readability */
     color: white;
     display: block;
     transition: background-color 0.3s, padding 0.3s;
@@ -79,113 +77,145 @@ body {
 .sidebar a:hover, .sidebar .login-btn:hover {
     background-color: #FF8C89; /* Primary Light */
     color: #0081A7; /* Text */
-    padding-left: 25px; /* Indent on hover */
+    padding-left: 30px; /* Indent on hover */
 }
 
 .sidebar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 40px; /* Increase size for better visibility */
     margin-left: 50px;
 }
 
 /* Main Content */
 #main {
     transition: margin-left 0.5s;
-    padding: 16px;
+    padding: 20px; /* Increase padding for more space */
 }
 
 /* Section Styles */
 section {
-    padding: 20px;
+    padding: 25px; /* Increase padding for a more open feel */
     background-color: #ffffff;
-    margin: 20px 0;
+    margin: 25px 0; /* Increase margin for better separation */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Ensure overall text alignment is left */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+section h2 {
+    font-size: 26px; /* Larger section titles */
+    color: #F07167; /* Primary color for section titles */
+    margin-bottom: 15px; /* Space below the title */
+    font-weight: 600; /* Slightly thicker font weight */
+}
+
+section p {
+    font-size: 16px; /* Increase paragraph font size */
+    color: #555; /* Slightly lighter color for better readability */
+    margin-bottom: 15px; /* Space below each paragraph */
 }
 
 /* Profile Section */
 .profiles-section {
-    text-align: left; /* Align text to the left */
+    text-align: left;
 }
 
-.profile-container {
-    display: flex;
-    flex-direction: column; /* Stack profiles vertically */
-    align-items: flex-start; /* Align profiles to the left */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px; /* Increase gap between profiles */
 }
 
 .profile {
-    display: flex; /* Align items horizontally */
-    align-items: flex-start; /* Align items to the top */
-    margin: 10px 0; /* Vertical margin for spacing between profiles */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow */
     overflow: hidden;
-    width: 100%; /* Ensure profiles take full width of container */
-    max-width: 600px; /* Limit the maximum width of profiles */
+    padding: 25px; /* Increase padding for more content space */
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Add smooth transitions */
+}
+
+.profile:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
 .profile img {
     width: 150px;
-    height: 150px; /* Set consistent height for images */
+    height: 150px;
     object-fit: cover;
-    border-right: none; /* Remove the red line */
+    border-radius: 50%;
+    margin-bottom: 15px; /* Add space below the image */
 }
 
-.profile-info {
-    padding: 10px;
-    flex: 1; /* Take up remaining space */
+.profile-info .name {
+    font-size: 22px; /* Increase name font size */
+    color: #F07167; /* Primary color */
+    margin-bottom: 5px; /* Space below the name */
 }
 
-.profile-info p {
-    margin: 10px 0;
-}
-
-/* Features Section */
-.features-section h2 {
-    text-align: left; /* Align text to the left */
-}
-
-.features-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.features-section li {
-    font-size: 18px;
-    color: #7f8c8d;
+.profile-info .role {
+    font-size: 18px; /* Increase role font size */
+    color: #0081A7; /* Secondary color */
     margin-bottom: 10px;
+    font-style: italic; /* Add italic styling for emphasis */
 }
 
-.features-section strong {
-    color: #2c3e50;
+.profile-info .bio {
+    font-size: 15px; /* Increase bio font size */
+    line-height: 1.7; /* Improve line spacing for readability */
+    color: #555;
 }
 
 /* About Eisenhower Matrix Section */
 .about-section h2, .about-section p {
-    text-align: left; /* Align text to the left */
+    text-align: left;
+}
+
+.about-section h3 {
+    font-size: 20px; /* Section subtitles */
+    color: #0081A7; /* Secondary color */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.about-section p {
+    font-size: 16px; /* Increase paragraph font size */
+    color: #555; /* Slightly lighter color */
+    margin-bottom: 15px; /* Space below each paragraph */
+}
+
+.about-section ul {
+    list-style-type: disc; /* Add bullet points */
+    margin-left: 20px; /* Indent the list */
+}
+
+.about-section ul li {
+    margin-bottom: 10px; /* Space between list items */
 }
 
 /* Contact Section Styles */
 .contact-section {
-    padding: 20px;
+    padding: 25px;
     background-color: #ffffff;
-    margin: 20px 0;
+    margin: 25px 0;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Ensure overall text alignment is left */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
 .contact-section h2 {
     color: #2c3e50;
-    font-size: 24px;
-    margin-bottom: 15px;
-    text-align: left; /* Ensure the heading is left-aligned */
+    font-size: 26px; /* Increase font size */
+    margin-bottom: 20px;
+    text-align: left;
+    font-weight: 600; /* Thicker font weight for emphasis */
 }
 
 .contact-section form {
@@ -194,33 +224,33 @@ section {
 }
 
 .contact-section label {
-    font-size: 18px;
+    font-size: 18px; /* Increase label font size */
     color: #2c3e50;
-    margin-bottom: 5px;
-    text-align: left; /* Ensure labels are left-aligned */
+    margin-bottom: 8px; /* Add space below labels */
+    text-align: left;
 }
 
 .contact-section input,
 .contact-section textarea {
     font-size: 16px;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px; /* Increase padding for larger input fields */
+    margin-bottom: 15px; /* Space between fields */
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%; /* Ensure full width for text fields */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-section button {
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 12px 18px; /* Increase button padding */
+    font-size: 18px; /* Increase button font size */
     color: white;
     background-color: #F07167;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    align-self: flex-start; /* Align the button to the start (left) of the form */
+    align-self: flex-start;
 }
 
 .contact-section button:hover {
@@ -231,18 +261,18 @@ section {
 /* Back to Main Page Button */
 .about-section .button {
     display: inline-block;
-    padding: 10px 20px;
-    margin: 0; /* Remove white space around the button */
-    background-color: #F07167; /* Red background color */
-    color: white; /* Text color */
+    padding: 12px 22px; /* Increase padding for larger buttons */
+    margin: 0;
+    background-color: #F07167;
+    color: white;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
 .about-section .button:hover {
-    background-color: #c0392b; /* Darker red on hover */
-    color: white; /* Ensure text color remains white on hover */
+    background-color: #c0392b;
+    color: white;
     transform: scale(1.05);
 }
 
@@ -257,6 +287,12 @@ section {
 }
 
 /* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .profile-grid {
+        grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns on medium screens */
+    }
+}
+
 @media screen and (max-width: 768px) {
     .header-right .header-icon {
         font-size: 20px;
@@ -265,6 +301,18 @@ section {
     .profile img {
         width: 100px;
         height: 100px;
+    }
+
+    .profile-info .name {
+        font-size: 18px;
+    }
+
+    .profile-info .role {
+        font-size: 14px;
+    }
+
+    .profile-info .bio {
+        font-size: 13px;
     }
 
     .features-section h2, .features-section ul, .about-section h2, .about-section p {
@@ -291,4 +339,3 @@ section {
 .magic-button:hover {
     background-color: #0056b3;
 }
-

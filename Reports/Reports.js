@@ -300,14 +300,14 @@ function generateReportTable() {
         <table>
             <tr>
                 <th>Task Name</th>
-                <th>Time (sec)</th>
+                <th>Time (min)</th>
                 <th>Importance</th>
                 <th>Urgency</th>
             </tr>
             ${tasks.map(task => `
             <tr>
                 <td>${task.name}</td>
-                <td>${task.time}</td>
+                <td>${(task.time / 60).toFixed(2)}</td>
                 <td>${task.importance}</td>
                 <td>${task.urgency}</td>
             </tr>`).join('')}
@@ -317,7 +317,7 @@ function generateReportTable() {
             ${completedTasks.map(task => `
             <tr>
                 <td>${task.name}</td>
-                <td>${task.time}</td>
+                <td>${(task.time / 60).toFixed(2)}</td>
                 <td>${task.importance}</td>
                 <td>${task.urgency}</td>
             </tr>`).join('')}
