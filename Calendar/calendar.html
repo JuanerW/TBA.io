@@ -2,27 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Set the character encoding for the HTML document -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensure proper scaling on different devices and screen sizes -->
+
     <title>Calendar</title>
+    <!-- Title of the calendar page -->
+
     <link rel="stylesheet" href="calendar.css">
+    <!-- Link to the external CSS file for calendar styles -->
+
     <script src="calendar.js" defer></script>
+    <!-- Link to the external JavaScript file for calendar functionality -->
+    <!-- The defer attribute ensures the script is executed after the HTML is parsed -->
 </head>
 <body>
+    <!-- Main container for the calendar page -->
     <div class="container">
+        <!-- Header section with navigation controls -->
         <div class="header">
+            <!-- Home button to navigate back to the home page -->
             <button id="homeButton">Home</button>
+
+            <!-- Navigation controls for the calendar -->
             <div class="navigation">
+                <!-- Button to move to the previous month -->
                 <button id="prevMonth">«</button>
                 <div>
+                    <!-- Display the current month -->
                     <span id="month"></span>
+
+                    <!-- Display the current year -->
                     <span id="year"></span>
                 </div>
+                <!-- Button to move to the next month -->
                 <button id="nextMonth">»</button>
+
+                <!-- Button to open the date picker -->
                 <button id="openPicker">📅</button>
             </div>
         </div>
+
+        <!-- Calendar display area -->
         <div class="calendar">
             <table id="calendarTable">
+                <!-- Table header with days of the week -->
                 <thead>
                     <tr>
                         <th>Sun</th>
@@ -34,15 +59,23 @@
                         <th>Sat</th>
                     </tr>
                 </thead>
+                <!-- Table body where the calendar days will be dynamically inserted -->
                 <tbody id="calendarBody"></tbody>
             </table>
         </div>
     </div>
+
+    <!-- Date picker modal for selecting a specific date -->
     <div id="datePicker" class="date-picker">
+        <!-- Header for the date picker with dropdowns for selecting month and year -->
         <div class="picker-header">
             <select id="monthSelect"></select>
+            <!-- Dropdown for selecting the month -->
+
             <select id="yearSelect"></select>
+            <!-- Dropdown for selecting the year -->
         </div>
+        <!-- Button to set the selected date -->
         <button id="setDate">Set Date</button>
     </div>
 </body>

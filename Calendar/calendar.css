@@ -1,138 +1,133 @@
 /* General Styles */
 body {
-    font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
-    margin: 0;
-    padding: 0;
-    background-color: #FDFCDC; /* Background */
-    color: #0081A7; /* Text */
+    font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto for consistent typography */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: #FDFCDC; /* Light background color */
+    color: #0081A7; /* Dark text color for contrast */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    transition: background-color 0.5s, color 0.5s; /* Smooth transition for background and text color */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Full viewport height */
+    transition: background-color 0.5s, color 0.5s; /* Smooth transition for background and text color changes */
 }
 
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
 }
 
 .header {
     width: 100%;
-    max-width: 800px;
+    max-width: 800px; /* Limit header width for larger screens */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #F07167; /* Primary */
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
-    margin-bottom: 20px;
-    transition: background-color 0.5s, box-shadow 0.5s;
+    justify-content: space-between; /* Space between navigation elements */
+    align-items: center; /* Align items vertically */
+    padding: 10px 20px; /* Add padding for spacing */
+    background-color: #F07167; /* Primary background color */
+    color: white; /* White text color for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px; /* Space below the header */
+    transition: background-color 0.5s, box-shadow 0.5s; /* Smooth transitions for background and shadow */
 }
 
 .navigation {
-    display: flex;
-    align-items: center;
+    display: flex; /* Arrange navigation buttons in a row */
+    align-items: center; /* Align buttons vertically */
 }
 
 .navigation div {
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
+    display: flex; /* Group month and year display together */
+    align-items: center; /* Align text vertically */
+    margin: 0 20px; /* Space between navigation buttons */
 }
 
 .navigation span {
-    margin: 0 5px;
-    font-size: 1.2em;
-    font-weight: bold;
+    margin: 0 5px; /* Space between month and year */
+    font-size: 1.2em; /* Larger text size for visibility */
+    font-weight: bold; /* Bold text for emphasis */
 }
 
 #homeButton, #prevMonth, #nextMonth, #openPicker {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-    color: white;
-    transition: color 0.3s, transform 0.3s;
+    background: none; /* No background for a minimalist look */
+    border: none; /* Remove default border */
+    font-size: 1.2em; /* Larger font size for buttons */
+    cursor: pointer; /* Pointer cursor to indicate interactivity */
+    color: white; /* White text color */
+    transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
 }
 
 #homeButton:hover, #prevMonth:hover, #nextMonth:hover, #openPicker:hover {
-    color: #FFEDCD;
-    transform: scale(1.1);
+    color: #FFEDCD; /* Lighten text color on hover */
+    transform: scale(1.1); /* Slightly enlarge button on hover */
 }
 
 /* Calendar Styles */
 .calendar {
     width: 100%;
-
-    max-width: 1200px; /* Increased max-width for larger calendar */
-
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
+    max-width: 1200px; /* Increased max-width for larger calendar display */
+    background: white; /* White background for the calendar */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Hide overflow for a clean appearance */
+    text-align: center; /* Center text within the calendar */
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 100%; /* Full width table */
+    border-collapse: collapse; /* Remove space between table cells */
 }
 
 th, td {
-    width: 14.28%;
-    text-align: center;
-    vertical-align: top;
-    border: 1px solid #ddd;
-
-    padding: 10px; /* Increased padding */
-    transition: background-color 0.3s, transform 0.3s;
-    min-height: 120px; /* Set minimum height */
-    max-height: 200px; /* Set maximum height */
-
+    width: 14.28%; /* Equal width for each day column (100% / 7 days) */
+    text-align: center; /* Center-align text */
+    vertical-align: top; /* Align content to the top of cells */
+    border: 1px solid #ddd; /* Light border for table cells */
+    padding: 10px; /* Increased padding for more space inside cells */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for hover effects */
+    min-height: 120px; /* Set minimum height for cells */
+    max-height: 200px; /* Set maximum height for cells */
 }
 
 tbody td {
-    cursor: pointer;
+    cursor: pointer; /* Pointer cursor for interactive cells */
 }
 
 tbody td:hover {
-    background: #FFEDCD;
-    transform: scale(1.05);
+    background: #FFEDCD; /* Lighten background color on hover */
+    transform: scale(1.05); /* Slightly enlarge cell on hover */
 }
 
 tbody td.inactive {
-    color: #ccc;
+    color: #ccc; /* Grey out text for inactive days */
 }
 
 .task {
-    background-color: #FF8C89; /* Primary Light */
-    padding: 2px 4px;
-    margin-top: 5px;
-    font-size: 12px;
-    border-radius: 3px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: white;
+    background-color: #FF8C89; /* Light red background for tasks */
+    padding: 2px 4px; /* Padding for task labels */
+    margin-top: 5px; /* Space above each task */
+    font-size: 12px; /* Smaller font size for task text */
+    border-radius: 3px; /* Rounded corners for tasks */
+    overflow: hidden; /* Hide overflow for a clean look */
+    white-space: nowrap; /* Prevent text wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+    color: white; /* White text color for contrast */
 }
 
 .date-picker {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    z-index: 1000;
-    transition: box-shadow 0.5s, transform 0.3s;
+    display: none; /* Hidden by default */
+    position: absolute; /* Absolute positioning for modal */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset by half the element's size for perfect centering */
+    background: white; /* White background for the picker */
+    border: 1px solid #ddd; /* Light border for the picker */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the picker */
+    z-index: 1000; /* Ensure the picker is on top of other elements */
+    transition: box-shadow 0.5s, transform 0.3s; /* Smooth transitions for shadow and scale effects */
 }
 
 .date-picker:hover {
@@ -141,38 +136,38 @@ tbody td.inactive {
 }
 
 .picker-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    display: flex; /* Arrange month and year dropdowns in a row */
+    justify-content: space-between; /* Space between the dropdowns */
+    margin-bottom: 10px; /* Space below the header */
 }
 
 select {
-    padding: 5px;
-    border: 1px solid #00AFB9; /* Accent */
-    border-radius: 4px;
-    background-color: #FFFDF2; /* Background Light */
-    color: #0081A7; /* Text */
-    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transition for border and shadow */
+    padding: 5px; /* Padding inside the dropdowns */
+    border: 1px solid #00AFB9; /* Light blue border */
+    border-radius: 4px; /* Rounded corners for dropdowns */
+    background-color: #FFFDF2; /* Light background color */
+    color: #0081A7; /* Dark text color for contrast */
+    transition: border-color 0.5s, box-shadow 0.5s; /* Smooth transitions for border and shadow */
 }
 
 select:focus {
-    outline: none;
-    border-color: #0081A7; /* Text */
-    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Shadow on focus */
+    outline: none; /* Remove default outline */
+    border-color: #0081A7; /* Darken border color on focus */
+    box-shadow: 0 0 8px rgba(0, 129, 167, 0.5); /* Add shadow on focus */
 }
 
 button {
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for general buttons */
+    padding: 10px 15px; /* Padding for buttons */
+    margin: 5px; /* Margin around buttons */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    cursor: pointer; /* Pointer cursor for buttons */
+    font-size: 16px; /* Standard font size for buttons */
+    display: inline-flex; /* Align items in a row */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for hover effects */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
 }
 
 button:hover {
